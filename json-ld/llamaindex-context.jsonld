@@ -1,0 +1,177 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "llama": "https://llamaindex.ai/ns/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "Project": {
+      "@id": "llama:Project",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "created_at": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updated_at": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Pipeline": {
+      "@id": "llama:Pipeline",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "status": "llama:status",
+        "project": {
+          "@id": "llama:project",
+          "@type": "@id"
+        },
+        "embedding_model": "llama:embeddingModel",
+        "sync_interval": "llama:syncInterval",
+        "data_sources": {
+          "@id": "llama:dataSources",
+          "@container": "@set"
+        },
+        "data_sinks": {
+          "@id": "llama:dataSinks",
+          "@container": "@set"
+        },
+        "created_at": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updated_at": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "DataSource": {
+      "@id": "llama:DataSource",
+      "@context": {
+        "name": "schema:name",
+        "source_type": "llama:sourceType",
+        "config": "llama:configuration",
+        "created_at": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "DataSink": {
+      "@id": "llama:DataSink",
+      "@context": {
+        "name": "schema:name",
+        "sink_type": "llama:sinkType",
+        "config": "llama:configuration"
+      }
+    },
+
+    "File": {
+      "@id": "schema:DigitalDocument",
+      "@context": {
+        "name": "schema:name",
+        "file_size": "schema:contentSize",
+        "content_type": "schema:encodingFormat",
+        "url": {
+          "@id": "schema:url",
+          "@type": "@id"
+        },
+        "created_at": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "ParseJob": {
+      "@id": "llama:ParseJob",
+      "@context": {
+        "status": "llama:status",
+        "tier": "llama:parsingTier",
+        "version": "schema:version",
+        "file_name": "schema:name",
+        "num_pages": "schema:numberOfPages",
+        "source_url": {
+          "@id": "schema:url",
+          "@type": "@id"
+        },
+        "result": "llama:parseResult",
+        "created_at": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "completed_at": {
+          "@id": "llama:completedAt",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "ExtractionAgent": {
+      "@id": "llama:ExtractionAgent",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "data_schema": "llama:dataSchema",
+        "prompt": "llama:prompt",
+        "project": {
+          "@id": "llama:project",
+          "@type": "@id"
+        },
+        "created_at": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updated_at": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "ExtractionJob": {
+      "@id": "llama:ExtractionJob",
+      "@context": {
+        "status": "llama:status",
+        "extraction_agent": {
+          "@id": "llama:extractionAgent",
+          "@type": "@id"
+        },
+        "files": {
+          "@id": "llama:files",
+          "@container": "@set"
+        },
+        "results": {
+          "@id": "llama:results",
+          "@container": "@set"
+        },
+        "created_at": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "completed_at": {
+          "@id": "llama:completedAt",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "RetrievalResult": {
+      "@id": "llama:RetrievalResult",
+      "@context": {
+        "text": "schema:text",
+        "score": "llama:relevanceScore",
+        "metadata": "llama:metadata"
+      }
+    }
+  }
+}

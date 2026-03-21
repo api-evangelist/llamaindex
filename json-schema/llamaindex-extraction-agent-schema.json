@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://llamaindex.ai/schemas/llamaindex/extraction-agent.json",
+  "title": "LlamaIndex Extraction Agent",
+  "description": "An extraction agent in LlamaExtract configured with a specific data schema and extraction settings for transforming unstructured documents into structured JSON representations.",
+  "type": "object",
+  "required": ["id", "name", "project_id"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier of the extraction agent."
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name of the extraction agent.",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "project_id": {
+      "type": "string",
+      "description": "Identifier of the project the agent belongs to."
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional description of the extraction agent and its purpose.",
+      "maxLength": 1000
+    },
+    "data_schema": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "JSON Schema defining the structure of the data to extract from documents."
+    },
+    "prompt": {
+      "type": "string",
+      "description": "Optional prompt used for automatic schema inference from example documents."
+    },
+    "extraction_jobs": {
+      "type": "array",
+      "description": "Extraction jobs that have been run with this agent.",
+      "items": {
+        "$ref": "#/$defs/ExtractionJob"
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the extraction agent was created."
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the extraction agent was last updated."
+    }
+  },
+  "$defs": {
+    "ExtractionJob": {
+      "type": "object",
+      "description": "An asynchronous extraction job that processes documents through an extraction agent.",
+      "required": ["id", "extraction_agent_id", "status"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the extraction job."
+        },
+        "extraction_agent_id": {
+          "type": "string",
+          "description": "Identifier of the extraction agent used for this job."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["pending", "processing", "completed", "failed"],
+          "description": "Current status of the extraction job."
+        },
+        "file_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Identifiers of the files being processed."
+        },
+        "results": {
+          "type": "array",
+          "description": "Extraction results for each processed file.",
+          "items": {
+            "$ref": "#/$defs/FileExtractionResult"
+          }
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the extraction job was created."
+        },
+        "completed_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the extraction job completed."
+        }
+      }
+    },
+    "FileExtractionResult": {
+      "type": "object",
+      "description": "Extraction result for a single processed file.",
+      "required": ["file_id", "status"],
+      "properties": {
+        "file_id": {
+          "type": "string",
+          "description": "Identifier of the processed file."
+        },
+        "file_name": {
+          "type": "string",
+          "description": "Name of the processed file."
+        },
+        "data": {
+          "type": "object",
+          "additionalProperties": true,
+          "description": "Structured data extracted from the file, conforming to the agent data schema."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["success", "error"],
+          "description": "Extraction status for this specific file."
+        },
+        "error": {
+          "type": "string",
+          "description": "Error message if extraction failed for this file."
+        }
+      }
+    }
+  }
+}

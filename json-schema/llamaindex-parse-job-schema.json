@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://llamaindex.ai/schemas/llamaindex/parse-job.json",
+  "title": "LlamaIndex Parse Job",
+  "description": "A parse job in LlamaParse representing the asynchronous processing of a document through AI-powered parsing with configurable tiers for different quality and speed trade-offs.",
+  "type": "object",
+  "required": ["id", "status", "tier"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier of the parse job."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "processing", "completed", "failed"],
+      "description": "Current processing status of the parse job."
+    },
+    "tier": {
+      "type": "string",
+      "enum": ["fast", "cost_effective", "agentic", "agentic_plus"],
+      "description": "Parsing tier that determines quality and speed trade-off. Fast outputs spatial text only. Cost-effective is optimized for text-heavy documents. Agentic handles images and diagrams. Agentic-plus provides maximum fidelity for complex layouts."
+    },
+    "version": {
+      "type": "string",
+      "description": "API version used for parsing. Use 'latest' for most recent or a specific date string for production stability.",
+      "pattern": "^(latest|\\d{4}-\\d{2}-\\d{2})$"
+    },
+    "file_id": {
+      "type": "string",
+      "description": "Identifier of the uploaded file being parsed."
+    },
+    "source_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL of the document fetched for parsing, if provided instead of file_id."
+    },
+    "file_name": {
+      "type": "string",
+      "description": "Name of the parsed file."
+    },
+    "num_pages": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total number of pages in the document."
+    },
+    "target_pages": {
+      "type": "string",
+      "description": "Page range to parse using 1-based indexing (e.g., '1-5', '3,7,10').",
+      "pattern": "^[\\d,\\-\\s]+$"
+    },
+    "result": {
+      "$ref": "#/$defs/ParseResult"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the parse job was created."
+    },
+    "completed_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the parse job completed."
+    }
+  },
+  "$defs": {
+    "ParseResult": {
+      "type": "object",
+      "description": "The parsed output of a document containing extracted content in various formats.",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "Plain text representation of the parsed content."
+        },
+        "markdown": {
+          "type": "string",
+          "description": "Markdown-formatted representation of the parsed content."
+        },
+        "json": {
+          "type": "object",
+          "additionalProperties": true,
+          "description": "Structured JSON representation of the parsed content."
+        },
+        "pages": {
+          "type": "array",
+          "description": "Per-page parsing results.",
+          "items": {
+            "$ref": "#/$defs/ParsePage"
+          }
+        },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": true,
+          "description": "Metadata extracted from the document."
+        }
+      }
+    },
+    "ParsePage": {
+      "type": "object",
+      "description": "Parsed content for a single page of a document.",
+      "required": ["page_number"],
+      "properties": {
+        "page_number": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "1-based page number."
+        },
+        "text": {
+          "type": "string",
+          "description": "Plain text content of the page."
+        },
+        "markdown": {
+          "type": "string",
+          "description": "Markdown-formatted content of the page."
+        }
+      }
+    }
+  }
+}

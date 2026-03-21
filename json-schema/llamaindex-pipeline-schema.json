@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://llamaindex.ai/schemas/llamaindex/pipeline.json",
+  "title": "LlamaIndex Pipeline",
+  "description": "A document ingestion pipeline (index) in LlamaCloud that processes, embeds, and indexes documents for retrieval in RAG applications.",
+  "type": "object",
+  "required": ["id", "name", "project_id"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier of the pipeline."
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name of the pipeline.",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "project_id": {
+      "type": "string",
+      "description": "Identifier of the project the pipeline belongs to."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "syncing", "error", "idle"],
+      "description": "Current processing status of the pipeline."
+    },
+    "embedding_model": {
+      "type": "string",
+      "description": "Name of the embedding model used for vectorization."
+    },
+    "sync_interval": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Scheduled sync frequency in seconds. Zero means manual sync only."
+    },
+    "data_sources": {
+      "type": "array",
+      "description": "Data sources connected to this pipeline for automatic ingestion.",
+      "items": {
+        "$ref": "#/$defs/DataSource"
+      }
+    },
+    "data_sinks": {
+      "type": "array",
+      "description": "Data sinks where processed content is stored.",
+      "items": {
+        "$ref": "#/$defs/DataSink"
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the pipeline was created."
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the pipeline was last updated."
+    }
+  },
+  "$defs": {
+    "DataSource": {
+      "type": "object",
+      "description": "A data source that provides documents for automatic ingestion into a pipeline.",
+      "required": ["id", "name", "source_type"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the data source."
+        },
+        "name": {
+          "type": "string",
+          "description": "Human-readable name of the data source.",
+          "minLength": 1,
+          "maxLength": 255
+        },
+        "source_type": {
+          "type": "string",
+          "description": "Type of the data source (e.g., document, table, api, database, web)."
+        },
+        "project_id": {
+          "type": "string",
+          "description": "Identifier of the project the data source belongs to."
+        },
+        "config": {
+          "type": "object",
+          "additionalProperties": true,
+          "description": "Configuration specific to the data source type."
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the data source was created."
+        }
+      }
+    },
+    "DataSink": {
+      "type": "object",
+      "description": "A data sink that receives processed and embedded content, such as a vector database.",
+      "required": ["id", "name", "sink_type"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the data sink."
+        },
+        "name": {
+          "type": "string",
+          "description": "Human-readable name of the data sink.",
+          "minLength": 1,
+          "maxLength": 255
+        },
+        "sink_type": {
+          "type": "string",
+          "description": "Type of the data sink (e.g., vector_store)."
+        },
+        "config": {
+          "type": "object",
+          "additionalProperties": true,
+          "description": "Configuration specific to the data sink type."
+        }
+      }
+    }
+  }
+}
