@@ -1,19 +1,17 @@
 aid: llamaindex
-url: 
-  https://raw.githubusercontent.com/api-evangelist/llamaindex/refs/heads/main/apis.yml
+url: https://raw.githubusercontent.com/api-evangelist/llamaindex/refs/heads/main/apis.yml
 modified: '2026-03-20'
 apis:
   - aid: llamaindex:llamacloud-api
     name: LlamaIndex LlamaCloud API
     tags:
-      - LLM
+      - Agents
       - Artificial Intelligence
       - Cloud
       - Documents
-      - Agents
+      - LLM
       - RAG
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.cloud.llamaindex.ai
     humanURL: https://developers.api.llamaindex.ai/
     properties:
@@ -35,19 +33,16 @@ apis:
   - aid: llamaindex:llamaparse-api
     name: LlamaIndex LlamaParse API
     tags:
+      - Artificial Intelligence
       - Document Parsing
+      - LLM
       - OCR
       - PDF
-      - Artificial Intelligence
-      - LLM
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.cloud.llamaindex.ai
-    humanURL: 
-      https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
+    humanURL: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
     properties:
-      - url: 
-          https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
+      - url: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
         type: Documentation
       - url: openapi/llamaindex-llamaparse-api-openapi.yml
         type: OpenAPI
@@ -65,19 +60,16 @@ apis:
   - aid: llamaindex:llamaextract-api
     name: LlamaIndex LlamaExtract API
     tags:
-      - Data Extraction
-      - Structured Data
-      - JSON
       - Artificial Intelligence
+      - Data Extraction
       - Documents
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+      - JSON
+      - Structured Data
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.cloud.llamaindex.ai
-    humanURL: 
-      https://developers.llamaindex.ai/python/cloud/llamaextract/getting_started/api/
+    humanURL: https://developers.llamaindex.ai/python/cloud/llamaextract/getting_started/api/
     properties:
-      - url: 
-          https://developers.llamaindex.ai/python/cloud/llamaextract/getting_started/api/
+      - url: https://developers.llamaindex.ai/python/cloud/llamaextract/getting_started/api/
         type: Documentation
       - url: openapi/llamaindex-llamaextract-api-openapi.yml
         type: OpenAPI
@@ -94,19 +86,16 @@ apis:
   - aid: llamaindex:llamacloud-index-api
     name: LlamaIndex LlamaCloud Index API
     tags:
-      - Indexing
       - Document Ingestion
-      - Retrieval
+      - Indexing
       - RAG
+      - Retrieval
       - Vector Store
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.cloud.llamaindex.ai
-    humanURL: 
-      https://developers.llamaindex.ai/python/cloud/llamacloud/guides/api_sdk/
+    humanURL: https://developers.llamaindex.ai/python/cloud/llamacloud/guides/api_sdk/
     properties:
-      - url: 
-          https://developers.llamaindex.ai/python/cloud/llamacloud/guides/api_sdk/
+      - url: https://developers.llamaindex.ai/python/cloud/llamacloud/guides/api_sdk/
         type: Documentation
       - url: openapi/llamaindex-llamacloud-index-api-openapi.yml
         type: OpenAPI
@@ -123,15 +112,14 @@ apis:
   - aid: llamaindex:python-framework
     name: LlamaIndex Python Framework
     tags:
-      - Python
-      - SDK
+      - Agents
       - Framework
       - LLM
-      - Agents
-      - RAG
       - Open Source
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+      - Python
+      - RAG
+      - SDK
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.example.com
     humanURL: https://developers.llamaindex.ai/python/framework/
     properties:
@@ -147,16 +135,15 @@ apis:
   - aid: llamaindex:typescript-framework
     name: LlamaIndex TypeScript Framework
     tags:
-      - TypeScript
-      - JavaScript
-      - SDK
-      - Framework
-      - LLM
       - Agents
-      - RAG
+      - Framework
+      - JavaScript
+      - LLM
       - Open Source
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+      - RAG
+      - SDK
+      - TypeScript
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.example.com
     humanURL: https://developers.llamaindex.ai/typescript/framework/
     properties:

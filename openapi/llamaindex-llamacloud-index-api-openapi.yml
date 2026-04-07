@@ -23,24 +23,24 @@ servers:
   - url: https://api.cloud.llamaindex.eu/api/v1
     description: EU Production Server
 tags:
-  - name: Indexes
-    description: >-
-      Create and manage indexes that serve as automated document ingestion
-      pipelines with retrieval capabilities.
-  - name: Index Files
-    description: >-
-      Manage files within an index, including upload, listing, and status
-      monitoring.
   - name: Index Data Sources
     description: >-
       Connect and manage external data sources for automatic document
       ingestion into an index.
+  - name: Index Files
+    description: >-
+      Manage files within an index, including upload, listing, and status
+      monitoring.
   - name: Index Retrieval
     description: >-
       Query indexed content using configurable retrieval modes and parameters.
   - name: Index Status
     description: >-
       Monitor the processing status and health of an index.
+  - name: Indexes
+    description: >-
+      Create and manage indexes that serve as automated document ingestion
+      pipelines with retrieval capabilities.
 security:
   - bearerAuth: []
 paths:

@@ -22,16 +22,13 @@ servers:
   - url: https://api.cloud.llamaindex.eu/api/v2
     description: EU Production Server
 tags:
+  - name: Jobs
+    description: >-
+      Monitor and retrieve results from asynchronous parsing jobs.
   - name: Parsing
     description: >-
       Parse documents into structured formats using AI-powered extraction.
       Supports multiple tiers for different quality and speed trade-offs.
-  - name: Jobs
-    description: >-
-      Monitor and retrieve results from asynchronous parsing jobs.
-  - name: Files
-    description: >-
-      Upload files to the platform for use in parsing operations.
 security:
   - bearerAuth: []
 paths:

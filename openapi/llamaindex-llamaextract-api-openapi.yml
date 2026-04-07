@@ -34,9 +34,6 @@ tags:
   - name: Files
     description: >-
       Upload files for use in extraction workflows.
-  - name: Projects
-    description: >-
-      Manage projects that organize extraction agents, files, and jobs.
 security:
   - bearerAuth: []
 paths:

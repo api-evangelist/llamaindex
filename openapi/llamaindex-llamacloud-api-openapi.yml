@@ -22,33 +22,33 @@ servers:
   - url: https://api.cloud.llamaindex.eu/api/v1
     description: EU Production Server
 tags:
-  - name: Projects
-    description: >-
-      Manage projects that organize pipelines, files, and other resources.
-  - name: Files
-    description: >-
-      Upload, list, and manage files for use in pipelines and parsing jobs.
-  - name: Pipelines
-    description: >-
-      Create, configure, sync, and manage document ingestion pipelines.
-  - name: Pipeline Files
-    description: >-
-      Manage files associated with a specific pipeline.
-  - name: Pipeline Data Sources
-    description: >-
-      Manage data sources connected to a pipeline for automatic ingestion.
-  - name: Pipeline Data Sinks
-    description: >-
-      Manage data sinks that receive processed data from a pipeline.
-  - name: Pipeline Jobs
-    description: >-
-      Monitor and manage ingestion jobs for a pipeline.
-  - name: Retrieval
-    description: >-
-      Query and retrieve content from indexed pipelines.
   - name: Data Sources
     description: >-
       Manage data sources at the project level.
+  - name: Files
+    description: >-
+      Upload, list, and manage files for use in pipelines and parsing jobs.
+  - name: Pipeline Data Sinks
+    description: >-
+      Manage data sinks that receive processed data from a pipeline.
+  - name: Pipeline Data Sources
+    description: >-
+      Manage data sources connected to a pipeline for automatic ingestion.
+  - name: Pipeline Files
+    description: >-
+      Manage files associated with a specific pipeline.
+  - name: Pipeline Jobs
+    description: >-
+      Monitor and manage ingestion jobs for a pipeline.
+  - name: Pipelines
+    description: >-
+      Create, configure, sync, and manage document ingestion pipelines.
+  - name: Projects
+    description: >-
+      Manage projects that organize pipelines, files, and other resources.
+  - name: Retrieval
+    description: >-
+      Query and retrieve content from indexed pipelines.
 security:
   - bearerAuth: []
 paths:
