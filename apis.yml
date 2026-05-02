@@ -1,6 +1,6 @@
 aid: llamaindex
 url: https://raw.githubusercontent.com/api-evangelist/llamaindex/refs/heads/main/apis.yml
-modified: '2026-03-20'
+modified: '2026-04-28'
 apis:
   - aid: llamaindex:llamacloud-api
     name: LlamaIndex LlamaCloud API
