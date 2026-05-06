@@ -1,0 +1,617 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: LlamaIndex LlamaCloud API
+  description: The LlamaCloud API is the central REST API for LlamaIndex's cloud platform, providing programmatic access to
+    managed document processing, indexing, and retrieval services. It enables developers to build production-grade LLM applications
+    by leveraging cloud-hosted infrastructure for document ingestion, knowledge management, and agent orchestration. The API
+    supports authentication via API keys and is available in both US and EU regions.
+  tags:
+  - Llamaindex
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: llamaindex
+    baseUri: https://api.cloud.llamaindex.ai/api/v1
+    description: LlamaIndex LlamaCloud API HTTP API.
+    authentication:
+      type: bearer
+      token: '{{LLAMAINDEX_TOKEN}}'
+    resources:
+    - name: projects
+      path: /projects
+      operations:
+      - name: listprojects
+        method: GET
+        description: List projects
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createproject
+        method: POST
+        description: Create a project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: projects-projectid
+      path: /projects/{projectId}
+      operations:
+      - name: getproject
+        method: GET
+        description: Get a project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: files
+      path: /files
+      operations:
+      - name: uploadfile
+        method: POST
+        description: Upload a file
+        inputParameters:
+        - name: project_id
+          in: query
+          type: string
+          required: true
+          description: The project to associate the file with.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: pipelines
+      path: /pipelines
+      operations:
+      - name: listpipelines
+        method: GET
+        description: List pipelines
+        inputParameters:
+        - name: project_id
+          in: query
+          type: string
+          required: true
+          description: Filter pipelines by project identifier.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createpipeline
+        method: POST
+        description: Create a pipeline
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: pipelines-pipelineid
+      path: /pipelines/{pipelineId}
+      operations:
+      - name: getpipeline
+        method: GET
+        description: Get a pipeline
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deletepipeline
+        method: DELETE
+        description: Delete a pipeline
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: pipelines-pipelineid-sync
+      path: /pipelines/{pipelineId}/sync
+      operations:
+      - name: syncpipeline
+        method: POST
+        description: Sync a pipeline
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: pipelines-pipelineid-retrieve
+      path: /pipelines/{pipelineId}/retrieve
+      operations:
+      - name: runsearch
+        method: POST
+        description: Run search
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: pipelines-pipelineid-files
+      path: /pipelines/{pipelineId}/files
+      operations:
+      - name: listpipelinefiles
+        method: GET
+        description: List pipeline files
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: addfilestopipeline
+        method: PUT
+        description: Add files to a pipeline
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: pipelines-pipelineid-data-sources
+      path: /pipelines/{pipelineId}/data-sources
+      operations:
+      - name: listpipelinedatasources
+        method: GET
+        description: List pipeline data sources
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: adddatasourcestopipeline
+        method: PUT
+        description: Add data sources to a pipeline
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: pipelines-pipelineid-data-sinks
+      path: /pipelines/{pipelineId}/data-sinks
+      operations:
+      - name: listpipelinedatasinks
+        method: GET
+        description: List pipeline data sinks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: pipelines-pipelineid-jobs
+      path: /pipelines/{pipelineId}/jobs
+      operations:
+      - name: listpipelinejobs
+        method: GET
+        description: List pipeline jobs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: data-sources
+      path: /data-sources
+      operations:
+      - name: listdatasources
+        method: GET
+        description: List data sources
+        inputParameters:
+        - name: project_id
+          in: query
+          type: string
+          required: true
+          description: Filter data sources by project identifier.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createdatasource
+        method: POST
+        description: Create a data source
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: llamaindex-rest
+    description: REST adapter for LlamaIndex LlamaCloud API.
+    resources:
+    - path: /projects
+      name: listprojects
+      operations:
+      - method: GET
+        name: listprojects
+        description: List projects
+        call: llamaindex.listprojects
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /projects
+      name: createproject
+      operations:
+      - method: POST
+        name: createproject
+        description: Create a project
+        call: llamaindex.createproject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /projects/{projectId}
+      name: getproject
+      operations:
+      - method: GET
+        name: getproject
+        description: Get a project
+        call: llamaindex.getproject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /files
+      name: uploadfile
+      operations:
+      - method: POST
+        name: uploadfile
+        description: Upload a file
+        call: llamaindex.uploadfile
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /pipelines
+      name: listpipelines
+      operations:
+      - method: GET
+        name: listpipelines
+        description: List pipelines
+        call: llamaindex.listpipelines
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /pipelines
+      name: createpipeline
+      operations:
+      - method: POST
+        name: createpipeline
+        description: Create a pipeline
+        call: llamaindex.createpipeline
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /pipelines/{pipelineId}
+      name: getpipeline
+      operations:
+      - method: GET
+        name: getpipeline
+        description: Get a pipeline
+        call: llamaindex.getpipeline
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /pipelines/{pipelineId}
+      name: deletepipeline
+      operations:
+      - method: DELETE
+        name: deletepipeline
+        description: Delete a pipeline
+        call: llamaindex.deletepipeline
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /pipelines/{pipelineId}/sync
+      name: syncpipeline
+      operations:
+      - method: POST
+        name: syncpipeline
+        description: Sync a pipeline
+        call: llamaindex.syncpipeline
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /pipelines/{pipelineId}/retrieve
+      name: runsearch
+      operations:
+      - method: POST
+        name: runsearch
+        description: Run search
+        call: llamaindex.runsearch
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /pipelines/{pipelineId}/files
+      name: listpipelinefiles
+      operations:
+      - method: GET
+        name: listpipelinefiles
+        description: List pipeline files
+        call: llamaindex.listpipelinefiles
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /pipelines/{pipelineId}/files
+      name: addfilestopipeline
+      operations:
+      - method: PUT
+        name: addfilestopipeline
+        description: Add files to a pipeline
+        call: llamaindex.addfilestopipeline
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /pipelines/{pipelineId}/data-sources
+      name: listpipelinedatasources
+      operations:
+      - method: GET
+        name: listpipelinedatasources
+        description: List pipeline data sources
+        call: llamaindex.listpipelinedatasources
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /pipelines/{pipelineId}/data-sources
+      name: adddatasourcestopipeline
+      operations:
+      - method: PUT
+        name: adddatasourcestopipeline
+        description: Add data sources to a pipeline
+        call: llamaindex.adddatasourcestopipeline
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /pipelines/{pipelineId}/data-sinks
+      name: listpipelinedatasinks
+      operations:
+      - method: GET
+        name: listpipelinedatasinks
+        description: List pipeline data sinks
+        call: llamaindex.listpipelinedatasinks
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /pipelines/{pipelineId}/jobs
+      name: listpipelinejobs
+      operations:
+      - method: GET
+        name: listpipelinejobs
+        description: List pipeline jobs
+        call: llamaindex.listpipelinejobs
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /data-sources
+      name: listdatasources
+      operations:
+      - method: GET
+        name: listdatasources
+        description: List data sources
+        call: llamaindex.listdatasources
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /data-sources
+      name: createdatasource
+      operations:
+      - method: POST
+        name: createdatasource
+        description: Create a data source
+        call: llamaindex.createdatasource
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: llamaindex-mcp
+    transport: http
+    description: MCP adapter for LlamaIndex LlamaCloud API for AI agent use.
+    tools:
+    - name: listprojects
+      description: List projects
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: llamaindex.listprojects
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createproject
+      description: Create a project
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: llamaindex.createproject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getproject
+      description: Get a project
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: llamaindex.getproject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: uploadfile
+      description: Upload a file
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: llamaindex.uploadfile
+      with:
+        project_id: tools.project_id
+      inputParameters:
+      - name: project_id
+        type: string
+        description: The project to associate the file with.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listpipelines
+      description: List pipelines
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: llamaindex.listpipelines
+      with:
+        project_id: tools.project_id
+      inputParameters:
+      - name: project_id
+        type: string
+        description: Filter pipelines by project identifier.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createpipeline
+      description: Create a pipeline
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: llamaindex.createpipeline
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getpipeline
+      description: Get a pipeline
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: llamaindex.getpipeline
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletepipeline
+      description: Delete a pipeline
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: llamaindex.deletepipeline
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: syncpipeline
+      description: Sync a pipeline
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: llamaindex.syncpipeline
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: runsearch
+      description: Run search
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: llamaindex.runsearch
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listpipelinefiles
+      description: List pipeline files
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: llamaindex.listpipelinefiles
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: addfilestopipeline
+      description: Add files to a pipeline
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: llamaindex.addfilestopipeline
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listpipelinedatasources
+      description: List pipeline data sources
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: llamaindex.listpipelinedatasources
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: adddatasourcestopipeline
+      description: Add data sources to a pipeline
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: llamaindex.adddatasourcestopipeline
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listpipelinedatasinks
+      description: List pipeline data sinks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: llamaindex.listpipelinedatasinks
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listpipelinejobs
+      description: List pipeline jobs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: llamaindex.listpipelinejobs
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listdatasources
+      description: List data sources
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: llamaindex.listdatasources
+      with:
+        project_id: tools.project_id
+      inputParameters:
+      - name: project_id
+        type: string
+        description: Filter data sources by project identifier.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createdatasource
+      description: Create a data source
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: llamaindex.createdatasource
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    LLAMAINDEX_TOKEN: LLAMAINDEX_TOKEN
