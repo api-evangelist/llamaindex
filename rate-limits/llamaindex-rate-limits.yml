@@ -1,107 +1,47 @@
 specification: API Commons Rate Limits
 specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
-provider: llamaindex
+provider: LlamaIndex
 providerId: llamaindex
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the llamaindex API surface. Captures per-tier
-  quotas, burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to
-  be replaced with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+  - LLM
+  - RAG
+description: LlamaIndex / LlamaCloud rate limits are not publicly enumerated as per-second numbers on
+  the pricing page; tiered limits scale with plan and Enterprise gets 5x Pro. Limits are enforced per
+  API key. Detailed per-endpoint throttling is documented inside the LlamaCloud product after sign-in.
+sources:
+  - https://www.llamaindex.ai/pricing
+  - https://developers.llamaindex.ai/python/cloud/
+notes: Public pricing page mentions rate-limit scaling between tiers but does not publish concrete
+  RPS/RPM numbers. Replace with per-endpoint values when LlamaCloud publishes a rate-limits doc.
 responseCodes:
   throttled: 429
   quotaExceeded: 429
-  serviceUnavailable: 503
 limits:
-  - tier: free
-    name: Free Tier Default
+  - name: API requests (Free)
     scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - LlamaIndex LlamaCloud API
-      - LlamaIndex LlamaParse API
-      - LlamaIndex LlamaExtract API
-      - LlamaIndex LlamaCloud Index API
-      - LlamaIndex Python Framework
-      - LlamaIndex TypeScript Framework
-  - tier: free
-    name: Free Tier Monthly Quota
+    metric: varies
+    limit: 'see plan tier; lowest tier in LlamaCloud'
+  - name: API requests (Starter)
     scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - LlamaIndex LlamaCloud API
-      - LlamaIndex LlamaParse API
-      - LlamaIndex LlamaExtract API
-      - LlamaIndex LlamaCloud Index API
-      - LlamaIndex Python Framework
-      - LlamaIndex TypeScript Framework
-  - tier: professional
-    name: Professional Tier Default
+    metric: varies
+    limit: 'see plan tier'
+  - name: API requests (Pro)
     scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - LlamaIndex LlamaCloud API
-      - LlamaIndex LlamaParse API
-      - LlamaIndex LlamaExtract API
-      - LlamaIndex LlamaCloud Index API
-      - LlamaIndex Python Framework
-      - LlamaIndex TypeScript Framework
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - LlamaIndex LlamaCloud API
-      - LlamaIndex LlamaParse API
-      - LlamaIndex LlamaExtract API
-      - LlamaIndex LlamaCloud Index API
-      - LlamaIndex Python Framework
-      - LlamaIndex TypeScript Framework
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
+    metric: varies
+    limit: 'see plan tier'
+  - name: API requests (Enterprise)
     scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - LlamaIndex LlamaCloud API
-      - LlamaIndex LlamaParse API
-      - LlamaIndex LlamaExtract API
-      - LlamaIndex LlamaCloud Index API
-      - LlamaIndex Python Framework
-      - LlamaIndex TypeScript Framework
+    metric: varies
+    limit: '5x Pro rate limits'
 policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
-maintainers: []
+  - name: Tiered scaling
+    description: Per-key request limits scale by plan tier; Enterprise contracts receive 5x Pro rate limits.
+  - name: Backoff
+    description: On 429, clients should retry with exponential backoff and respect Retry-After when present.
+  - name: Credits as soft quota
+    description: Per-month credit allotments act as a soft quota; PAYG continues at $1.25/1,000 credits up to a per-tier monthly cap.
