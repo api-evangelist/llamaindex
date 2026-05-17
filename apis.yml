@@ -160,7 +160,7 @@ apis:
       services and offers convenient access to cloud APIs for document parsing, extraction,
       and indexing from Node.js environments.
 common:
-  - type: JSON-LD
+  - type: JSONLD
     url: json-ld/llamaindex-context.jsonld
   - type: JSONSchema
     url: json-schema/llamaindex-pipeline-schema.json
