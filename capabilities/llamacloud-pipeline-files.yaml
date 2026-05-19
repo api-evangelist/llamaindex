@@ -1,0 +1,105 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: LlamaIndex LlamaCloud API — Pipeline Files
+  description: 'LlamaIndex LlamaCloud API — Pipeline Files. 2 operations. Lead operation: List pipeline files. Self-contained
+    Naftiko capability covering one Llamaindex business surface.'
+  tags:
+  - Llamaindex
+  - Pipeline Files
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    LLAMAINDEX_API_KEY: LLAMAINDEX_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: llamacloud-pipeline-files
+    baseUri: https://api.cloud.llamaindex.ai/api/v1
+    description: LlamaIndex LlamaCloud API — Pipeline Files business capability. Self-contained, no shared references.
+    resources:
+    - name: pipelines-pipelineId-files
+      path: /pipelines/{pipelineId}/files
+      operations:
+      - name: listpipelinefiles
+        method: GET
+        description: List pipeline files
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: addfilestopipeline
+        method: PUT
+        description: Add files to a pipeline
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.LLAMAINDEX_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: llamacloud-pipeline-files-rest
+    port: 8080
+    description: REST adapter for LlamaIndex LlamaCloud API — Pipeline Files. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/pipelines/{pipelineid}/files
+      name: pipelines-pipelineid-files
+      description: REST surface for pipelines-pipelineId-files.
+      operations:
+      - method: GET
+        name: listpipelinefiles
+        description: List pipeline files
+        call: llamacloud-pipeline-files.listpipelinefiles
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: addfilestopipeline
+        description: Add files to a pipeline
+        call: llamacloud-pipeline-files.addfilestopipeline
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: llamacloud-pipeline-files-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for LlamaIndex LlamaCloud API — Pipeline Files. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-pipeline-files
+      description: List pipeline files
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: llamacloud-pipeline-files.listpipelinefiles
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: add-files-pipeline
+      description: Add files to a pipeline
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: llamacloud-pipeline-files.addfilestopipeline
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

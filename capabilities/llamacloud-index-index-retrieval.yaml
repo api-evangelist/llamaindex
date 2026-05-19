@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: LlamaIndex LlamaCloud Index API — Index Retrieval
+  description: 'LlamaIndex LlamaCloud Index API — Index Retrieval. 1 operations. Lead operation: Retrieve from index. Self-contained
+    Naftiko capability covering one Llamaindex business surface.'
+  tags:
+  - Llamaindex
+  - Index Retrieval
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    LLAMAINDEX_API_KEY: LLAMAINDEX_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: llamacloud-index-index-retrieval
+    baseUri: https://api.cloud.llamaindex.ai/api/v1
+    description: LlamaIndex LlamaCloud Index API — Index Retrieval business capability. Self-contained, no shared references.
+    resources:
+    - name: pipelines-pipelineId-retrieve
+      path: /pipelines/{pipelineId}/retrieve
+      operations:
+      - name: retrievefromindex
+        method: POST
+        description: Retrieve from index
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.LLAMAINDEX_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: llamacloud-index-index-retrieval-rest
+    port: 8080
+    description: REST adapter for LlamaIndex LlamaCloud Index API — Index Retrieval. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/pipelines/{pipelineid}/retrieve
+      name: pipelines-pipelineid-retrieve
+      description: REST surface for pipelines-pipelineId-retrieve.
+      operations:
+      - method: POST
+        name: retrievefromindex
+        description: Retrieve from index
+        call: llamacloud-index-index-retrieval.retrievefromindex
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: llamacloud-index-index-retrieval-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for LlamaIndex LlamaCloud Index API — Index Retrieval. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: retrieve-index
+      description: Retrieve from index
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: llamacloud-index-index-retrieval.retrievefromindex
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: LlamaIndex LlamaCloud Index API — Index Status
+  description: 'LlamaIndex LlamaCloud Index API — Index Status. 1 operations. Lead operation: Get index file counts. Self-contained
+    Naftiko capability covering one Llamaindex business surface.'
+  tags:
+  - Llamaindex
+  - Index Status
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    LLAMAINDEX_API_KEY: LLAMAINDEX_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: llamacloud-index-index-status
+    baseUri: https://api.cloud.llamaindex.ai/api/v1
+    description: LlamaIndex LlamaCloud Index API — Index Status business capability. Self-contained, no shared references.
+    resources:
+    - name: pipelines-pipelineId-files-count
+      path: /pipelines/{pipelineId}/files/count
+      operations:
+      - name: getindexfilecounts
+        method: GET
+        description: Get index file counts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.LLAMAINDEX_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: llamacloud-index-index-status-rest
+    port: 8080
+    description: REST adapter for LlamaIndex LlamaCloud Index API — Index Status. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/pipelines/{pipelineid}/files/count
+      name: pipelines-pipelineid-files-count
+      description: REST surface for pipelines-pipelineId-files-count.
+      operations:
+      - method: GET
+        name: getindexfilecounts
+        description: Get index file counts
+        call: llamacloud-index-index-status.getindexfilecounts
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: llamacloud-index-index-status-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for LlamaIndex LlamaCloud Index API — Index Status. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: get-index-file-counts
+      description: Get index file counts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: llamacloud-index-index-status.getindexfilecounts
+      outputParameters:
+      - type: object
+        mapping: $.

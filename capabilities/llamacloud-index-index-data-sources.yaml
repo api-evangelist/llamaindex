@@ -1,0 +1,105 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: LlamaIndex LlamaCloud Index API — Index Data Sources
+  description: 'LlamaIndex LlamaCloud Index API — Index Data Sources. 2 operations. Lead operation: List index data sources.
+    Self-contained Naftiko capability covering one Llamaindex business surface.'
+  tags:
+  - Llamaindex
+  - Index Data Sources
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    LLAMAINDEX_API_KEY: LLAMAINDEX_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: llamacloud-index-index-data-sources
+    baseUri: https://api.cloud.llamaindex.ai/api/v1
+    description: LlamaIndex LlamaCloud Index API — Index Data Sources business capability. Self-contained, no shared references.
+    resources:
+    - name: pipelines-pipelineId-data-sources
+      path: /pipelines/{pipelineId}/data-sources
+      operations:
+      - name: listindexdatasources
+        method: GET
+        description: List index data sources
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: adddatasourcestoindex
+        method: PUT
+        description: Add data sources to an index
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.LLAMAINDEX_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: llamacloud-index-index-data-sources-rest
+    port: 8080
+    description: REST adapter for LlamaIndex LlamaCloud Index API — Index Data Sources. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/pipelines/{pipelineid}/data-sources
+      name: pipelines-pipelineid-data-sources
+      description: REST surface for pipelines-pipelineId-data-sources.
+      operations:
+      - method: GET
+        name: listindexdatasources
+        description: List index data sources
+        call: llamacloud-index-index-data-sources.listindexdatasources
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: adddatasourcestoindex
+        description: Add data sources to an index
+        call: llamacloud-index-index-data-sources.adddatasourcestoindex
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: llamacloud-index-index-data-sources-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for LlamaIndex LlamaCloud Index API — Index Data Sources. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: list-index-data-sources
+      description: List index data sources
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: llamacloud-index-index-data-sources.listindexdatasources
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: add-data-sources-index
+      description: Add data sources to an index
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: llamacloud-index-index-data-sources.adddatasourcestoindex
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: LlamaIndex LlamaCloud API — Pipeline Data Sinks
+  description: 'LlamaIndex LlamaCloud API — Pipeline Data Sinks. 1 operations. Lead operation: List pipeline data sinks. Self-contained
+    Naftiko capability covering one Llamaindex business surface.'
+  tags:
+  - Llamaindex
+  - Pipeline Data Sinks
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    LLAMAINDEX_API_KEY: LLAMAINDEX_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: llamacloud-pipeline-data-sinks
+    baseUri: https://api.cloud.llamaindex.ai/api/v1
+    description: LlamaIndex LlamaCloud API — Pipeline Data Sinks business capability. Self-contained, no shared references.
+    resources:
+    - name: pipelines-pipelineId-data-sinks
+      path: /pipelines/{pipelineId}/data-sinks
+      operations:
+      - name: listpipelinedatasinks
+        method: GET
+        description: List pipeline data sinks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.LLAMAINDEX_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: llamacloud-pipeline-data-sinks-rest
+    port: 8080
+    description: REST adapter for LlamaIndex LlamaCloud API — Pipeline Data Sinks. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/pipelines/{pipelineid}/data-sinks
+      name: pipelines-pipelineid-data-sinks
+      description: REST surface for pipelines-pipelineId-data-sinks.
+      operations:
+      - method: GET
+        name: listpipelinedatasinks
+        description: List pipeline data sinks
+        call: llamacloud-pipeline-data-sinks.listpipelinedatasinks
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: llamacloud-pipeline-data-sinks-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for LlamaIndex LlamaCloud API — Pipeline Data Sinks. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: list-pipeline-data-sinks
+      description: List pipeline data sinks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: llamacloud-pipeline-data-sinks.listpipelinedatasinks
+      outputParameters:
+      - type: object
+        mapping: $.
