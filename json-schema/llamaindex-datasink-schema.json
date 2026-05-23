@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DataSink",
+  "title": "DataSink",
+  "type": "object",
+  "description": "A data sink that receives processed and embedded content from a pipeline, such as a vector database.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier of the data sink."
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name of the data sink."
+    },
+    "sink_type": {
+      "type": "string",
+      "description": "Type of the data sink."
+    },
+    "config": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Configuration specific to the data sink type."
+    }
+  }
+}

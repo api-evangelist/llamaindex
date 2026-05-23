@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RetrievalResult",
+  "title": "RetrievalResult",
+  "type": "object",
+  "description": "A single retrieval result containing matched content and metadata.",
+  "properties": {
+    "text": {
+      "type": "string",
+      "description": "The retrieved text content."
+    },
+    "score": {
+      "type": "number",
+      "format": "float",
+      "description": "Relevance score for the result."
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Metadata associated with the retrieved content."
+    }
+  }
+}

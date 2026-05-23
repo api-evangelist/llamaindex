@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/IndexJob",
+  "title": "IndexJob",
+  "type": "object",
+  "description": "A sync job for an index tracking the processing of documents.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier of the job."
+    },
+    "pipeline_id": {
+      "type": "string",
+      "description": "Identifier of the index the job belongs to."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "running",
+        "completed",
+        "failed"
+      ],
+      "description": "Current status of the job."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the job was created."
+    },
+    "completed_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the job completed, if applicable."
+    }
+  }
+}

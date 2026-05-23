@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ParseJob",
+  "title": "ParseJob",
+  "type": "object",
+  "description": "A parse job representing the asynchronous processing of a document.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier of the parse job."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "processing",
+        "completed",
+        "failed"
+      ],
+      "description": "Current status of the parse job."
+    },
+    "tier": {
+      "type": "string",
+      "enum": [
+        "fast",
+        "cost_effective",
+        "agentic",
+        "agentic_plus"
+      ],
+      "description": "Parsing tier used for this job."
+    },
+    "file_name": {
+      "type": "string",
+      "description": "Name of the parsed file."
+    },
+    "num_pages": {
+      "type": "integer",
+      "description": "Total number of pages in the document."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the parse job was created."
+    },
+    "completed_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the parse job completed, if applicable."
+    },
+    "result": {
+      "$ref": "#/components/schemas/ParseResult"
+    }
+  }
+}

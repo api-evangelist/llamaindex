@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateExtractionAgentRequest",
+  "title": "CreateExtractionAgentRequest",
+  "type": "object",
+  "description": "Request body for creating a new extraction agent.",
+  "required": [
+    "name",
+    "project_id"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Human-readable name for the new extraction agent."
+    },
+    "project_id": {
+      "type": "string",
+      "description": "Identifier of the project to create the agent in."
+    },
+    "data_schema": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "JSON Schema defining the structure of the data to extract. If not provided, the schema can be inferred automatically from example files."
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional description of the extraction agent."
+    },
+    "prompt": {
+      "type": "string",
+      "description": "Optional prompt to guide automatic schema inference from example documents."
+    }
+  }
+}

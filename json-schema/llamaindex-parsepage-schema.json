@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ParsePage",
+  "title": "ParsePage",
+  "type": "object",
+  "description": "Parsed content for a single page of a document.",
+  "properties": {
+    "page_number": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "1-based page number."
+    },
+    "text": {
+      "type": "string",
+      "description": "Plain text content of the page."
+    },
+    "markdown": {
+      "type": "string",
+      "description": "Markdown-formatted content of the page."
+    }
+  }
+}

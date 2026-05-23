@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/IndexFileCounts",
+  "title": "IndexFileCounts",
+  "type": "object",
+  "description": "File processing counts for an index, broken down by status.",
+  "properties": {
+    "total": {
+      "type": "integer",
+      "description": "Total number of files in the index."
+    },
+    "pending": {
+      "type": "integer",
+      "description": "Number of files pending processing."
+    },
+    "processing": {
+      "type": "integer",
+      "description": "Number of files currently being processed."
+    },
+    "completed": {
+      "type": "integer",
+      "description": "Number of files successfully processed."
+    },
+    "error": {
+      "type": "integer",
+      "description": "Number of files that encountered processing errors."
+    }
+  }
+}

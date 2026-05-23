@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Project",
+  "title": "Project",
+  "type": "object",
+  "description": "A project that organizes pipelines, files, and other cloud resources.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier of the project."
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name of the project."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the project was created."
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the project was last updated."
+    }
+  }
+}

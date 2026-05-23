@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RetrievalRequest",
+  "title": "RetrievalRequest",
+  "type": "object",
+  "description": "Request body for running a retrieval query against a pipeline.",
+  "required": [
+    "query"
+  ],
+  "properties": {
+    "query": {
+      "type": "string",
+      "description": "The search query to run against the indexed content."
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "fast",
+        "accurate",
+        "advanced"
+      ],
+      "description": "Retrieval mode that controls the trade-off between speed and accuracy."
+    },
+    "top_k": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Maximum number of results to return after re-ranking."
+    }
+  }
+}

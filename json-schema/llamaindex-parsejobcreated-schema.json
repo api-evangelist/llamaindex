@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ParseJobCreated",
+  "title": "ParseJobCreated",
+  "type": "object",
+  "description": "Response returned when a parse job is successfully created.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier of the created parse job."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "processing",
+        "completed",
+        "failed"
+      ],
+      "description": "Initial status of the parse job."
+    }
+  }
+}

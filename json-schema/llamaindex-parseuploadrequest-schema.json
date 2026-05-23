@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ParseUploadRequest",
+  "title": "ParseUploadRequest",
+  "type": "object",
+  "description": "Multipart form data request for uploading and parsing a document.",
+  "required": [
+    "file",
+    "configuration"
+  ],
+  "properties": {
+    "file": {
+      "type": "string",
+      "format": "binary",
+      "description": "The document file to upload and parse."
+    },
+    "configuration": {
+      "type": "string",
+      "description": "JSON string containing the parsing configuration including tier, version, and other options."
+    }
+  }
+}

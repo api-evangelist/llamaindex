@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExtractionAgent",
+  "title": "ExtractionAgent",
+  "type": "object",
+  "description": "An extraction agent configured with a specific data schema and extraction settings for processing documents.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier of the extraction agent."
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name of the extraction agent."
+    },
+    "project_id": {
+      "type": "string",
+      "description": "Identifier of the project the agent belongs to."
+    },
+    "data_schema": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "JSON Schema defining the structure of the data to extract."
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional description of the extraction agent and its purpose."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the extraction agent was created."
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the extraction agent was last updated."
+    }
+  }
+}

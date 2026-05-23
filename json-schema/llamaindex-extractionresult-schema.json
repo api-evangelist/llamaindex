@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExtractionResult",
+  "title": "ExtractionResult",
+  "type": "object",
+  "description": "Structured data extracted from documents by a completed extraction job.",
+  "properties": {
+    "job_id": {
+      "type": "string",
+      "description": "Identifier of the extraction job that produced this result."
+    },
+    "results": {
+      "type": "array",
+      "description": "List of extraction results, one per processed file.",
+      "items": {
+        "$ref": "#/components/schemas/FileExtractionResult"
+      }
+    }
+  }
+}

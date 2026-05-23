@@ -1,0 +1,270 @@
+{
+  "provider": "Llamaindex",
+  "providerId": "llamaindex",
+  "kind": "json-structure",
+  "description": "Structural overview of the Llamaindex API surface; extracted from openapi/.",
+  "schemaCount": 14,
+  "operationCount": 18,
+  "schemas": [
+    {
+      "name": "Project",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "CreateProjectRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "File",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "Pipeline",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "CreatePipelineRequest",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "name",
+        "project_id"
+      ]
+    },
+    {
+      "name": "PipelineFile",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "PipelineFileInput",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "file_id"
+      ]
+    },
+    {
+      "name": "PipelineJob",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "DataSource",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "DataSourceInput",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "name",
+        "source_type"
+      ]
+    },
+    {
+      "name": "DataSink",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "RetrievalRequest",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "query"
+      ]
+    },
+    {
+      "name": "RetrievalResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "RetrievalResult",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/projects",
+      "operationId": "listProjects",
+      "summary": "List projects",
+      "tags": [
+        "Projects"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/projects",
+      "operationId": "createProject",
+      "summary": "Create a project",
+      "tags": [
+        "Projects"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/projects/{projectId}",
+      "operationId": "getProject",
+      "summary": "Get a project",
+      "tags": [
+        "Projects"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/files",
+      "operationId": "uploadFile",
+      "summary": "Upload a file",
+      "tags": [
+        "Files"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/pipelines",
+      "operationId": "listPipelines",
+      "summary": "List pipelines",
+      "tags": [
+        "Pipelines"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/pipelines",
+      "operationId": "createPipeline",
+      "summary": "Create a pipeline",
+      "tags": [
+        "Pipelines"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/pipelines/{pipelineId}",
+      "operationId": "getPipeline",
+      "summary": "Get a pipeline",
+      "tags": [
+        "Pipelines"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/pipelines/{pipelineId}",
+      "operationId": "deletePipeline",
+      "summary": "Delete a pipeline",
+      "tags": [
+        "Pipelines"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/pipelines/{pipelineId}/sync",
+      "operationId": "syncPipeline",
+      "summary": "Sync a pipeline",
+      "tags": [
+        "Pipelines"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/pipelines/{pipelineId}/retrieve",
+      "operationId": "runSearch",
+      "summary": "Run search",
+      "tags": [
+        "Retrieval"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/pipelines/{pipelineId}/files",
+      "operationId": "listPipelineFiles",
+      "summary": "List pipeline files",
+      "tags": [
+        "Pipeline Files"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/pipelines/{pipelineId}/files",
+      "operationId": "addFilesToPipeline",
+      "summary": "Add files to a pipeline",
+      "tags": [
+        "Pipeline Files"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/pipelines/{pipelineId}/data-sources",
+      "operationId": "listPipelineDataSources",
+      "summary": "List pipeline data sources",
+      "tags": [
+        "Pipeline Data Sources"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/pipelines/{pipelineId}/data-sources",
+      "operationId": "addDataSourcesToPipeline",
+      "summary": "Add data sources to a pipeline",
+      "tags": [
+        "Pipeline Data Sources"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/pipelines/{pipelineId}/data-sinks",
+      "operationId": "listPipelineDataSinks",
+      "summary": "List pipeline data sinks",
+      "tags": [
+        "Pipeline Data Sinks"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/pipelines/{pipelineId}/jobs",
+      "operationId": "listPipelineJobs",
+      "summary": "List pipeline jobs",
+      "tags": [
+        "Pipeline Jobs"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/data-sources",
+      "operationId": "listDataSources",
+      "summary": "List data sources",
+      "tags": [
+        "Data Sources"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/data-sources",
+      "operationId": "createDataSource",
+      "summary": "Create a data source",
+      "tags": [
+        "Data Sources"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FileExtractionResult",
+  "title": "FileExtractionResult",
+  "type": "object",
+  "description": "Extraction result for a single file.",
+  "properties": {
+    "file_id": {
+      "type": "string",
+      "description": "Identifier of the processed file."
+    },
+    "file_name": {
+      "type": "string",
+      "description": "Name of the processed file."
+    },
+    "data": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Structured data extracted from the file, conforming to the extraction agent schema."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "success",
+        "error"
+      ],
+      "description": "Status of the extraction for this specific file."
+    },
+    "error": {
+      "type": "string",
+      "description": "Error message if extraction failed for this file."
+    }
+  }
+}

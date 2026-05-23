@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateExtractionAgentRequest",
+  "title": "UpdateExtractionAgentRequest",
+  "type": "object",
+  "description": "Request body for updating an existing extraction agent.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Updated name for the extraction agent."
+    },
+    "data_schema": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Updated JSON Schema for data extraction."
+    },
+    "description": {
+      "type": "string",
+      "description": "Updated description of the extraction agent."
+    }
+  }
+}

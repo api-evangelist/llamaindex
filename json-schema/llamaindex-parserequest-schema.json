@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ParseRequest",
+  "title": "ParseRequest",
+  "type": "object",
+  "description": "Request body for parsing a document via JSON. Exactly one of file_id or source_url must be provided.",
+  "required": [
+    "tier",
+    "version"
+  ],
+  "properties": {
+    "file_id": {
+      "type": "string",
+      "description": "Identifier of a previously uploaded file to parse. Mutually exclusive with source_url."
+    },
+    "source_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL of a document to fetch and parse. Mutually exclusive with file_id."
+    },
+    "http_proxy": {
+      "type": "string",
+      "format": "uri",
+      "description": "Optional HTTP proxy to use when fetching the document from source_url."
+    },
+    "tier": {
+      "type": "string",
+      "enum": [
+        "fast",
+        "cost_effective",
+        "agentic",
+        "agentic_plus"
+      ],
+      "description": "Parsing tier that determines the quality and speed trade-off. Fast outputs spatial text only. Cost-effective is optimized for text-heavy documents. Agentic handles images and diagrams. Agentic plus provides maximum fidelity for complex layouts."
+    },
+    "version": {
+      "type": "string",
+      "description": "API version to use. Use \"latest\" for the most recent version, or a specific version date string for production stability."
+    },
+    "target_pages": {
+      "type": "string",
+      "description": "Page range to parse using 1-based indexing (e.g., \"1-5\", \"3,7,10\")."
+    },
+    "agentic_options": {
+      "type": "object",
+      "description": "Additional options for the agentic and agentic_plus tiers. Not supported by the fast tier.",
+      "additionalProperties": true
+    }
+  }
+}

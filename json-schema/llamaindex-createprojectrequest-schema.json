@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateProjectRequest",
+  "title": "CreateProjectRequest",
+  "type": "object",
+  "description": "Request body for creating a new project.",
+  "required": [
+    "name"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Human-readable name for the new project."
+    }
+  }
+}

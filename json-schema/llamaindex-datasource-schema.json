@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DataSource",
+  "title": "DataSource",
+  "type": "object",
+  "description": "A data source connected to a pipeline for automatic document ingestion.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier of the data source."
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name of the data source."
+    },
+    "source_type": {
+      "type": "string",
+      "description": "Type of the data source."
+    },
+    "project_id": {
+      "type": "string",
+      "description": "Identifier of the project the data source belongs to."
+    },
+    "config": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Configuration specific to the data source type."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the data source was created."
+    }
+  }
+}

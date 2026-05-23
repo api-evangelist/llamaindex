@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Index",
+  "title": "Index",
+  "type": "object",
+  "description": "An index representing an automated document ingestion pipeline with built-in retrieval capabilities.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier of the index."
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name of the index."
+    },
+    "project_id": {
+      "type": "string",
+      "description": "Identifier of the project the index belongs to."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "syncing",
+        "error",
+        "idle"
+      ],
+      "description": "Current status of the index."
+    },
+    "embedding_model": {
+      "type": "string",
+      "description": "Name of the embedding model used for vectorization."
+    },
+    "sync_interval": {
+      "type": "integer",
+      "description": "Scheduled sync frequency in seconds, if configured."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the index was created."
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the index was last updated."
+    }
+  }
+}

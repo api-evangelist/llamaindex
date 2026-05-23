@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RetrievalResponse",
+  "title": "RetrievalResponse",
+  "type": "object",
+  "description": "Response containing retrieval results from a pipeline query.",
+  "properties": {
+    "results": {
+      "type": "array",
+      "description": "List of retrieval results ranked by relevance.",
+      "items": {
+        "$ref": "#/components/schemas/RetrievalResult"
+      }
+    }
+  }
+}

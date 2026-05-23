@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateExtractionJobRequest",
+  "title": "CreateExtractionJobRequest",
+  "type": "object",
+  "description": "Request body for creating an extraction job.",
+  "required": [
+    "extraction_agent_id",
+    "file_ids"
+  ],
+  "properties": {
+    "extraction_agent_id": {
+      "type": "string",
+      "description": "Identifier of the extraction agent to use for processing."
+    },
+    "file_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of file identifiers to process in this extraction job."
+    }
+  }
+}

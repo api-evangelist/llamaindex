@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DataSourceInput",
+  "title": "DataSourceInput",
+  "type": "object",
+  "description": "Input for creating or connecting a data source.",
+  "required": [
+    "name",
+    "source_type"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Human-readable name for the data source."
+    },
+    "source_type": {
+      "type": "string",
+      "description": "Type of the data source."
+    },
+    "project_id": {
+      "type": "string",
+      "description": "Identifier of the project to associate the data source with."
+    },
+    "config": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Configuration specific to the data source type."
+    }
+  }
+}

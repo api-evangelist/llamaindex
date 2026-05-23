@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/IndexFileInput",
+  "title": "IndexFileInput",
+  "type": "object",
+  "description": "Input for adding a file to an index.",
+  "required": [
+    "file_id"
+  ],
+  "properties": {
+    "file_id": {
+      "type": "string",
+      "description": "Identifier of the file to add to the index."
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Optional custom metadata to associate with the file."
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExtractionJob",
+  "title": "ExtractionJob",
+  "type": "object",
+  "description": "An asynchronous extraction job that processes documents through an extraction agent.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier of the extraction job."
+    },
+    "extraction_agent_id": {
+      "type": "string",
+      "description": "Identifier of the extraction agent used for this job."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "processing",
+        "completed",
+        "failed"
+      ],
+      "description": "Current status of the extraction job."
+    },
+    "file_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Identifiers of the files being processed."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the extraction job was created."
+    },
+    "completed_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the extraction job completed, if applicable."
+    }
+  }
+}

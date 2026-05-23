@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreatePipelineRequest",
+  "title": "CreatePipelineRequest",
+  "type": "object",
+  "description": "Request body for creating a new pipeline.",
+  "required": [
+    "name",
+    "project_id"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Human-readable name for the new pipeline."
+    },
+    "project_id": {
+      "type": "string",
+      "description": "Identifier of the project to create the pipeline in."
+    },
+    "sync_interval": {
+      "type": "integer",
+      "description": "Optional scheduled sync frequency in seconds."
+    }
+  }
+}

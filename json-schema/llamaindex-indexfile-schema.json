@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/IndexFile",
+  "title": "IndexFile",
+  "type": "object",
+  "description": "A file within an index, including its processing status.",
+  "properties": {
+    "file_id": {
+      "type": "string",
+      "description": "Unique identifier of the file."
+    },
+    "name": {
+      "type": "string",
+      "description": "Original file name."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "processing",
+        "completed",
+        "error"
+      ],
+      "description": "Processing status of the file within the index."
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Custom metadata associated with the file."
+    }
+  }
+}
