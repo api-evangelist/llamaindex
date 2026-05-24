@@ -176,4 +176,6 @@ common:
     url: json-schema/llamaindex-extraction-agent-schema.json
   - type: JSONSchema
     url: json-schema/llamaindex-parse-job-schema.json
+  - type: LLMsTxt
+    url: https://developers.llamaindex.ai/llms.txt
 description: LlamaCloud is a hosted service for document processing and search, powered by LlamaIndex.
