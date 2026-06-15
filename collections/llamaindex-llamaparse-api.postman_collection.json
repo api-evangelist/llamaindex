@@ -1,0 +1,1074 @@
+{
+  "item": [
+    {
+      "id": "c79738f8-1198-492d-8c4f-dbf800bbcce4",
+      "name": "Jobs",
+      "description": {
+        "content": "Monitor and retrieve results from asynchronous parsing jobs.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e2f9f380-5cac-40ee-9176-8983abd1827f",
+          "name": "List parse jobs",
+          "request": {
+            "name": "List parse jobs",
+            "description": {
+              "content": "Retrieve a list of parse jobs for the authenticated project. Supports optional filtering and pagination to narrow down results.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "parse",
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<string>",
+                  "description": "Filter jobs by project identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of jobs to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Number of jobs to skip for pagination."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "47bc61a2-9847-4f8d-b6ef-06537e3be47d",
+              "name": "Successfully retrieved list of parse jobs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "parse",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"status\": \"processing\",\n    \"tier\": \"cost_effective\",\n    \"file_name\": \"string\",\n    \"num_pages\": 5773,\n    \"created_at\": \"1980-10-15T10:26:59.141Z\",\n    \"completed_at\": \"1986-04-02T10:01:00.898Z\",\n    \"result\": {\n      \"text\": \"string\",\n      \"markdown\": \"string\",\n      \"json\": {\n        \"key_0\": \"string\",\n        \"key_1\": 1996,\n        \"key_2\": 3266.266541468964,\n        \"key_3\": 9350.11147266428\n      },\n      \"pages\": [\n        {\n          \"page_number\": 2540,\n          \"text\": \"string\",\n          \"markdown\": \"string\"\n        },\n        {\n          \"page_number\": 2578,\n          \"text\": \"string\",\n          \"markdown\": \"string\"\n        }\n      ],\n      \"metadata\": {\n        \"key_0\": 4802.548771024265,\n        \"key_1\": 1195.0770380886565,\n        \"key_2\": 2506.1543300694957,\n        \"key_3\": 6981.678704502549\n      }\n    }\n  },\n  {\n    \"id\": \"string\",\n    \"status\": \"completed\",\n    \"tier\": \"agentic_plus\",\n    \"file_name\": \"string\",\n    \"num_pages\": 7968,\n    \"created_at\": \"2001-11-17T20:22:35.410Z\",\n    \"completed_at\": \"2003-03-26T12:51:09.971Z\",\n    \"result\": {\n      \"text\": \"string\",\n      \"markdown\": \"string\",\n      \"json\": {\n        \"key_0\": 245\n      },\n      \"pages\": [\n        {\n          \"page_number\": 4977,\n          \"text\": \"string\",\n          \"markdown\": \"string\"\n        },\n        {\n          \"page_number\": 9969,\n          \"text\": \"string\",\n          \"markdown\": \"string\"\n        }\n      ],\n      \"metadata\": {\n        \"key_0\": \"string\",\n        \"key_1\": 3212,\n        \"key_2\": 9712\n      }\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5cf2af03-36ca-4414-9663-7f8c6f23d932",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "parse",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "613c29b1-e286-4399-949a-291dd647f0c9",
+          "name": "Get parse job status",
+          "request": {
+            "name": "Get parse job status",
+            "description": {
+              "content": "Retrieve the status and optionally the results of a parse job. Use the expand parameter to control what parsed content is returned, including text, markdown, structured JSON, or metadata. Poll this endpoint to check job completion status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "parse",
+                "jobs",
+                ":jobId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "expand",
+                  "value": "<string>",
+                  "description": "Comma-separated list of result fields to include in the response. Controls whether text, markdown, structured JSON, or metadata is returned with the job status."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobId",
+                  "description": "(Required) Unique identifier of the parse job."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6580c3bc-24e7-4937-8094-d21cc9c67e24",
+              "name": "Successfully retrieved parse job status and results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "parse",
+                    "jobs",
+                    ":jobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) Unique identifier of the parse job."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"failed\",\n  \"tier\": \"cost_effective\",\n  \"file_name\": \"string\",\n  \"num_pages\": 9145,\n  \"created_at\": \"1957-02-18T07:26:39.777Z\",\n  \"completed_at\": \"1994-02-06T07:06:06.999Z\",\n  \"result\": {\n    \"text\": \"string\",\n    \"markdown\": \"string\",\n    \"json\": {\n      \"key_0\": 4682\n    },\n    \"pages\": [\n      {\n        \"page_number\": 7366,\n        \"text\": \"string\",\n        \"markdown\": \"string\"\n      },\n      {\n        \"page_number\": 7152,\n        \"text\": \"string\",\n        \"markdown\": \"string\"\n      }\n    ],\n    \"metadata\": {\n      \"key_0\": 2245,\n      \"key_1\": false\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "603ffac6-9392-4ce0-afb3-115fc664f4b1",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "parse",
+                    "jobs",
+                    ":jobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) Unique identifier of the parse job."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3606295d-221a-4b7e-8873-359b3c1e7f30",
+              "name": "Parse job not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "parse",
+                    "jobs",
+                    ":jobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) Unique identifier of the parse job."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cd28d2cc-4d24-4f20-b11a-9d21db3181a0",
+          "name": "Get parse job result",
+          "request": {
+            "name": "Get parse job result",
+            "description": {
+              "content": "Retrieve the full parsed result of a completed parse job. Returns the extracted content in the requested format. The job must be in a completed state for results to be available.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "parse",
+                "jobs",
+                ":jobId",
+                "result"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobId",
+                  "description": "(Required) Unique identifier of the parse job."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f2ef78e8-fa7a-4830-b638-86ca9b294942",
+              "name": "Successfully retrieved parse job result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "parse",
+                    "jobs",
+                    ":jobId",
+                    "result"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) Unique identifier of the parse job."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"text\": \"string\",\n  \"markdown\": \"string\",\n  \"json\": {\n    \"key_0\": 7172\n  },\n  \"pages\": [\n    {\n      \"page_number\": 9329,\n      \"text\": \"string\",\n      \"markdown\": \"string\"\n    },\n    {\n      \"page_number\": 2201,\n      \"text\": \"string\",\n      \"markdown\": \"string\"\n    }\n  ],\n  \"metadata\": {\n    \"key_0\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2df6e6e5-9744-4066-9008-eb83615a2603",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "parse",
+                    "jobs",
+                    ":jobId",
+                    "result"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) Unique identifier of the parse job."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "41b19d75-c33e-4ded-91d5-7d969e5448dd",
+              "name": "Parse job not found or not completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "parse",
+                    "jobs",
+                    ":jobId",
+                    "result"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) Unique identifier of the parse job."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "009f725d-18a9-408c-840d-9f79a14c1373",
+      "name": "Parsing",
+      "description": {
+        "content": "Parse documents into structured formats using AI-powered extraction. Supports multiple tiers for different quality and speed trade-offs.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b05b5247-5062-4458-880e-faa25db09a94",
+          "name": "Parse a document",
+          "request": {
+            "name": "Parse a document",
+            "description": {
+              "content": "Submit a document for parsing using a JSON request body. Accepts either a file_id referencing a previously uploaded file or a source_url to fetch the document from. Exactly one of file_id or source_url must be provided. The tier parameter determines the parsing mode. Jobs are processed asynchronously and results are retrieved via the job status endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "parse"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tier\": \"<string>\",\n  \"version\": \"<string>\",\n  \"file_id\": \"<string>\",\n  \"source_url\": \"<uri>\",\n  \"http_proxy\": \"<uri>\",\n  \"target_pages\": \"<string>\",\n  \"agentic_options\": {\n    \"key_0\": true,\n    \"key_1\": true\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6f328372-6fa9-4394-854e-8696d7dcf9dc",
+              "name": "Parse job created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "parse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tier\": \"<string>\",\n  \"version\": \"<string>\",\n  \"file_id\": \"<string>\",\n  \"source_url\": \"<uri>\",\n  \"http_proxy\": \"<uri>\",\n  \"target_pages\": \"<string>\",\n  \"agentic_options\": {\n    \"key_0\": false,\n    \"key_1\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"processing\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e4517ea-acd7-4212-86ee-69336bf501d8",
+              "name": "Bad request - invalid parameters or missing required fields",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "parse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tier\": \"<string>\",\n  \"version\": \"<string>\",\n  \"file_id\": \"<string>\",\n  \"source_url\": \"<uri>\",\n  \"http_proxy\": \"<uri>\",\n  \"target_pages\": \"<string>\",\n  \"agentic_options\": {\n    \"key_0\": false,\n    \"key_1\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7a8f267a-4bad-4ceb-afda-3c8b59dde429",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "parse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tier\": \"<string>\",\n  \"version\": \"<string>\",\n  \"file_id\": \"<string>\",\n  \"source_url\": \"<uri>\",\n  \"http_proxy\": \"<uri>\",\n  \"target_pages\": \"<string>\",\n  \"agentic_options\": {\n    \"key_0\": false,\n    \"key_1\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6d43ecce-4b71-4c3b-b759-afeb7bcba810",
+          "name": "Parse a document via file upload",
+          "request": {
+            "name": "Parse a document via file upload",
+            "description": {
+              "content": "Submit a document for parsing using multipart file upload. The file is uploaded directly along with parsing configuration. The tier parameter determines the parsing mode. Jobs are processed asynchronously and results are retrieved via the job status endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "parse",
+                "upload"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "(Required) The document file to upload and parse."
+                },
+                {
+                  "key": "configuration",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) JSON string containing the parsing configuration including tier, version, and other options."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0fb292c5-d917-460a-babb-0c75fa0c9407",
+              "name": "Parse job created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "parse",
+                    "upload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The document file to upload and parse.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) JSON string containing the parsing configuration including tier, version, and other options.",
+                        "type": "text/plain"
+                      },
+                      "key": "configuration",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"processing\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3bed3667-3cdc-40c3-a044-fa349ce6404f",
+              "name": "Bad request - invalid file or missing parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "parse",
+                    "upload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The document file to upload and parse.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) JSON string containing the parsing configuration including tier, version, and other options.",
+                        "type": "text/plain"
+                      },
+                      "key": "configuration",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4a121402-628d-4748-9685-38ef36dc822d",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "parse",
+                    "upload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The document file to upload and parse.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) JSON string containing the parsing configuration including tier, version, and other options.",
+                        "type": "text/plain"
+                      },
+                      "key": "configuration",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.cloud.llamaindex.ai/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "05340c4d-2385-48cb-b3a8-3452b7730c1e",
+    "name": "LlamaIndex LlamaParse API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "LlamaParse is a GenAI-native document parsing API that transforms complex document data for downstream LLM use cases including agents, RAG pipelines, and data processing workflows. The v2 API provides endpoints for parsing via JSON requests (accepting file IDs or URLs) and multipart file uploads. It supports multiple parsing tiers including fast, cost-effective, agentic, and agentic-plus modes, and returns results asynchronously via job polling.\n\nContact Support:\n Name: LlamaIndex Support",
+      "type": "text/plain"
+    }
+  }
+}

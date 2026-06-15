@@ -1,0 +1,217 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LlamaIndex LlamaExtract API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Extraction Agents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List extraction agents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/extraction/extraction-agents",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter extraction agents by project identifier."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of extraction agents for the specified project. Each agent is configured with a specific data schema and extraction settings for processing documents."
+        },
+        {
+          "info": {
+            "name": "Create an extraction agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/extraction/extraction-agents",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new extraction agent with a specified data schema and extraction configuration. The agent can then be used to run extraction jobs on uploaded documents. Schemas can be provided manually or inferred automatically by providing a prompt and example files."
+        },
+        {
+          "info": {
+            "name": "Get an extraction agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/extraction/extraction-agents/:agentId",
+            "params": [
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the extraction agent."
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific extraction agent including its schema, configuration, and status."
+        },
+        {
+          "info": {
+            "name": "Update an extraction agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/extraction/extraction-agents/:agentId",
+            "params": [
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the extraction agent."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the configuration of an existing extraction agent, including its schema and extraction settings."
+        },
+        {
+          "info": {
+            "name": "Delete an extraction agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/extraction/extraction-agents/:agentId",
+            "params": [
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the extraction agent."
+              }
+            ]
+          },
+          "docs": "Delete an extraction agent and its associated configuration."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Extraction Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create an extraction job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/extraction/jobs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Run an extraction job by specifying an extraction agent and one or more files to process. The job runs asynchronously and can be polled for status and results."
+        },
+        {
+          "info": {
+            "name": "Get extraction job status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/extraction/jobs/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the extraction job."
+              }
+            ]
+          },
+          "docs": "Retrieve the current status of an extraction job. Poll this endpoint to check whether the job has completed processing."
+        },
+        {
+          "info": {
+            "name": "Get extraction job result",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/extraction/jobs/:jobId/result",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the extraction job."
+              }
+            ]
+          },
+          "docs": "Retrieve the structured data extracted from the documents processed by a completed extraction job. Results conform to the schema defined in the extraction agent."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Files",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/files",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "The project to associate the file with."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Upload a file for use in extraction workflows using multipart form data. The returned file identifier can be used when creating extraction jobs."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

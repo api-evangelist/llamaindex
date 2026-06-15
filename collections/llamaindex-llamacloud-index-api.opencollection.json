@@ -1,0 +1,273 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LlamaIndex LlamaCloud Index API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Indexes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List indexes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/pipelines",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter indexes by project identifier."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of all indexes (pipelines) for the specified project. Each index represents an automated document ingestion pipeline with retrieval capabilities."
+        },
+        {
+          "info": {
+            "name": "Create an index",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/pipelines",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new index with specified configuration for document ingestion, parsing, embedding, and vector storage. The index automatically handles processing uploaded documents into a queryable format."
+        },
+        {
+          "info": {
+            "name": "Get an index",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/pipelines/:pipelineId",
+            "params": [
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index (pipeline)."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a specific index including its configuration, processing status, and file counts."
+        },
+        {
+          "info": {
+            "name": "Delete an index",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/pipelines/:pipelineId",
+            "params": [
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index (pipeline)."
+              }
+            ]
+          },
+          "docs": "Delete an index and its associated processed data."
+        },
+        {
+          "info": {
+            "name": "Sync an index",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/pipelines/:pipelineId/sync",
+            "params": [
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index (pipeline)."
+              }
+            ]
+          },
+          "docs": "Trigger an incremental sync of the index, processing any new or modified documents from connected data sources and uploaded files."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Index Files",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List index files",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/pipelines/:pipelineId/files",
+            "params": [
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index (pipeline)."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of files in the index along with their processing status. Use this endpoint to monitor which files have been successfully indexed."
+        },
+        {
+          "info": {
+            "name": "Add files to an index",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/pipelines/:pipelineId/files",
+            "params": [
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index (pipeline)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add previously uploaded files to the index for automatic processing. Files can include optional custom metadata that is preserved through the indexing pipeline."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Index Status",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get index file counts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/pipelines/:pipelineId/files/count",
+            "params": [
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index (pipeline)."
+              }
+            ]
+          },
+          "docs": "Retrieve file processing counts for an index, broken down by status. Use this endpoint to determine when an index is ready to query by checking that files have been successfully processed."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Index Data Sources",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List index data sources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/pipelines/:pipelineId/data-sources",
+            "params": [
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index (pipeline)."
+              }
+            ]
+          },
+          "docs": "Retrieve data sources connected to a specific index for automatic document ingestion."
+        },
+        {
+          "info": {
+            "name": "Add data sources to an index",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/pipelines/:pipelineId/data-sources",
+            "params": [
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index (pipeline)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Connect external data sources to an index for automatic document ingestion. The index will sync content from these sources based on the configured schedule."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Index Retrieval",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve from index",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/pipelines/:pipelineId/retrieve",
+            "params": [
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index (pipeline)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Execute a retrieval query against the indexed content. Supports multiple retrieval modes (fast, accurate, advanced) and configurable parameters for controlling the number of results and re-ranking behavior."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

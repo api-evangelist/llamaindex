@@ -1,0 +1,432 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LlamaIndex LlamaCloud API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/projects"
+          },
+          "docs": "Retrieve a list of all projects associated with the authenticated account. Projects serve as organizational containers for pipelines, files, and other resources."
+        },
+        {
+          "info": {
+            "name": "Create a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/projects",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new project to organize pipelines, files, and other cloud resources."
+        },
+        {
+          "info": {
+            "name": "Get a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/projects/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the project."
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific project by its identifier."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Files",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload a file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/files",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "The project to associate the file with."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Upload a file to the cloud platform using multipart form data. The file can then be used in pipelines, parsing jobs, or extraction workflows."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Pipelines",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List pipelines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/pipelines",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter pipelines by project identifier."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of all pipelines for the specified project. Pipelines represent document ingestion workflows that process, embed, and index documents."
+        },
+        {
+          "info": {
+            "name": "Create a pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/pipelines",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new document ingestion pipeline with specified configuration including parsing, embedding, and vector store settings."
+        },
+        {
+          "info": {
+            "name": "Get a pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/pipelines/:pipelineId",
+            "params": [
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the pipeline."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a specific pipeline including its configuration, status, and associated resources."
+        },
+        {
+          "info": {
+            "name": "Delete a pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/pipelines/:pipelineId",
+            "params": [
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the pipeline."
+              }
+            ]
+          },
+          "docs": "Delete a pipeline and optionally its associated resources."
+        },
+        {
+          "info": {
+            "name": "Sync a pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/pipelines/:pipelineId/sync",
+            "params": [
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the pipeline."
+              }
+            ]
+          },
+          "docs": "Run ingestion for the pipeline by incrementally updating the data sink with upstream changes from data sources and files. This triggers a new ingestion job that processes any new or modified content."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Retrieval",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Run search",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/pipelines/:pipelineId/retrieve",
+            "params": [
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the pipeline."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Execute a retrieval query against the indexed content of a managed pipeline. Returns ranked results matching the query with configurable retrieval modes including fast, accurate, and advanced options."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Pipeline Files",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List pipeline files",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/pipelines/:pipelineId/files",
+            "params": [
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the pipeline."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of files associated with a specific pipeline, including their processing status and metadata."
+        },
+        {
+          "info": {
+            "name": "Add files to a pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/pipelines/:pipelineId/files",
+            "params": [
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the pipeline."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add one or more previously uploaded files to a pipeline for processing. Files can include optional custom metadata."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Pipeline Data Sources",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List pipeline data sources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/pipelines/:pipelineId/data-sources",
+            "params": [
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the pipeline."
+              }
+            ]
+          },
+          "docs": "Retrieve data sources connected to a specific pipeline. Data sources provide automatic ingestion of documents from external systems."
+        },
+        {
+          "info": {
+            "name": "Add data sources to a pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/pipelines/:pipelineId/data-sources",
+            "params": [
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the pipeline."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Connect data sources to a pipeline for automatic document ingestion. When data sources are connected, the pipeline will sync content from these sources based on the configured schedule."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Pipeline Data Sinks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List pipeline data sinks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/pipelines/:pipelineId/data-sinks",
+            "params": [
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the pipeline."
+              }
+            ]
+          },
+          "docs": "Retrieve data sinks configured for a specific pipeline. Data sinks define where processed and embedded content is stored, such as vector databases."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Pipeline Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List pipeline jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/pipelines/:pipelineId/jobs",
+            "params": [
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the pipeline."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of ingestion jobs for a specific pipeline, including their status and processing details."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Data Sources",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List data sources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/data-sources",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter data sources by project identifier."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of all data sources for the specified project."
+        },
+        {
+          "info": {
+            "name": "Create a data source",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/data-sources",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new data source that can be connected to one or more pipelines for automatic document ingestion."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
