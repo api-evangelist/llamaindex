@@ -1,0 +1,1135 @@
+"""
+LlamaIndex LlamaCloud GraphQL Schema
+Derived from the LlamaCloud REST API covering managed ingestion pipelines,
+index management, document processing, retrieval, and chat agent endpoints.
+"""
+
+# ─── Scalars ─────────────────────────────────────────────────────────────────
+
+scalar DateTime
+scalar JSON
+scalar Upload
+
+# ─── Enums ───────────────────────────────────────────────────────────────────
+
+enum PipelineStatus {
+  ACTIVE
+  INACTIVE
+  PENDING
+  ERROR
+}
+
+enum JobStatus {
+  PENDING
+  RUNNING
+  SUCCESS
+  ERROR
+  CANCELLED
+}
+
+enum DocumentStatus {
+  QUEUED
+  PROCESSING
+  INDEXED
+  FAILED
+  DELETED
+}
+
+enum ParseTier {
+  FAST
+  DEFAULT
+  PREMIUM
+  AGENTIC
+  AGENTIC_PLUS
+}
+
+enum IndexType {
+  VECTOR_STORE
+  KEYWORD
+  SUMMARY
+  HYBRID
+}
+
+enum RetrieverMode {
+  DEFAULT
+  EMBEDDING
+  SPARSE
+  HYBRID
+}
+
+enum ChunkingStrategy {
+  SENTENCE
+  TOKEN
+  SEMANTIC
+  FIXED_SIZE
+  HIERARCHICAL
+}
+
+enum EmbeddingModel {
+  TEXT_EMBEDDING_ADA_002
+  TEXT_EMBEDDING_3_SMALL
+  TEXT_EMBEDDING_3_LARGE
+  COHERE_EMBED_ENGLISH
+  LLAMAINDEX_EMBEDDING
+}
+
+enum LLMProvider {
+  OPENAI
+  ANTHROPIC
+  COHERE
+  LLAMAINDEX
+  MISTRAL
+  GROQ
+  BEDROCK
+}
+
+enum AgentType {
+  FUNCTION_AGENT
+  REACT_AGENT
+  CODE_ACT_AGENT
+  OPENAI_AGENT
+}
+
+enum AgentRunStatus {
+  PENDING
+  RUNNING
+  COMPLETED
+  FAILED
+  CANCELLED
+}
+
+enum DocumentType {
+  PDF
+  DOCX
+  PPTX
+  XLSX
+  HTML
+  TXT
+  MD
+  CSV
+  IMAGE
+  UNKNOWN
+}
+
+enum ExtractionJobStatus {
+  PENDING
+  PROCESSING
+  SUCCESS
+  FAILED
+  CANCELLED
+}
+
+enum RegionCode {
+  US
+  EU
+}
+
+enum SortOrder {
+  ASC
+  DESC
+}
+
+enum ChatMessageRole {
+  SYSTEM
+  USER
+  ASSISTANT
+  TOOL
+}
+
+enum WebhookEventType {
+  PIPELINE_COMPLETED
+  PIPELINE_FAILED
+  DOCUMENT_INDEXED
+  DOCUMENT_FAILED
+  JOB_COMPLETED
+  JOB_FAILED
+}
+
+# ─── Core Types ───────────────────────────────────────────────────────────────
+
+type Organization {
+  id: ID!
+  name: String!
+  region: RegionCode!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  pipelines(first: Int, after: String): PipelineConnection!
+  indexes(first: Int, after: String): IndexConnection!
+  extractionAgents(first: Int, after: String): ExtractionAgentConnection!
+  usage: UsageSummary!
+}
+
+type Project {
+  id: ID!
+  name: String!
+  description: String
+  organizationId: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  pipelines(first: Int, after: String): PipelineConnection!
+  indexes(first: Int, after: String): IndexConnection!
+}
+
+type Pipeline {
+  id: ID!
+  name: String!
+  description: String
+  status: PipelineStatus!
+  projectId: ID!
+  project: Project
+  chunkingStrategy: ChunkingStrategy!
+  chunkSize: Int
+  chunkOverlap: Int
+  embeddingModel: EmbeddingModel!
+  embeddingDimension: Int
+  transformations: [Transformation!]!
+  dataSources: [DataSource!]!
+  dataSync: DataSync
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  documents(
+    first: Int
+    after: String
+    status: DocumentStatus
+  ): DocumentConnection!
+  runs(first: Int, after: String): PipelineRunConnection!
+  stats: PipelineStats!
+}
+
+type PipelineRun {
+  id: ID!
+  pipelineId: ID!
+  pipeline: Pipeline
+  status: JobStatus!
+  startedAt: DateTime
+  completedAt: DateTime
+  documentsProcessed: Int!
+  documentsFailedCount: Int!
+  errorMessage: String
+  logs: [LogEntry!]!
+}
+
+type PipelineStats {
+  totalDocuments: Int!
+  indexedDocuments: Int!
+  failedDocuments: Int!
+  lastRunAt: DateTime
+  avgProcessingTimeSeconds: Float
+}
+
+type DataSource {
+  id: ID!
+  pipelineId: ID!
+  name: String!
+  type: String!
+  config: JSON!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type DataSync {
+  enabled: Boolean!
+  intervalSeconds: Int
+  lastSyncAt: DateTime
+  nextSyncAt: DateTime
+}
+
+type Transformation {
+  type: String!
+  config: JSON
+}
+
+type Index {
+  id: ID!
+  name: String!
+  description: String
+  projectId: ID!
+  project: Project
+  type: IndexType!
+  pipelineId: ID
+  pipeline: Pipeline
+  embeddingModel: EmbeddingModel!
+  dimensions: Int
+  documentCount: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  retrievers: [Retriever!]!
+}
+
+type Retriever {
+  id: ID!
+  indexId: ID!
+  mode: RetrieverMode!
+  topK: Int!
+  similarityThreshold: Float
+  config: JSON
+}
+
+type Document {
+  id: ID!
+  pipelineId: ID
+  pipeline: Pipeline
+  fileName: String!
+  fileType: DocumentType!
+  fileSize: Int
+  status: DocumentStatus!
+  errorMessage: String
+  metadata: JSON
+  nodeCount: Int
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  indexedAt: DateTime
+  nodes(first: Int, after: String): NodeConnection!
+  parseJob: ParseJob
+}
+
+type Node {
+  id: ID!
+  documentId: ID!
+  document: Document
+  text: String!
+  embedding: [Float!]
+  metadata: JSON
+  score: Float
+  startCharIdx: Int
+  endCharIdx: Int
+  relationships: JSON
+}
+
+type ParseJob {
+  id: ID!
+  status: JobStatus!
+  documentId: ID
+  fileName: String!
+  parseMode: ParseTier!
+  createdAt: DateTime!
+  completedAt: DateTime
+  errorMessage: String
+  resultUrl: String
+  pages: Int
+  credits: Float
+  result: ParseResult
+}
+
+type ParseResult {
+  jobId: ID!
+  markdown: String
+  json: JSON
+  pages: [ParsedPage!]!
+}
+
+type ParsedPage {
+  pageNumber: Int!
+  text: String!
+  tables: [ParsedTable!]
+  images: [ParsedImage!]
+}
+
+type ParsedTable {
+  pageNumber: Int!
+  rows: [[String!]!]!
+}
+
+type ParsedImage {
+  pageNumber: Int!
+  description: String
+  url: String
+}
+
+type ExtractionAgent {
+  id: ID!
+  name: String!
+  description: String
+  schema: JSON!
+  projectId: ID!
+  project: Project
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  jobs(first: Int, after: String, status: ExtractionJobStatus): ExtractionJobConnection!
+}
+
+type ExtractionJob {
+  id: ID!
+  agentId: ID!
+  agent: ExtractionAgent
+  status: ExtractionJobStatus!
+  documentId: ID
+  fileName: String
+  createdAt: DateTime!
+  completedAt: DateTime
+  errorMessage: String
+  result: JSON
+  credits: Float
+}
+
+type RetrievalResult {
+  nodes: [ScoredNode!]!
+  query: String!
+  indexId: ID!
+  totalCount: Int!
+  latencyMs: Float
+}
+
+type ScoredNode {
+  node: Node!
+  score: Float!
+}
+
+type ChatSession {
+  id: ID!
+  agentId: ID!
+  agent: ChatAgent
+  title: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  messages(first: Int, after: String): ChatMessageConnection!
+}
+
+type ChatAgent {
+  id: ID!
+  name: String!
+  description: String
+  projectId: ID!
+  agentType: AgentType!
+  llmProvider: LLMProvider!
+  llmModel: String!
+  systemPrompt: String
+  indexIds: [ID!]!
+  tools: [AgentTool!]!
+  config: JSON
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  sessions(first: Int, after: String): ChatSessionConnection!
+}
+
+type AgentTool {
+  name: String!
+  description: String!
+  type: String!
+  config: JSON
+}
+
+type ChatMessage {
+  id: ID!
+  sessionId: ID!
+  role: ChatMessageRole!
+  content: String!
+  toolCalls: [ToolCall!]
+  toolResults: [ToolResult!]
+  metadata: JSON
+  createdAt: DateTime!
+  tokens: Int
+}
+
+type ToolCall {
+  id: ID!
+  name: String!
+  arguments: JSON!
+}
+
+type ToolResult {
+  toolCallId: ID!
+  name: String!
+  result: JSON
+  error: String
+}
+
+type AgentRun {
+  id: ID!
+  agentId: ID!
+  agent: ChatAgent
+  sessionId: ID
+  status: AgentRunStatus!
+  input: String!
+  output: String
+  steps: [AgentStep!]!
+  startedAt: DateTime!
+  completedAt: DateTime
+  errorMessage: String
+  totalTokens: Int
+}
+
+type AgentStep {
+  stepNumber: Int!
+  thought: String
+  action: String
+  actionInput: JSON
+  observation: String
+  timestamp: DateTime!
+}
+
+type EmbeddingResult {
+  embedding: [Float!]!
+  model: EmbeddingModel!
+  dimensions: Int!
+  tokenCount: Int
+}
+
+type VectorStore {
+  id: ID!
+  name: String!
+  provider: String!
+  config: JSON!
+  projectId: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ApiKey {
+  id: ID!
+  name: String!
+  prefix: String!
+  createdAt: DateTime!
+  expiresAt: DateTime
+  lastUsedAt: DateTime
+  scopes: [String!]!
+}
+
+type UsageSummary {
+  period: String!
+  documentsProcessed: Int!
+  pagesProcessed: Int!
+  creditsUsed: Float!
+  creditsRemaining: Float!
+  retrievalRequests: Int!
+  embeddingTokens: Int!
+  llmTokens: Int!
+}
+
+type Webhook {
+  id: ID!
+  name: String!
+  url: String!
+  secret: String
+  events: [WebhookEventType!]!
+  isActive: Boolean!
+  projectId: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deliveries(first: Int, after: String): WebhookDeliveryConnection!
+}
+
+type WebhookDelivery {
+  id: ID!
+  webhookId: ID!
+  event: WebhookEventType!
+  payload: JSON!
+  responseStatus: Int
+  responseBody: String
+  deliveredAt: DateTime!
+  success: Boolean!
+}
+
+type LogEntry {
+  timestamp: DateTime!
+  level: String!
+  message: String!
+  metadata: JSON
+}
+
+# ─── Connection / Pagination Types ────────────────────────────────────────────
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type PipelineConnection {
+  edges: [PipelineEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type PipelineEdge {
+  node: Pipeline!
+  cursor: String!
+}
+
+type PipelineRunConnection {
+  edges: [PipelineRunEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type PipelineRunEdge {
+  node: PipelineRun!
+  cursor: String!
+}
+
+type IndexConnection {
+  edges: [IndexEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type IndexEdge {
+  node: Index!
+  cursor: String!
+}
+
+type DocumentConnection {
+  edges: [DocumentEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type DocumentEdge {
+  node: Document!
+  cursor: String!
+}
+
+type NodeConnection {
+  edges: [NodeEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type NodeEdge {
+  node: Node!
+  cursor: String!
+}
+
+type ExtractionAgentConnection {
+  edges: [ExtractionAgentEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type ExtractionAgentEdge {
+  node: ExtractionAgent!
+  cursor: String!
+}
+
+type ExtractionJobConnection {
+  edges: [ExtractionJobEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type ExtractionJobEdge {
+  node: ExtractionJob!
+  cursor: String!
+}
+
+type ChatSessionConnection {
+  edges: [ChatSessionEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type ChatSessionEdge {
+  node: ChatSession!
+  cursor: String!
+}
+
+type ChatMessageConnection {
+  edges: [ChatMessageEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type ChatMessageEdge {
+  node: ChatMessage!
+  cursor: String!
+}
+
+type WebhookDeliveryConnection {
+  edges: [WebhookDeliveryEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type WebhookDeliveryEdge {
+  node: WebhookDelivery!
+  cursor: String!
+}
+
+# ─── Input Types ──────────────────────────────────────────────────────────────
+
+input CreatePipelineInput {
+  name: String!
+  description: String
+  projectId: ID!
+  chunkingStrategy: ChunkingStrategy
+  chunkSize: Int
+  chunkOverlap: Int
+  embeddingModel: EmbeddingModel
+  transformations: [TransformationInput!]
+  dataSyncIntervalSeconds: Int
+}
+
+input UpdatePipelineInput {
+  name: String
+  description: String
+  chunkingStrategy: ChunkingStrategy
+  chunkSize: Int
+  chunkOverlap: Int
+  embeddingModel: EmbeddingModel
+  transformations: [TransformationInput!]
+  dataSyncIntervalSeconds: Int
+}
+
+input TransformationInput {
+  type: String!
+  config: JSON
+}
+
+input CreateDataSourceInput {
+  pipelineId: ID!
+  name: String!
+  type: String!
+  config: JSON!
+}
+
+input CreateIndexInput {
+  name: String!
+  description: String
+  projectId: ID!
+  type: IndexType
+  pipelineId: ID
+  embeddingModel: EmbeddingModel
+  dimensions: Int
+}
+
+input UpdateIndexInput {
+  name: String
+  description: String
+}
+
+input RetrieverConfigInput {
+  indexId: ID!
+  mode: RetrieverMode
+  topK: Int
+  similarityThreshold: Float
+  config: JSON
+}
+
+input UploadDocumentInput {
+  pipelineId: ID!
+  fileName: String!
+  file: Upload
+  fileUrl: String
+  metadata: JSON
+  parseMode: ParseTier
+}
+
+input ParseDocumentInput {
+  file: Upload
+  fileUrl: String
+  fileId: ID
+  parseMode: ParseTier
+  targetPages: String
+  language: String
+  outputFormat: String
+}
+
+input RetrievalQueryInput {
+  indexId: ID!
+  query: String!
+  topK: Int
+  similarityThreshold: Float
+  mode: RetrieverMode
+  filters: JSON
+}
+
+input CreateExtractionAgentInput {
+  name: String!
+  description: String
+  projectId: ID!
+  schema: JSON!
+}
+
+input UpdateExtractionAgentInput {
+  name: String
+  description: String
+  schema: JSON
+}
+
+input RunExtractionJobInput {
+  agentId: ID!
+  file: Upload
+  fileUrl: String
+  documentId: ID
+}
+
+input CreateChatAgentInput {
+  name: String!
+  description: String
+  projectId: ID!
+  agentType: AgentType
+  llmProvider: LLMProvider!
+  llmModel: String!
+  systemPrompt: String
+  indexIds: [ID!]
+  tools: [AgentToolInput!]
+  config: JSON
+}
+
+input UpdateChatAgentInput {
+  name: String
+  description: String
+  agentType: AgentType
+  llmProvider: LLMProvider
+  llmModel: String
+  systemPrompt: String
+  indexIds: [ID!]
+  tools: [AgentToolInput!]
+  config: JSON
+}
+
+input AgentToolInput {
+  name: String!
+  description: String!
+  type: String!
+  config: JSON
+}
+
+input SendMessageInput {
+  sessionId: ID!
+  content: String!
+  role: ChatMessageRole
+}
+
+input RunAgentInput {
+  agentId: ID!
+  input: String!
+  sessionId: ID
+  config: JSON
+}
+
+input EmbedTextInput {
+  text: String!
+  model: EmbeddingModel
+}
+
+input CreateWebhookInput {
+  name: String!
+  url: String!
+  projectId: ID!
+  events: [WebhookEventType!]!
+  secret: String
+}
+
+input UpdateWebhookInput {
+  name: String
+  url: String
+  events: [WebhookEventType!]
+  isActive: Boolean
+  secret: String
+}
+
+input CreateApiKeyInput {
+  name: String!
+  scopes: [String!]
+  expiresAt: DateTime
+}
+
+input DocumentFilterInput {
+  status: DocumentStatus
+  fileType: DocumentType
+  pipelineId: ID
+  indexId: ID
+  createdAfter: DateTime
+  createdBefore: DateTime
+  search: String
+}
+
+input PipelineFilterInput {
+  status: PipelineStatus
+  projectId: ID
+  search: String
+}
+
+input SortInput {
+  field: String!
+  order: SortOrder
+}
+
+# ─── Query Root ───────────────────────────────────────────────────────────────
+
+type Query {
+  # Organization
+  organization: Organization!
+
+  # Projects
+  project(id: ID!): Project
+  projects(first: Int, after: String): ProjectConnection!
+
+  # Pipelines
+  pipeline(id: ID!): Pipeline
+  pipelines(
+    first: Int
+    after: String
+    filter: PipelineFilterInput
+    sort: SortInput
+  ): PipelineConnection!
+  pipelineRun(id: ID!): PipelineRun
+  pipelineRuns(
+    pipelineId: ID!
+    first: Int
+    after: String
+    status: JobStatus
+  ): PipelineRunConnection!
+
+  # Indexes
+  index(id: ID!): Index
+  indexes(
+    first: Int
+    after: String
+    projectId: ID
+    type: IndexType
+  ): IndexConnection!
+
+  # Documents
+  document(id: ID!): Document
+  documents(
+    first: Int
+    after: String
+    filter: DocumentFilterInput
+    sort: SortInput
+  ): DocumentConnection!
+
+  # Nodes
+  node(id: ID!): Node
+  documentNodes(
+    documentId: ID!
+    first: Int
+    after: String
+  ): NodeConnection!
+
+  # Parsing
+  parseJob(id: ID!): ParseJob
+  parseJobs(
+    first: Int
+    after: String
+    status: JobStatus
+  ): ParseJobConnection!
+
+  # Extraction
+  extractionAgent(id: ID!): ExtractionAgent
+  extractionAgents(
+    first: Int
+    after: String
+    projectId: ID
+  ): ExtractionAgentConnection!
+  extractionJob(id: ID!): ExtractionJob
+  extractionJobs(
+    agentId: ID
+    first: Int
+    after: String
+    status: ExtractionJobStatus
+  ): ExtractionJobConnection!
+
+  # Retrieval
+  retrieve(input: RetrievalQueryInput!): RetrievalResult!
+
+  # Chat Agents
+  chatAgent(id: ID!): ChatAgent
+  chatAgents(
+    first: Int
+    after: String
+    projectId: ID
+  ): ChatAgentConnection!
+  chatSession(id: ID!): ChatSession
+  chatSessions(
+    agentId: ID!
+    first: Int
+    after: String
+  ): ChatSessionConnection!
+  chatMessages(
+    sessionId: ID!
+    first: Int
+    after: String
+  ): ChatMessageConnection!
+
+  # Agent Runs
+  agentRun(id: ID!): AgentRun
+  agentRuns(
+    agentId: ID!
+    first: Int
+    after: String
+    status: AgentRunStatus
+  ): AgentRunConnection!
+
+  # Embeddings
+  embedText(input: EmbedTextInput!): EmbeddingResult!
+
+  # Vector Stores
+  vectorStore(id: ID!): VectorStore
+  vectorStores(projectId: ID, first: Int, after: String): VectorStoreConnection!
+
+  # API Keys
+  apiKeys: [ApiKey!]!
+
+  # Webhooks
+  webhook(id: ID!): Webhook
+  webhooks(projectId: ID, first: Int, after: String): WebhookConnection!
+
+  # Usage
+  usage(period: String): UsageSummary!
+}
+
+# ─── Mutation Root ────────────────────────────────────────────────────────────
+
+type Mutation {
+  # Projects
+  createProject(name: String!, description: String): Project!
+  updateProject(id: ID!, name: String, description: String): Project!
+  deleteProject(id: ID!): Boolean!
+
+  # Pipelines
+  createPipeline(input: CreatePipelineInput!): Pipeline!
+  updatePipeline(id: ID!, input: UpdatePipelineInput!): Pipeline!
+  deletePipeline(id: ID!): Boolean!
+  runPipeline(id: ID!): PipelineRun!
+  stopPipelineRun(runId: ID!): PipelineRun!
+
+  # Data Sources
+  addDataSource(input: CreateDataSourceInput!): DataSource!
+  removeDataSource(id: ID!): Boolean!
+
+  # Indexes
+  createIndex(input: CreateIndexInput!): Index!
+  updateIndex(id: ID!, input: UpdateIndexInput!): Index!
+  deleteIndex(id: ID!): Boolean!
+  configureRetriever(input: RetrieverConfigInput!): Retriever!
+
+  # Documents
+  uploadDocument(input: UploadDocumentInput!): Document!
+  deleteDocument(id: ID!): Boolean!
+  reprocessDocument(id: ID!): Document!
+
+  # Parsing
+  parseDocument(input: ParseDocumentInput!): ParseJob!
+  cancelParseJob(id: ID!): ParseJob!
+
+  # Extraction Agents
+  createExtractionAgent(input: CreateExtractionAgentInput!): ExtractionAgent!
+  updateExtractionAgent(id: ID!, input: UpdateExtractionAgentInput!): ExtractionAgent!
+  deleteExtractionAgent(id: ID!): Boolean!
+  runExtractionJob(input: RunExtractionJobInput!): ExtractionJob!
+  cancelExtractionJob(id: ID!): ExtractionJob!
+
+  # Chat Agents
+  createChatAgent(input: CreateChatAgentInput!): ChatAgent!
+  updateChatAgent(id: ID!, input: UpdateChatAgentInput!): ChatAgent!
+  deleteChatAgent(id: ID!): Boolean!
+  createChatSession(agentId: ID!, title: String): ChatSession!
+  deleteChatSession(id: ID!): Boolean!
+  sendMessage(input: SendMessageInput!): ChatMessage!
+  runAgent(input: RunAgentInput!): AgentRun!
+  cancelAgentRun(id: ID!): AgentRun!
+
+  # Webhooks
+  createWebhook(input: CreateWebhookInput!): Webhook!
+  updateWebhook(id: ID!, input: UpdateWebhookInput!): Webhook!
+  deleteWebhook(id: ID!): Boolean!
+  testWebhook(id: ID!): WebhookDelivery!
+
+  # API Keys
+  createApiKey(input: CreateApiKeyInput!): ApiKeyWithSecret!
+  revokeApiKey(id: ID!): Boolean!
+}
+
+# ─── Subscription Root ────────────────────────────────────────────────────────
+
+type Subscription {
+  # Pipeline events
+  pipelineRunUpdated(runId: ID!): PipelineRun!
+  pipelineStatusChanged(pipelineId: ID!): Pipeline!
+
+  # Document events
+  documentStatusChanged(documentId: ID!): Document!
+  documentsIndexed(pipelineId: ID!): Document!
+
+  # Parse job events
+  parseJobUpdated(jobId: ID!): ParseJob!
+
+  # Extraction job events
+  extractionJobUpdated(jobId: ID!): ExtractionJob!
+
+  # Chat / Agent events
+  chatMessageReceived(sessionId: ID!): ChatMessage!
+  agentRunStepAdded(runId: ID!): AgentStep!
+  agentRunCompleted(runId: ID!): AgentRun!
+}
+
+# ─── Additional Types (supporting mutations/queries) ──────────────────────────
+
+type ApiKeyWithSecret {
+  id: ID!
+  name: String!
+  prefix: String!
+  secret: String!
+  createdAt: DateTime!
+  expiresAt: DateTime
+  scopes: [String!]!
+}
+
+type ProjectConnection {
+  edges: [ProjectEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type ProjectEdge {
+  node: Project!
+  cursor: String!
+}
+
+type ParseJobConnection {
+  edges: [ParseJobEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type ParseJobEdge {
+  node: ParseJob!
+  cursor: String!
+}
+
+type AgentRunConnection {
+  edges: [AgentRunEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type AgentRunEdge {
+  node: AgentRun!
+  cursor: String!
+}
+
+type ChatAgentConnection {
+  edges: [ChatAgentEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type ChatAgentEdge {
+  node: ChatAgent!
+  cursor: String!
+}
+
+type VectorStoreConnection {
+  edges: [VectorStoreEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type VectorStoreEdge {
+  node: VectorStore!
+  cursor: String!
+}
+
+type WebhookConnection {
+  edges: [WebhookEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type WebhookEdge {
+  node: Webhook!
+  cursor: String!
+}
