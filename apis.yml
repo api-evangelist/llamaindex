@@ -11,7 +11,7 @@ apis:
   - Documents
   - LLM
   - RAG
-  image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   baseURL: https://api.cloud.llamaindex.ai
   humanURL: https://developers.api.llamaindex.ai/
   properties:
@@ -35,7 +35,7 @@ apis:
   - LLM
   - OCR
   - PDF
-  image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   baseURL: https://api.cloud.llamaindex.ai
   humanURL: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
   properties:
@@ -57,7 +57,7 @@ apis:
   - Documents
   - JSON
   - Structured Data
-  image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   baseURL: https://api.cloud.llamaindex.ai
   humanURL: https://developers.llamaindex.ai/python/cloud/llamaextract/getting_started/api/
   properties:
@@ -79,7 +79,7 @@ apis:
   - RAG
   - Retrieval
   - Vector Store
-  image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   baseURL: https://api.cloud.llamaindex.ai
   humanURL: https://developers.llamaindex.ai/python/cloud/llamacloud/guides/api_sdk/
   properties:
@@ -103,7 +103,7 @@ apis:
   - Python
   - RAG
   - SDK
-  image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   baseURL: https://api.example.com
   humanURL: https://developers.llamaindex.ai/python/framework/
   properties:
@@ -126,7 +126,7 @@ apis:
   - RAG
   - SDK
   - TypeScript
-  image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   baseURL: https://api.example.com
   humanURL: https://developers.llamaindex.ai/typescript/framework/
   properties:
