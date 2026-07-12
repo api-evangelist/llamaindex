@@ -139,12 +139,18 @@ apis:
     supports integration with LlamaCloud services and offers convenient access to
     cloud APIs for document parsing, extraction, and indexing from Node.js environments.
 common:
+- type: DomainSecurity
+  url: security/llamaindex-domain-security.yml
+- type: Authentication
+  url: authentication/llamaindex-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/run-llama
 - type: LinkedIn
   url: https://www.linkedin.com/company/llamaindex
 - type: JSONLD
   url: json-ld/llamaindex-context.jsonld
+- url: https://www.llamaindex.ai/blog
+  type: Blog
 - type: JSONSchema
   url: json-schema/llamaindex-pipeline-schema.json
 - type: JSONSchema

@@ -1,0 +1,19 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/llamaindex-llamacloud-api-openapi.yml, openapi/llamaindex-llamacloud-index-api-openapi.yml,
+  openapi/llamaindex-llamaextract-api-openapi.yml, openapi/llamaindex-llamaparse-api-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: API Key
+  description: LlamaCloud API key obtained from the LlamaCloud dashboard. Include as a Bearer
+    token in the Authorization header.
+  sources:
+  - openapi/llamaindex-llamacloud-api-openapi.yml
+  - openapi/llamaindex-llamacloud-index-api-openapi.yml
+  - openapi/llamaindex-llamaextract-api-openapi.yml
+  - openapi/llamaindex-llamaparse-api-openapi.yml
