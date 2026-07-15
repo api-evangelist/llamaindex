@@ -139,6 +139,8 @@ apis:
     supports integration with LlamaCloud services and offers convenient access to
     cloud APIs for document parsing, extraction, and indexing from Node.js environments.
 common:
+- type: AgenticAccess
+  url: agentic-access/llamaindex-agentic-access.yml
 - type: DomainSecurity
   url: security/llamaindex-domain-security.yml
 - type: Authentication
