@@ -1,0 +1,200 @@
+openapi: 3.1.0
+info:
+  title: LlamaIndex LlamaCloud Data Sources Jobs API
+  description: The LlamaCloud API is the central REST API for LlamaIndex's cloud platform, providing programmatic access to managed document processing, indexing, and retrieval services. It enables developers to build production-grade LLM applications by leveraging cloud-hosted infrastructure for document ingestion, knowledge management, and agent orchestration. The API supports authentication via API keys and is available in both US and EU regions.
+  version: '1.0'
+  contact:
+    name: LlamaIndex Support
+    url: https://www.llamaindex.ai/contact
+  termsOfService: https://www.llamaindex.ai/terms-of-service
+servers:
+- url: https://api.cloud.llamaindex.ai/api/v1
+  description: US Production Server
+- url: https://api.cloud.llamaindex.eu/api/v1
+  description: EU Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Jobs
+  description: Monitor and retrieve results from asynchronous parsing jobs.
+paths:
+  /parse/jobs:
+    get:
+      operationId: listParseJobs
+      summary: List parse jobs
+      description: Retrieve a list of parse jobs for the authenticated project. Supports optional filtering and pagination to narrow down results.
+      tags:
+      - Jobs
+      parameters:
+      - name: project_id
+        in: query
+        description: Filter jobs by project identifier.
+        required: false
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Maximum number of jobs to return.
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+      - name: offset
+        in: query
+        description: Number of jobs to skip for pagination.
+        required: false
+        schema:
+          type: integer
+          minimum: 0
+      responses:
+        '200':
+          description: Successfully retrieved list of parse jobs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ParseJob'
+        '401':
+          description: Unauthorized - invalid or missing API key
+  /parse/jobs/{jobId}:
+    get:
+      operationId: getParseJob
+      summary: Get parse job status
+      description: Retrieve the status and optionally the results of a parse job. Use the expand parameter to control what parsed content is returned, including text, markdown, structured JSON, or metadata. Poll this endpoint to check job completion status.
+      tags:
+      - Jobs
+      parameters:
+      - $ref: '#/components/parameters/jobId'
+      - name: expand
+        in: query
+        description: Comma-separated list of result fields to include in the response. Controls whether text, markdown, structured JSON, or metadata is returned with the job status.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successfully retrieved parse job status and results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParseJob'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Parse job not found
+  /parse/jobs/{jobId}/result:
+    get:
+      operationId: getParseJobResult
+      summary: Get parse job result
+      description: Retrieve the full parsed result of a completed parse job. Returns the extracted content in the requested format. The job must be in a completed state for results to be available.
+      tags:
+      - Jobs
+      parameters:
+      - $ref: '#/components/parameters/jobId'
+      responses:
+        '200':
+          description: Successfully retrieved parse job result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParseResult'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Parse job not found or not completed
+components:
+  parameters:
+    jobId:
+      name: jobId
+      in: path
+      description: Unique identifier of the parse job.
+      required: true
+      schema:
+        type: string
+  schemas:
+    ParseResult:
+      type: object
+      description: The parsed output of a document, containing extracted content in various formats.
+      properties:
+        text:
+          type: string
+          description: Plain text representation of the parsed content.
+        markdown:
+          type: string
+          description: Markdown-formatted representation of the parsed content.
+        json:
+          type: object
+          additionalProperties: true
+          description: Structured JSON representation of the parsed content.
+        pages:
+          type: array
+          description: Per-page parsing results.
+          items:
+            $ref: '#/components/schemas/ParsePage'
+        metadata:
+          type: object
+          additionalProperties: true
+          description: Metadata extracted from the document.
+    ParsePage:
+      type: object
+      description: Parsed content for a single page of a document.
+      properties:
+        page_number:
+          type: integer
+          minimum: 1
+          description: 1-based page number.
+        text:
+          type: string
+          description: Plain text content of the page.
+        markdown:
+          type: string
+          description: Markdown-formatted content of the page.
+    ParseJob:
+      type: object
+      description: A parse job representing the asynchronous processing of a document.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the parse job.
+        status:
+          type: string
+          enum:
+          - pending
+          - processing
+          - completed
+          - failed
+          description: Current status of the parse job.
+        tier:
+          type: string
+          enum:
+          - fast
+          - cost_effective
+          - agentic
+          - agentic_plus
+          description: Parsing tier used for this job.
+        file_name:
+          type: string
+          description: Name of the parsed file.
+        num_pages:
+          type: integer
+          description: Total number of pages in the document.
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the parse job was created.
+        completed_at:
+          type: string
+          format: date-time
+          description: Timestamp when the parse job completed, if applicable.
+        result:
+          $ref: '#/components/schemas/ParseResult'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Key
+      description: LlamaCloud API key obtained from the LlamaCloud dashboard. Include as a Bearer token in the Authorization header.
+externalDocs:
+  description: LlamaCloud API Documentation
+  url: https://developers.api.llamaindex.ai/

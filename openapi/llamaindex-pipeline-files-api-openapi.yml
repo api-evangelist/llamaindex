@@ -1,0 +1,121 @@
+openapi: 3.1.0
+info:
+  title: LlamaIndex LlamaCloud Data Sources Pipeline Files API
+  description: The LlamaCloud API is the central REST API for LlamaIndex's cloud platform, providing programmatic access to managed document processing, indexing, and retrieval services. It enables developers to build production-grade LLM applications by leveraging cloud-hosted infrastructure for document ingestion, knowledge management, and agent orchestration. The API supports authentication via API keys and is available in both US and EU regions.
+  version: '1.0'
+  contact:
+    name: LlamaIndex Support
+    url: https://www.llamaindex.ai/contact
+  termsOfService: https://www.llamaindex.ai/terms-of-service
+servers:
+- url: https://api.cloud.llamaindex.ai/api/v1
+  description: US Production Server
+- url: https://api.cloud.llamaindex.eu/api/v1
+  description: EU Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Pipeline Files
+  description: Manage files associated with a specific pipeline.
+paths:
+  /pipelines/{pipelineId}/files:
+    get:
+      operationId: listPipelineFiles
+      summary: List pipeline files
+      description: Retrieve a list of files associated with a specific pipeline, including their processing status and metadata.
+      tags:
+      - Pipeline Files
+      parameters:
+      - $ref: '#/components/parameters/pipelineId'
+      responses:
+        '200':
+          description: Successfully retrieved list of pipeline files
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PipelineFile'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Pipeline not found
+    put:
+      operationId: addFilesToPipeline
+      summary: Add files to a pipeline
+      description: Add one or more previously uploaded files to a pipeline for processing. Files can include optional custom metadata.
+      tags:
+      - Pipeline Files
+      parameters:
+      - $ref: '#/components/parameters/pipelineId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/PipelineFileInput'
+      responses:
+        '200':
+          description: Files added to pipeline successfully
+        '400':
+          description: Bad request - invalid file references
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Pipeline not found
+components:
+  parameters:
+    pipelineId:
+      name: pipelineId
+      in: path
+      description: Unique identifier of the pipeline.
+      required: true
+      schema:
+        type: string
+  schemas:
+    PipelineFileInput:
+      type: object
+      description: Input for adding a file to a pipeline.
+      required:
+      - file_id
+      properties:
+        file_id:
+          type: string
+          description: Identifier of the file to add to the pipeline.
+        metadata:
+          type: object
+          additionalProperties: true
+          description: Optional custom metadata to associate with the file.
+    PipelineFile:
+      type: object
+      description: A file associated with a pipeline, including processing status.
+      properties:
+        file_id:
+          type: string
+          description: Unique identifier of the file.
+        name:
+          type: string
+          description: Original file name.
+        status:
+          type: string
+          enum:
+          - pending
+          - processing
+          - completed
+          - error
+          description: Processing status of the file within the pipeline.
+        metadata:
+          type: object
+          additionalProperties: true
+          description: Custom metadata associated with the file.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Key
+      description: LlamaCloud API key obtained from the LlamaCloud dashboard. Include as a Bearer token in the Authorization header.
+externalDocs:
+  description: LlamaCloud API Documentation
+  url: https://developers.api.llamaindex.ai/

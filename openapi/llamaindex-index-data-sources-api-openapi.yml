@@ -1,0 +1,120 @@
+openapi: 3.1.0
+info:
+  title: LlamaIndex LlamaCloud Data Sources Index Data Sources API
+  description: The LlamaCloud API is the central REST API for LlamaIndex's cloud platform, providing programmatic access to managed document processing, indexing, and retrieval services. It enables developers to build production-grade LLM applications by leveraging cloud-hosted infrastructure for document ingestion, knowledge management, and agent orchestration. The API supports authentication via API keys and is available in both US and EU regions.
+  version: '1.0'
+  contact:
+    name: LlamaIndex Support
+    url: https://www.llamaindex.ai/contact
+  termsOfService: https://www.llamaindex.ai/terms-of-service
+servers:
+- url: https://api.cloud.llamaindex.ai/api/v1
+  description: US Production Server
+- url: https://api.cloud.llamaindex.eu/api/v1
+  description: EU Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Index Data Sources
+  description: Connect and manage external data sources for automatic document ingestion into an index.
+paths:
+  /pipelines/{pipelineId}/data-sources:
+    get:
+      operationId: listIndexDataSources
+      summary: List index data sources
+      description: Retrieve data sources connected to a specific index for automatic document ingestion.
+      tags:
+      - Index Data Sources
+      parameters:
+      - $ref: '#/components/parameters/pipelineId'
+      responses:
+        '200':
+          description: Successfully retrieved list of data sources
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DataSource'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Index not found
+    put:
+      operationId: addDataSourcesToIndex
+      summary: Add data sources to an index
+      description: Connect external data sources to an index for automatic document ingestion. The index will sync content from these sources based on the configured schedule.
+      tags:
+      - Index Data Sources
+      parameters:
+      - $ref: '#/components/parameters/pipelineId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/DataSourceInput'
+      responses:
+        '200':
+          description: Data sources added to index successfully
+        '400':
+          description: Bad request - invalid data source configuration
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Index not found
+components:
+  parameters:
+    pipelineId:
+      name: pipelineId
+      in: path
+      description: Unique identifier of the index (pipeline).
+      required: true
+      schema:
+        type: string
+  schemas:
+    DataSourceInput:
+      type: object
+      description: Input for connecting a data source to an index.
+      required:
+      - name
+      - source_type
+      properties:
+        name:
+          type: string
+          description: Human-readable name for the data source.
+        source_type:
+          type: string
+          description: Type of the data source.
+        config:
+          type: object
+          additionalProperties: true
+          description: Configuration specific to the data source type.
+    DataSource:
+      type: object
+      description: A data source connected to an index for automatic document ingestion.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the data source.
+        name:
+          type: string
+          description: Human-readable name of the data source.
+        source_type:
+          type: string
+          description: Type of the data source.
+        config:
+          type: object
+          additionalProperties: true
+          description: Configuration specific to the data source type.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Key
+      description: LlamaCloud API key obtained from the LlamaCloud dashboard. Include as a Bearer token in the Authorization header.
+externalDocs:
+  description: LlamaCloud API Documentation
+  url: https://developers.api.llamaindex.ai/

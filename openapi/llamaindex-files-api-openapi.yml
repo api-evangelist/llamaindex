@@ -1,0 +1,92 @@
+openapi: 3.1.0
+info:
+  title: LlamaIndex LlamaCloud Data Sources Files API
+  description: The LlamaCloud API is the central REST API for LlamaIndex's cloud platform, providing programmatic access to managed document processing, indexing, and retrieval services. It enables developers to build production-grade LLM applications by leveraging cloud-hosted infrastructure for document ingestion, knowledge management, and agent orchestration. The API supports authentication via API keys and is available in both US and EU regions.
+  version: '1.0'
+  contact:
+    name: LlamaIndex Support
+    url: https://www.llamaindex.ai/contact
+  termsOfService: https://www.llamaindex.ai/terms-of-service
+servers:
+- url: https://api.cloud.llamaindex.ai/api/v1
+  description: US Production Server
+- url: https://api.cloud.llamaindex.eu/api/v1
+  description: EU Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Files
+  description: Upload, list, and manage files for use in pipelines and parsing jobs.
+paths:
+  /files:
+    post:
+      operationId: uploadFile
+      summary: Upload a file
+      description: Upload a file to the cloud platform using multipart form data. The file can then be used in pipelines, parsing jobs, or extraction workflows.
+      tags:
+      - Files
+      parameters:
+      - name: project_id
+        in: query
+        description: The project to associate the file with.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+              - file
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: The file to upload.
+      responses:
+        '200':
+          description: File uploaded successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/File'
+        '400':
+          description: Bad request - invalid file or missing parameters
+        '401':
+          description: Unauthorized - invalid or missing API key
+components:
+  schemas:
+    File:
+      type: object
+      description: A file uploaded to the LlamaCloud platform.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the file.
+        name:
+          type: string
+          description: Original file name.
+        project_id:
+          type: string
+          description: Identifier of the project the file belongs to.
+        file_size:
+          type: integer
+          description: Size of the file in bytes.
+        content_type:
+          type: string
+          description: MIME type of the file.
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the file was uploaded.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Key
+      description: LlamaCloud API key obtained from the LlamaCloud dashboard. Include as a Bearer token in the Authorization header.
+externalDocs:
+  description: LlamaCloud API Documentation
+  url: https://developers.api.llamaindex.ai/

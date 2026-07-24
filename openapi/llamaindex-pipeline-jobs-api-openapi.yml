@@ -1,0 +1,87 @@
+openapi: 3.1.0
+info:
+  title: LlamaIndex LlamaCloud Data Sources Pipeline Jobs API
+  description: The LlamaCloud API is the central REST API for LlamaIndex's cloud platform, providing programmatic access to managed document processing, indexing, and retrieval services. It enables developers to build production-grade LLM applications by leveraging cloud-hosted infrastructure for document ingestion, knowledge management, and agent orchestration. The API supports authentication via API keys and is available in both US and EU regions.
+  version: '1.0'
+  contact:
+    name: LlamaIndex Support
+    url: https://www.llamaindex.ai/contact
+  termsOfService: https://www.llamaindex.ai/terms-of-service
+servers:
+- url: https://api.cloud.llamaindex.ai/api/v1
+  description: US Production Server
+- url: https://api.cloud.llamaindex.eu/api/v1
+  description: EU Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Pipeline Jobs
+  description: Monitor and manage ingestion jobs for a pipeline.
+paths:
+  /pipelines/{pipelineId}/jobs:
+    get:
+      operationId: listPipelineJobs
+      summary: List pipeline jobs
+      description: Retrieve a list of ingestion jobs for a specific pipeline, including their status and processing details.
+      tags:
+      - Pipeline Jobs
+      parameters:
+      - $ref: '#/components/parameters/pipelineId'
+      responses:
+        '200':
+          description: Successfully retrieved list of pipeline jobs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PipelineJob'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Pipeline not found
+components:
+  parameters:
+    pipelineId:
+      name: pipelineId
+      in: path
+      description: Unique identifier of the pipeline.
+      required: true
+      schema:
+        type: string
+  schemas:
+    PipelineJob:
+      type: object
+      description: An ingestion job for a pipeline that tracks the processing of documents.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the job.
+        pipeline_id:
+          type: string
+          description: Identifier of the pipeline the job belongs to.
+        status:
+          type: string
+          enum:
+          - pending
+          - running
+          - completed
+          - failed
+          description: Current status of the job.
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the job was created.
+        completed_at:
+          type: string
+          format: date-time
+          description: Timestamp when the job completed, if applicable.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Key
+      description: LlamaCloud API key obtained from the LlamaCloud dashboard. Include as a Bearer token in the Authorization header.
+externalDocs:
+  description: LlamaCloud API Documentation
+  url: https://developers.api.llamaindex.ai/

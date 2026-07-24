@@ -1,0 +1,184 @@
+openapi: 3.1.0
+info:
+  title: LlamaIndex LlamaCloud Data Sources Extraction Jobs API
+  description: The LlamaCloud API is the central REST API for LlamaIndex's cloud platform, providing programmatic access to managed document processing, indexing, and retrieval services. It enables developers to build production-grade LLM applications by leveraging cloud-hosted infrastructure for document ingestion, knowledge management, and agent orchestration. The API supports authentication via API keys and is available in both US and EU regions.
+  version: '1.0'
+  contact:
+    name: LlamaIndex Support
+    url: https://www.llamaindex.ai/contact
+  termsOfService: https://www.llamaindex.ai/terms-of-service
+servers:
+- url: https://api.cloud.llamaindex.ai/api/v1
+  description: US Production Server
+- url: https://api.cloud.llamaindex.eu/api/v1
+  description: EU Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Extraction Jobs
+  description: Run and monitor asynchronous extraction jobs that process documents through extraction agents.
+paths:
+  /extraction/jobs:
+    post:
+      operationId: createExtractionJob
+      summary: Create an extraction job
+      description: Run an extraction job by specifying an extraction agent and one or more files to process. The job runs asynchronously and can be polled for status and results.
+      tags:
+      - Extraction Jobs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateExtractionJobRequest'
+      responses:
+        '200':
+          description: Extraction job created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtractionJob'
+        '400':
+          description: Bad request - invalid job parameters
+        '401':
+          description: Unauthorized - invalid or missing API key
+  /extraction/jobs/{jobId}:
+    get:
+      operationId: getExtractionJob
+      summary: Get extraction job status
+      description: Retrieve the current status of an extraction job. Poll this endpoint to check whether the job has completed processing.
+      tags:
+      - Extraction Jobs
+      parameters:
+      - $ref: '#/components/parameters/jobId'
+      responses:
+        '200':
+          description: Successfully retrieved extraction job status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtractionJob'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Extraction job not found
+  /extraction/jobs/{jobId}/result:
+    get:
+      operationId: getExtractionJobResult
+      summary: Get extraction job result
+      description: Retrieve the structured data extracted from the documents processed by a completed extraction job. Results conform to the schema defined in the extraction agent.
+      tags:
+      - Extraction Jobs
+      parameters:
+      - $ref: '#/components/parameters/jobId'
+      responses:
+        '200':
+          description: Successfully retrieved extraction results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtractionResult'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Extraction job not found or not completed
+components:
+  parameters:
+    jobId:
+      name: jobId
+      in: path
+      description: Unique identifier of the extraction job.
+      required: true
+      schema:
+        type: string
+  schemas:
+    CreateExtractionJobRequest:
+      type: object
+      description: Request body for creating an extraction job.
+      required:
+      - extraction_agent_id
+      - file_ids
+      properties:
+        extraction_agent_id:
+          type: string
+          description: Identifier of the extraction agent to use for processing.
+        file_ids:
+          type: array
+          items:
+            type: string
+          description: List of file identifiers to process in this extraction job.
+    ExtractionResult:
+      type: object
+      description: Structured data extracted from documents by a completed extraction job.
+      properties:
+        job_id:
+          type: string
+          description: Identifier of the extraction job that produced this result.
+        results:
+          type: array
+          description: List of extraction results, one per processed file.
+          items:
+            $ref: '#/components/schemas/FileExtractionResult'
+    ExtractionJob:
+      type: object
+      description: An asynchronous extraction job that processes documents through an extraction agent.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the extraction job.
+        extraction_agent_id:
+          type: string
+          description: Identifier of the extraction agent used for this job.
+        status:
+          type: string
+          enum:
+          - pending
+          - processing
+          - completed
+          - failed
+          description: Current status of the extraction job.
+        file_ids:
+          type: array
+          items:
+            type: string
+          description: Identifiers of the files being processed.
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the extraction job was created.
+        completed_at:
+          type: string
+          format: date-time
+          description: Timestamp when the extraction job completed, if applicable.
+    FileExtractionResult:
+      type: object
+      description: Extraction result for a single file.
+      properties:
+        file_id:
+          type: string
+          description: Identifier of the processed file.
+        file_name:
+          type: string
+          description: Name of the processed file.
+        data:
+          type: object
+          additionalProperties: true
+          description: Structured data extracted from the file, conforming to the extraction agent schema.
+        status:
+          type: string
+          enum:
+          - success
+          - error
+          description: Status of the extraction for this specific file.
+        error:
+          type: string
+          description: Error message if extraction failed for this file.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Key
+      description: LlamaCloud API key obtained from the LlamaCloud dashboard. Include as a Bearer token in the Authorization header.
+externalDocs:
+  description: LlamaCloud API Documentation
+  url: https://developers.api.llamaindex.ai/

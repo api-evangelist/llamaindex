@@ -1,0 +1,111 @@
+openapi: 3.1.0
+info:
+  title: LlamaIndex LlamaCloud Data Sources Retrieval API
+  description: The LlamaCloud API is the central REST API for LlamaIndex's cloud platform, providing programmatic access to managed document processing, indexing, and retrieval services. It enables developers to build production-grade LLM applications by leveraging cloud-hosted infrastructure for document ingestion, knowledge management, and agent orchestration. The API supports authentication via API keys and is available in both US and EU regions.
+  version: '1.0'
+  contact:
+    name: LlamaIndex Support
+    url: https://www.llamaindex.ai/contact
+  termsOfService: https://www.llamaindex.ai/terms-of-service
+servers:
+- url: https://api.cloud.llamaindex.ai/api/v1
+  description: US Production Server
+- url: https://api.cloud.llamaindex.eu/api/v1
+  description: EU Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Retrieval
+  description: Query and retrieve content from indexed pipelines.
+paths:
+  /pipelines/{pipelineId}/retrieve:
+    post:
+      operationId: runSearch
+      summary: Run search
+      description: Execute a retrieval query against the indexed content of a managed pipeline. Returns ranked results matching the query with configurable retrieval modes including fast, accurate, and advanced options.
+      tags:
+      - Retrieval
+      parameters:
+      - $ref: '#/components/parameters/pipelineId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RetrievalRequest'
+      responses:
+        '200':
+          description: Search results returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RetrievalResponse'
+        '400':
+          description: Bad request - invalid query parameters
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Pipeline not found
+components:
+  parameters:
+    pipelineId:
+      name: pipelineId
+      in: path
+      description: Unique identifier of the pipeline.
+      required: true
+      schema:
+        type: string
+  schemas:
+    RetrievalRequest:
+      type: object
+      description: Request body for running a retrieval query against a pipeline.
+      required:
+      - query
+      properties:
+        query:
+          type: string
+          description: The search query to run against the indexed content.
+        mode:
+          type: string
+          enum:
+          - fast
+          - accurate
+          - advanced
+          description: Retrieval mode that controls the trade-off between speed and accuracy.
+        top_k:
+          type: integer
+          minimum: 1
+          description: Maximum number of results to return after re-ranking.
+    RetrievalResult:
+      type: object
+      description: A single retrieval result containing matched content and metadata.
+      properties:
+        text:
+          type: string
+          description: The retrieved text content.
+        score:
+          type: number
+          format: float
+          description: Relevance score for the result.
+        metadata:
+          type: object
+          additionalProperties: true
+          description: Metadata associated with the retrieved content.
+    RetrievalResponse:
+      type: object
+      description: Response containing retrieval results from a pipeline query.
+      properties:
+        results:
+          type: array
+          description: List of retrieval results ranked by relevance.
+          items:
+            $ref: '#/components/schemas/RetrievalResult'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Key
+      description: LlamaCloud API key obtained from the LlamaCloud dashboard. Include as a Bearer token in the Authorization header.
+externalDocs:
+  description: LlamaCloud API Documentation
+  url: https://developers.api.llamaindex.ai/

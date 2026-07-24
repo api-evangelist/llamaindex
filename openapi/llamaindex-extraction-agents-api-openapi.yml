@@ -1,0 +1,214 @@
+openapi: 3.1.0
+info:
+  title: LlamaIndex LlamaCloud Data Sources Extraction Agents API
+  description: The LlamaCloud API is the central REST API for LlamaIndex's cloud platform, providing programmatic access to managed document processing, indexing, and retrieval services. It enables developers to build production-grade LLM applications by leveraging cloud-hosted infrastructure for document ingestion, knowledge management, and agent orchestration. The API supports authentication via API keys and is available in both US and EU regions.
+  version: '1.0'
+  contact:
+    name: LlamaIndex Support
+    url: https://www.llamaindex.ai/contact
+  termsOfService: https://www.llamaindex.ai/terms-of-service
+servers:
+- url: https://api.cloud.llamaindex.ai/api/v1
+  description: US Production Server
+- url: https://api.cloud.llamaindex.eu/api/v1
+  description: EU Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Extraction Agents
+  description: Create and manage extraction agents that are configured with specific schemas and extraction settings for processing documents.
+paths:
+  /extraction/extraction-agents:
+    get:
+      operationId: listExtractionAgents
+      summary: List extraction agents
+      description: Retrieve a list of extraction agents for the specified project. Each agent is configured with a specific data schema and extraction settings for processing documents.
+      tags:
+      - Extraction Agents
+      parameters:
+      - name: project_id
+        in: query
+        description: Filter extraction agents by project identifier.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successfully retrieved list of extraction agents
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExtractionAgent'
+        '401':
+          description: Unauthorized - invalid or missing API key
+    post:
+      operationId: createExtractionAgent
+      summary: Create an extraction agent
+      description: Create a new extraction agent with a specified data schema and extraction configuration. The agent can then be used to run extraction jobs on uploaded documents. Schemas can be provided manually or inferred automatically by providing a prompt and example files.
+      tags:
+      - Extraction Agents
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateExtractionAgentRequest'
+      responses:
+        '201':
+          description: Extraction agent created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtractionAgent'
+        '400':
+          description: Bad request - invalid agent configuration
+        '401':
+          description: Unauthorized - invalid or missing API key
+  /extraction/extraction-agents/{agentId}:
+    get:
+      operationId: getExtractionAgent
+      summary: Get an extraction agent
+      description: Retrieve details of a specific extraction agent including its schema, configuration, and status.
+      tags:
+      - Extraction Agents
+      parameters:
+      - $ref: '#/components/parameters/agentId'
+      responses:
+        '200':
+          description: Successfully retrieved extraction agent details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtractionAgent'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Extraction agent not found
+    put:
+      operationId: updateExtractionAgent
+      summary: Update an extraction agent
+      description: Update the configuration of an existing extraction agent, including its schema and extraction settings.
+      tags:
+      - Extraction Agents
+      parameters:
+      - $ref: '#/components/parameters/agentId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateExtractionAgentRequest'
+      responses:
+        '200':
+          description: Extraction agent updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtractionAgent'
+        '400':
+          description: Bad request - invalid agent configuration
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Extraction agent not found
+    delete:
+      operationId: deleteExtractionAgent
+      summary: Delete an extraction agent
+      description: Delete an extraction agent and its associated configuration.
+      tags:
+      - Extraction Agents
+      parameters:
+      - $ref: '#/components/parameters/agentId'
+      responses:
+        '200':
+          description: Extraction agent deleted successfully
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Extraction agent not found
+components:
+  parameters:
+    agentId:
+      name: agentId
+      in: path
+      description: Unique identifier of the extraction agent.
+      required: true
+      schema:
+        type: string
+  schemas:
+    CreateExtractionAgentRequest:
+      type: object
+      description: Request body for creating a new extraction agent.
+      required:
+      - name
+      - project_id
+      properties:
+        name:
+          type: string
+          description: Human-readable name for the new extraction agent.
+        project_id:
+          type: string
+          description: Identifier of the project to create the agent in.
+        data_schema:
+          type: object
+          additionalProperties: true
+          description: JSON Schema defining the structure of the data to extract. If not provided, the schema can be inferred automatically from example files.
+        description:
+          type: string
+          description: Optional description of the extraction agent.
+        prompt:
+          type: string
+          description: Optional prompt to guide automatic schema inference from example documents.
+    UpdateExtractionAgentRequest:
+      type: object
+      description: Request body for updating an existing extraction agent.
+      properties:
+        name:
+          type: string
+          description: Updated name for the extraction agent.
+        data_schema:
+          type: object
+          additionalProperties: true
+          description: Updated JSON Schema for data extraction.
+        description:
+          type: string
+          description: Updated description of the extraction agent.
+    ExtractionAgent:
+      type: object
+      description: An extraction agent configured with a specific data schema and extraction settings for processing documents.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the extraction agent.
+        name:
+          type: string
+          description: Human-readable name of the extraction agent.
+        project_id:
+          type: string
+          description: Identifier of the project the agent belongs to.
+        data_schema:
+          type: object
+          additionalProperties: true
+          description: JSON Schema defining the structure of the data to extract.
+        description:
+          type: string
+          description: Optional description of the extraction agent and its purpose.
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the extraction agent was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: Timestamp when the extraction agent was last updated.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Key
+      description: LlamaCloud API key obtained from the LlamaCloud dashboard. Include as a Bearer token in the Authorization header.
+externalDocs:
+  description: LlamaCloud API Documentation
+  url: https://developers.api.llamaindex.ai/

@@ -1,0 +1,130 @@
+openapi: 3.1.0
+info:
+  title: LlamaIndex LlamaCloud Data Sources Pipeline Data Sources API
+  description: The LlamaCloud API is the central REST API for LlamaIndex's cloud platform, providing programmatic access to managed document processing, indexing, and retrieval services. It enables developers to build production-grade LLM applications by leveraging cloud-hosted infrastructure for document ingestion, knowledge management, and agent orchestration. The API supports authentication via API keys and is available in both US and EU regions.
+  version: '1.0'
+  contact:
+    name: LlamaIndex Support
+    url: https://www.llamaindex.ai/contact
+  termsOfService: https://www.llamaindex.ai/terms-of-service
+servers:
+- url: https://api.cloud.llamaindex.ai/api/v1
+  description: US Production Server
+- url: https://api.cloud.llamaindex.eu/api/v1
+  description: EU Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Pipeline Data Sources
+  description: Manage data sources connected to a pipeline for automatic ingestion.
+paths:
+  /pipelines/{pipelineId}/data-sources:
+    get:
+      operationId: listPipelineDataSources
+      summary: List pipeline data sources
+      description: Retrieve data sources connected to a specific pipeline. Data sources provide automatic ingestion of documents from external systems.
+      tags:
+      - Pipeline Data Sources
+      parameters:
+      - $ref: '#/components/parameters/pipelineId'
+      responses:
+        '200':
+          description: Successfully retrieved list of pipeline data sources
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DataSource'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Pipeline not found
+    put:
+      operationId: addDataSourcesToPipeline
+      summary: Add data sources to a pipeline
+      description: Connect data sources to a pipeline for automatic document ingestion. When data sources are connected, the pipeline will sync content from these sources based on the configured schedule.
+      tags:
+      - Pipeline Data Sources
+      parameters:
+      - $ref: '#/components/parameters/pipelineId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/DataSourceInput'
+      responses:
+        '200':
+          description: Data sources added to pipeline successfully
+        '400':
+          description: Bad request - invalid data source configuration
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Pipeline not found
+components:
+  parameters:
+    pipelineId:
+      name: pipelineId
+      in: path
+      description: Unique identifier of the pipeline.
+      required: true
+      schema:
+        type: string
+  schemas:
+    DataSourceInput:
+      type: object
+      description: Input for creating or connecting a data source.
+      required:
+      - name
+      - source_type
+      properties:
+        name:
+          type: string
+          description: Human-readable name for the data source.
+        source_type:
+          type: string
+          description: Type of the data source.
+        project_id:
+          type: string
+          description: Identifier of the project to associate the data source with.
+        config:
+          type: object
+          additionalProperties: true
+          description: Configuration specific to the data source type.
+    DataSource:
+      type: object
+      description: A data source connected to a pipeline for automatic document ingestion.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the data source.
+        name:
+          type: string
+          description: Human-readable name of the data source.
+        source_type:
+          type: string
+          description: Type of the data source.
+        project_id:
+          type: string
+          description: Identifier of the project the data source belongs to.
+        config:
+          type: object
+          additionalProperties: true
+          description: Configuration specific to the data source type.
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the data source was created.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Key
+      description: LlamaCloud API key obtained from the LlamaCloud dashboard. Include as a Bearer token in the Authorization header.
+externalDocs:
+  description: LlamaCloud API Documentation
+  url: https://developers.api.llamaindex.ai/

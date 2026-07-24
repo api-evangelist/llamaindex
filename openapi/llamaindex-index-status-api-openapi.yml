@@ -1,0 +1,78 @@
+openapi: 3.1.0
+info:
+  title: LlamaIndex LlamaCloud Data Sources Index Status API
+  description: The LlamaCloud API is the central REST API for LlamaIndex's cloud platform, providing programmatic access to managed document processing, indexing, and retrieval services. It enables developers to build production-grade LLM applications by leveraging cloud-hosted infrastructure for document ingestion, knowledge management, and agent orchestration. The API supports authentication via API keys and is available in both US and EU regions.
+  version: '1.0'
+  contact:
+    name: LlamaIndex Support
+    url: https://www.llamaindex.ai/contact
+  termsOfService: https://www.llamaindex.ai/terms-of-service
+servers:
+- url: https://api.cloud.llamaindex.ai/api/v1
+  description: US Production Server
+- url: https://api.cloud.llamaindex.eu/api/v1
+  description: EU Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Index Status
+  description: Monitor the processing status and health of an index.
+paths:
+  /pipelines/{pipelineId}/files/count:
+    get:
+      operationId: getIndexFileCounts
+      summary: Get index file counts
+      description: Retrieve file processing counts for an index, broken down by status. Use this endpoint to determine when an index is ready to query by checking that files have been successfully processed.
+      tags:
+      - Index Status
+      parameters:
+      - $ref: '#/components/parameters/pipelineId'
+      responses:
+        '200':
+          description: Successfully retrieved file counts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IndexFileCounts'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Index not found
+components:
+  parameters:
+    pipelineId:
+      name: pipelineId
+      in: path
+      description: Unique identifier of the index (pipeline).
+      required: true
+      schema:
+        type: string
+  schemas:
+    IndexFileCounts:
+      type: object
+      description: File processing counts for an index, broken down by status.
+      properties:
+        total:
+          type: integer
+          description: Total number of files in the index.
+        pending:
+          type: integer
+          description: Number of files pending processing.
+        processing:
+          type: integer
+          description: Number of files currently being processed.
+        completed:
+          type: integer
+          description: Number of files successfully processed.
+        error:
+          type: integer
+          description: Number of files that encountered processing errors.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Key
+      description: LlamaCloud API key obtained from the LlamaCloud dashboard. Include as a Bearer token in the Authorization header.
+externalDocs:
+  description: LlamaCloud API Documentation
+  url: https://developers.api.llamaindex.ai/

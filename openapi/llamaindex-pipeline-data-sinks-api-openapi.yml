@@ -1,0 +1,78 @@
+openapi: 3.1.0
+info:
+  title: LlamaIndex LlamaCloud Data Sources Pipeline Data Sinks API
+  description: The LlamaCloud API is the central REST API for LlamaIndex's cloud platform, providing programmatic access to managed document processing, indexing, and retrieval services. It enables developers to build production-grade LLM applications by leveraging cloud-hosted infrastructure for document ingestion, knowledge management, and agent orchestration. The API supports authentication via API keys and is available in both US and EU regions.
+  version: '1.0'
+  contact:
+    name: LlamaIndex Support
+    url: https://www.llamaindex.ai/contact
+  termsOfService: https://www.llamaindex.ai/terms-of-service
+servers:
+- url: https://api.cloud.llamaindex.ai/api/v1
+  description: US Production Server
+- url: https://api.cloud.llamaindex.eu/api/v1
+  description: EU Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Pipeline Data Sinks
+  description: Manage data sinks that receive processed data from a pipeline.
+paths:
+  /pipelines/{pipelineId}/data-sinks:
+    get:
+      operationId: listPipelineDataSinks
+      summary: List pipeline data sinks
+      description: Retrieve data sinks configured for a specific pipeline. Data sinks define where processed and embedded content is stored, such as vector databases.
+      tags:
+      - Pipeline Data Sinks
+      parameters:
+      - $ref: '#/components/parameters/pipelineId'
+      responses:
+        '200':
+          description: Successfully retrieved list of pipeline data sinks
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DataSink'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Pipeline not found
+components:
+  parameters:
+    pipelineId:
+      name: pipelineId
+      in: path
+      description: Unique identifier of the pipeline.
+      required: true
+      schema:
+        type: string
+  schemas:
+    DataSink:
+      type: object
+      description: A data sink that receives processed and embedded content from a pipeline, such as a vector database.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the data sink.
+        name:
+          type: string
+          description: Human-readable name of the data sink.
+        sink_type:
+          type: string
+          description: Type of the data sink.
+        config:
+          type: object
+          additionalProperties: true
+          description: Configuration specific to the data sink type.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Key
+      description: LlamaCloud API key obtained from the LlamaCloud dashboard. Include as a Bearer token in the Authorization header.
+externalDocs:
+  description: LlamaCloud API Documentation
+  url: https://developers.api.llamaindex.ai/
