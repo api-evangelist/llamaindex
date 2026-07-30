@@ -1,98 +1,21 @@
 aid: llamaindex
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/llamaindex.png
 url: https://raw.githubusercontent.com/api-evangelist/llamaindex/refs/heads/main/apis.yml
 modified: '2026-05-19'
 apis:
-- aid: llamaindex:llamacloud-api
-  name: LlamaIndex LlamaCloud API
-  tags:
-  - Agents
-  - Artificial Intelligence
-  - Cloud
-  - Documents
-  - LLM
-  - RAG
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  baseURL: https://api.cloud.llamaindex.ai
-  humanURL: https://developers.api.llamaindex.ai/
-  properties:
-  - url: https://developers.api.llamaindex.ai/
-    type: Documentation
-  - url: openapi/llamaindex-llamacloud-api-openapi.yml
-    type: OpenAPI
-  - url: graphql/llamaindex-graphql.md
-    type: GraphQL
-  description: The LlamaCloud API is the central REST API for LlamaIndex's cloud platform,
-    providing programmatic access to managed document processing, indexing, and retrieval
-    services. It enables developers to build production-grade LLM applications by
-    leveraging cloud-hosted infrastructure for document ingestion, knowledge management,
-    and agent orchestration. The API supports authentication via API keys and is available
-    in both US and EU regions.
-- aid: llamaindex:llamaparse-api
-  name: LlamaIndex LlamaParse API
-  tags:
-  - Artificial Intelligence
-  - Document Parsing
-  - LLM
-  - OCR
-  - PDF
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  baseURL: https://api.cloud.llamaindex.ai
-  humanURL: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
-  properties:
-  - url: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
-    type: Documentation
-  - url: openapi/llamaindex-llamaparse-api-openapi.yml
-    type: OpenAPI
-  description: 'LlamaParse is a GenAI-native document parsing API that can parse complex
-    document data for any downstream LLM use case including agents, RAG pipelines,
-    and data processing workflows. The v2 API provides two main endpoints for parsing:
-    one for JSON requests accepting file IDs or URLs, and another for multipart file
-    uploads. It supports multiple parsing tiers including fast, cost-effective, agentic,
-    and agentic-plus modes, and returns results asynchronously via job polling.'
-- aid: llamaindex:llamaextract-api
-  name: LlamaIndex LlamaExtract API
-  tags:
-  - Artificial Intelligence
-  - Data Extraction
-  - Documents
-  - JSON
-  - Structured Data
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  baseURL: https://api.cloud.llamaindex.ai
-  humanURL: https://developers.llamaindex.ai/python/cloud/llamaextract/getting_started/api/
-  properties:
-  - url: https://developers.llamaindex.ai/python/cloud/llamaextract/getting_started/api/
-    type: Documentation
-  - url: openapi/llamaindex-llamaextract-api-openapi.yml
-    type: OpenAPI
-  description: LlamaExtract is a prebuilt agentic data extraction API that transforms
-    unstructured document data into structured JSON representations. The REST API
-    allows developers to create extraction agents, upload documents, and run extraction
-    jobs programmatically. Jobs are processed asynchronously, and developers can poll
-    for job status and retrieve structured results. It is designed for use cases where
-    documents need to be converted into well-defined schemas for downstream processing.
-- aid: llamaindex:llamacloud-index-api
-  name: LlamaIndex LlamaCloud Index API
-  tags:
-  - Document Ingestion
-  - Indexing
-  - RAG
-  - Retrieval
-  - Vector Store
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  baseURL: https://api.cloud.llamaindex.ai
-  humanURL: https://developers.llamaindex.ai/python/cloud/llamacloud/guides/api_sdk/
-  properties:
-  - url: https://developers.llamaindex.ai/python/cloud/llamacloud/guides/api_sdk/
-    type: Documentation
-  - url: openapi/llamaindex-llamacloud-index-api-openapi.yml
-    type: OpenAPI
-  description: The LlamaCloud Index API provides a fully automated document ingestion
-    pipeline with built-in retrieval capabilities. It allows developers to create
-    and manage indexes, upload documents for automatic parsing and embedding, and
-    perform retrieval queries against indexed content. The API supports customizable
-    pipeline configurations and integrates with various vector stores, making it suitable
-    for building production RAG applications without managing infrastructure.
 - aid: llamaindex:python-framework
   name: LlamaIndex Python Framework
   tags:
@@ -109,12 +32,12 @@ apis:
   properties:
   - url: https://developers.llamaindex.ai/python/framework/
     type: Documentation
-  description: LlamaIndex is an open-source Python framework for building LLM-powered
-    applications including agents, RAG pipelines, and custom workflows. It provides
-    data connectors for ingesting data from various sources such as APIs, PDFs, databases,
-    and more. The framework offers high-level abstractions like query engines, chat
-    engines, and agent classes (FunctionAgent, ReActAgent, CodeActAgent), as well
-    as lower-level APIs for advanced customization.
+  description: >-
+    LlamaIndex is an open-source Python framework for building LLM-powered applications including agents,
+    RAG pipelines, and custom workflows. It provides data connectors for ingesting data from various sources
+    such as APIs, PDFs, databases, and more. The framework offers high-level abstractions like query engines,
+    chat engines, and agent classes (FunctionAgent, ReActAgent, CodeActAgent), as well as lower-level
+    APIs for advanced customization.
 - aid: llamaindex:typescript-framework
   name: LlamaIndex TypeScript Framework
   tags:
@@ -132,12 +55,378 @@ apis:
   properties:
   - url: https://developers.llamaindex.ai/typescript/framework/
     type: Documentation
-  description: LlamaIndex TypeScript is the JavaScript and TypeScript implementation
-    of the LlamaIndex framework for building LLM-powered applications. It provides
-    server-side TypeScript support for building agents, RAG pipelines, and agentic
-    workflows with the same core abstractions as the Python framework. The library
-    supports integration with LlamaCloud services and offers convenient access to
-    cloud APIs for document parsing, extraction, and indexing from Node.js environments.
+  description: >-
+    LlamaIndex TypeScript is the JavaScript and TypeScript implementation of the LlamaIndex framework
+    for building LLM-powered applications. It provides server-side TypeScript support for building agents,
+    RAG pipelines, and agentic workflows with the same core abstractions as the Python framework. The
+    library supports integration with LlamaCloud services and offers convenient access to cloud APIs for
+    document parsing, extraction, and indexing from Node.js environments.
+- aid: llamaindex:llamaindex-data-sources-api
+  name: llamaindex Data Sources API
+  description: Manage data sources at the project level.
+  humanURL: https://developers.api.llamaindex.ai/
+  baseURL: https://api.cloud.llamaindex.ai
+  tags:
+  - Data Sources
+  properties:
+  - type: OpenAPI
+    url: openapi/llamaindex-data-sources-api-openapi.yml
+  - type: Documentation
+    url: https://developers.api.llamaindex.ai/
+  - type: GraphQL
+    url: graphql/llamaindex-graphql.md
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamaextract/getting_started/api/
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamacloud/guides/api_sdk/
+- aid: llamaindex:llamaindex-extraction-agents-api
+  name: llamaindex Extraction Agents API
+  description: >-
+    Create and manage extraction agents that are configured with specific schemas and extraction settings
+    for processing documents.
+  humanURL: https://developers.api.llamaindex.ai/
+  baseURL: https://api.cloud.llamaindex.ai
+  tags:
+  - Extraction Agents
+  properties:
+  - type: OpenAPI
+    url: openapi/llamaindex-extraction-agents-api-openapi.yml
+  - type: Documentation
+    url: https://developers.api.llamaindex.ai/
+  - type: GraphQL
+    url: graphql/llamaindex-graphql.md
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamaextract/getting_started/api/
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamacloud/guides/api_sdk/
+- aid: llamaindex:llamaindex-extraction-jobs-api
+  name: llamaindex Extraction Jobs API
+  description: >-
+    Run and monitor asynchronous extraction jobs that process documents through extraction agents.
+  humanURL: https://developers.api.llamaindex.ai/
+  baseURL: https://api.cloud.llamaindex.ai
+  tags:
+  - Extraction Jobs
+  properties:
+  - type: OpenAPI
+    url: openapi/llamaindex-extraction-jobs-api-openapi.yml
+  - type: Documentation
+    url: https://developers.api.llamaindex.ai/
+  - type: GraphQL
+    url: graphql/llamaindex-graphql.md
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamaextract/getting_started/api/
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamacloud/guides/api_sdk/
+- aid: llamaindex:llamaindex-files-api
+  name: llamaindex Files API
+  description: Upload, list, and manage files for use in pipelines and parsing jobs.
+  humanURL: https://developers.api.llamaindex.ai/
+  baseURL: https://api.cloud.llamaindex.ai
+  tags:
+  - Files
+  properties:
+  - type: OpenAPI
+    url: openapi/llamaindex-files-api-openapi.yml
+  - type: Documentation
+    url: https://developers.api.llamaindex.ai/
+  - type: GraphQL
+    url: graphql/llamaindex-graphql.md
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamaextract/getting_started/api/
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamacloud/guides/api_sdk/
+- aid: llamaindex:llamaindex-index-data-sources-api
+  name: llamaindex Index Data Sources API
+  description: Connect and manage external data sources for automatic document ingestion into an index.
+  humanURL: https://developers.api.llamaindex.ai/
+  baseURL: https://api.cloud.llamaindex.ai
+  tags:
+  - Index Data Sources
+  properties:
+  - type: OpenAPI
+    url: openapi/llamaindex-index-data-sources-api-openapi.yml
+  - type: Documentation
+    url: https://developers.api.llamaindex.ai/
+  - type: GraphQL
+    url: graphql/llamaindex-graphql.md
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamaextract/getting_started/api/
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamacloud/guides/api_sdk/
+- aid: llamaindex:llamaindex-index-files-api
+  name: llamaindex Index Files API
+  description: Manage files within an index, including upload, listing, and status monitoring.
+  humanURL: https://developers.api.llamaindex.ai/
+  baseURL: https://api.cloud.llamaindex.ai
+  tags:
+  - Index Files
+  properties:
+  - type: OpenAPI
+    url: openapi/llamaindex-index-files-api-openapi.yml
+  - type: Documentation
+    url: https://developers.api.llamaindex.ai/
+  - type: GraphQL
+    url: graphql/llamaindex-graphql.md
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamaextract/getting_started/api/
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamacloud/guides/api_sdk/
+- aid: llamaindex:llamaindex-index-retrieval-api
+  name: llamaindex Index Retrieval API
+  description: Query indexed content using configurable retrieval modes and parameters.
+  humanURL: https://developers.api.llamaindex.ai/
+  baseURL: https://api.cloud.llamaindex.ai
+  tags:
+  - Index Retrieval
+  properties:
+  - type: OpenAPI
+    url: openapi/llamaindex-index-retrieval-api-openapi.yml
+  - type: Documentation
+    url: https://developers.api.llamaindex.ai/
+  - type: GraphQL
+    url: graphql/llamaindex-graphql.md
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamaextract/getting_started/api/
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamacloud/guides/api_sdk/
+- aid: llamaindex:llamaindex-index-status-api
+  name: llamaindex Index Status API
+  description: Monitor the processing status and health of an index.
+  humanURL: https://developers.api.llamaindex.ai/
+  baseURL: https://api.cloud.llamaindex.ai
+  tags:
+  - Index Status
+  properties:
+  - type: OpenAPI
+    url: openapi/llamaindex-index-status-api-openapi.yml
+  - type: Documentation
+    url: https://developers.api.llamaindex.ai/
+  - type: GraphQL
+    url: graphql/llamaindex-graphql.md
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamaextract/getting_started/api/
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamacloud/guides/api_sdk/
+- aid: llamaindex:llamaindex-indexes-api
+  name: llamaindex Indexes API
+  description: >-
+    Create and manage indexes that serve as automated document ingestion pipelines with retrieval capabilities.
+  humanURL: https://developers.api.llamaindex.ai/
+  baseURL: https://api.cloud.llamaindex.ai
+  tags:
+  - Indexes
+  properties:
+  - type: OpenAPI
+    url: openapi/llamaindex-indexes-api-openapi.yml
+  - type: Documentation
+    url: https://developers.api.llamaindex.ai/
+  - type: GraphQL
+    url: graphql/llamaindex-graphql.md
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamaextract/getting_started/api/
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamacloud/guides/api_sdk/
+- aid: llamaindex:llamaindex-jobs-api
+  name: llamaindex Jobs API
+  description: Monitor and retrieve results from asynchronous parsing jobs.
+  humanURL: https://developers.api.llamaindex.ai/
+  baseURL: https://api.cloud.llamaindex.ai
+  tags:
+  - Jobs
+  properties:
+  - type: OpenAPI
+    url: openapi/llamaindex-jobs-api-openapi.yml
+  - type: Documentation
+    url: https://developers.api.llamaindex.ai/
+  - type: GraphQL
+    url: graphql/llamaindex-graphql.md
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamaextract/getting_started/api/
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamacloud/guides/api_sdk/
+- aid: llamaindex:llamaindex-parsing-api
+  name: llamaindex Parsing API
+  description: >-
+    Parse documents into structured formats using AI-powered extraction. Supports multiple tiers for different
+    quality and speed trade-offs.
+  humanURL: https://developers.api.llamaindex.ai/
+  baseURL: https://api.cloud.llamaindex.ai
+  tags:
+  - Parsing
+  properties:
+  - type: OpenAPI
+    url: openapi/llamaindex-parsing-api-openapi.yml
+  - type: Documentation
+    url: https://developers.api.llamaindex.ai/
+  - type: GraphQL
+    url: graphql/llamaindex-graphql.md
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamaextract/getting_started/api/
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamacloud/guides/api_sdk/
+- aid: llamaindex:llamaindex-pipeline-data-sinks-api
+  name: llamaindex Pipeline Data Sinks API
+  description: Manage data sinks that receive processed data from a pipeline.
+  humanURL: https://developers.api.llamaindex.ai/
+  baseURL: https://api.cloud.llamaindex.ai
+  tags:
+  - Pipeline Data Sinks
+  properties:
+  - type: OpenAPI
+    url: openapi/llamaindex-pipeline-data-sinks-api-openapi.yml
+  - type: Documentation
+    url: https://developers.api.llamaindex.ai/
+  - type: GraphQL
+    url: graphql/llamaindex-graphql.md
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamaextract/getting_started/api/
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamacloud/guides/api_sdk/
+- aid: llamaindex:llamaindex-pipeline-data-sources-api
+  name: llamaindex Pipeline Data Sources API
+  description: Manage data sources connected to a pipeline for automatic ingestion.
+  humanURL: https://developers.api.llamaindex.ai/
+  baseURL: https://api.cloud.llamaindex.ai
+  tags:
+  - Pipeline Data Sources
+  properties:
+  - type: OpenAPI
+    url: openapi/llamaindex-pipeline-data-sources-api-openapi.yml
+  - type: Documentation
+    url: https://developers.api.llamaindex.ai/
+  - type: GraphQL
+    url: graphql/llamaindex-graphql.md
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamaextract/getting_started/api/
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamacloud/guides/api_sdk/
+- aid: llamaindex:llamaindex-pipeline-files-api
+  name: llamaindex Pipeline Files API
+  description: Manage files associated with a specific pipeline.
+  humanURL: https://developers.api.llamaindex.ai/
+  baseURL: https://api.cloud.llamaindex.ai
+  tags:
+  - Pipeline Files
+  properties:
+  - type: OpenAPI
+    url: openapi/llamaindex-pipeline-files-api-openapi.yml
+  - type: Documentation
+    url: https://developers.api.llamaindex.ai/
+  - type: GraphQL
+    url: graphql/llamaindex-graphql.md
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamaextract/getting_started/api/
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamacloud/guides/api_sdk/
+- aid: llamaindex:llamaindex-pipeline-jobs-api
+  name: llamaindex Pipeline Jobs API
+  description: Monitor and manage ingestion jobs for a pipeline.
+  humanURL: https://developers.api.llamaindex.ai/
+  baseURL: https://api.cloud.llamaindex.ai
+  tags:
+  - Pipeline Jobs
+  properties:
+  - type: OpenAPI
+    url: openapi/llamaindex-pipeline-jobs-api-openapi.yml
+  - type: Documentation
+    url: https://developers.api.llamaindex.ai/
+  - type: GraphQL
+    url: graphql/llamaindex-graphql.md
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamaextract/getting_started/api/
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamacloud/guides/api_sdk/
+- aid: llamaindex:llamaindex-pipelines-api
+  name: llamaindex Pipelines API
+  description: Create, configure, sync, and manage document ingestion pipelines.
+  humanURL: https://developers.api.llamaindex.ai/
+  baseURL: https://api.cloud.llamaindex.ai
+  tags:
+  - Pipelines
+  properties:
+  - type: OpenAPI
+    url: openapi/llamaindex-pipelines-api-openapi.yml
+  - type: Documentation
+    url: https://developers.api.llamaindex.ai/
+  - type: GraphQL
+    url: graphql/llamaindex-graphql.md
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamaextract/getting_started/api/
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamacloud/guides/api_sdk/
+- aid: llamaindex:llamaindex-projects-api
+  name: llamaindex Projects API
+  description: Manage projects that organize pipelines, files, and other resources.
+  humanURL: https://developers.api.llamaindex.ai/
+  baseURL: https://api.cloud.llamaindex.ai
+  tags:
+  - Projects
+  properties:
+  - type: OpenAPI
+    url: openapi/llamaindex-projects-api-openapi.yml
+  - type: Documentation
+    url: https://developers.api.llamaindex.ai/
+  - type: GraphQL
+    url: graphql/llamaindex-graphql.md
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamaextract/getting_started/api/
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamacloud/guides/api_sdk/
+- aid: llamaindex:llamaindex-retrieval-api
+  name: llamaindex Retrieval API
+  description: Query and retrieve content from indexed pipelines.
+  humanURL: https://developers.api.llamaindex.ai/
+  baseURL: https://api.cloud.llamaindex.ai
+  tags:
+  - Retrieval
+  properties:
+  - type: OpenAPI
+    url: openapi/llamaindex-retrieval-api-openapi.yml
+  - type: Documentation
+    url: https://developers.api.llamaindex.ai/
+  - type: GraphQL
+    url: graphql/llamaindex-graphql.md
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamaextract/getting_started/api/
+  - type: Documentation
+    url: https://developers.llamaindex.ai/python/cloud/llamacloud/guides/api_sdk/
 common:
 - type: AgenticAccess
   url: agentic-access/llamaindex-agentic-access.yml
