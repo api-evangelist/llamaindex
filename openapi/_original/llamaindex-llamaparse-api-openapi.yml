@@ -1,0 +1,395 @@
+openapi: 3.1.0
+info:
+  title: LlamaIndex LlamaParse API
+  description: >-
+    LlamaParse is a GenAI-native document parsing API that transforms complex
+    document data for downstream LLM use cases including agents, RAG pipelines,
+    and data processing workflows. The v2 API provides endpoints for parsing
+    via JSON requests (accepting file IDs or URLs) and multipart file uploads.
+    It supports multiple parsing tiers including fast, cost-effective, agentic,
+    and agentic-plus modes, and returns results asynchronously via job polling.
+  version: '2.0'
+  contact:
+    name: LlamaIndex Support
+    url: https://www.llamaindex.ai/contact
+  termsOfService: https://www.llamaindex.ai/terms-of-service
+externalDocs:
+  description: LlamaParse API v2 Guide
+  url: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
+servers:
+  - url: https://api.cloud.llamaindex.ai/api/v2
+    description: US Production Server
+  - url: https://api.cloud.llamaindex.eu/api/v2
+    description: EU Production Server
+tags:
+  - name: Jobs
+    description: >-
+      Monitor and retrieve results from asynchronous parsing jobs.
+  - name: Parsing
+    description: >-
+      Parse documents into structured formats using AI-powered extraction.
+      Supports multiple tiers for different quality and speed trade-offs.
+security:
+  - bearerAuth: []
+paths:
+  /parse:
+    post:
+      operationId: parseDocument
+      summary: Parse a document
+      description: >-
+        Submit a document for parsing using a JSON request body. Accepts either
+        a file_id referencing a previously uploaded file or a source_url to
+        fetch the document from. Exactly one of file_id or source_url must be
+        provided. The tier parameter determines the parsing mode. Jobs are
+        processed asynchronously and results are retrieved via the job status
+        endpoint.
+      tags:
+        - Parsing
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ParseRequest'
+      responses:
+        '200':
+          description: Parse job created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParseJobCreated'
+        '400':
+          description: Bad request - invalid parameters or missing required fields
+        '401':
+          description: Unauthorized - invalid or missing API key
+  /parse/upload:
+    post:
+      operationId: parseDocumentUpload
+      summary: Parse a document via file upload
+      description: >-
+        Submit a document for parsing using multipart file upload. The file is
+        uploaded directly along with parsing configuration. The tier parameter
+        determines the parsing mode. Jobs are processed asynchronously and
+        results are retrieved via the job status endpoint.
+      tags:
+        - Parsing
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ParseUploadRequest'
+      responses:
+        '200':
+          description: Parse job created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParseJobCreated'
+        '400':
+          description: Bad request - invalid file or missing parameters
+        '401':
+          description: Unauthorized - invalid or missing API key
+  /parse/jobs:
+    get:
+      operationId: listParseJobs
+      summary: List parse jobs
+      description: >-
+        Retrieve a list of parse jobs for the authenticated project. Supports
+        optional filtering and pagination to narrow down results.
+      tags:
+        - Jobs
+      parameters:
+        - name: project_id
+          in: query
+          description: >-
+            Filter jobs by project identifier.
+          required: false
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: >-
+            Maximum number of jobs to return.
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+        - name: offset
+          in: query
+          description: >-
+            Number of jobs to skip for pagination.
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+      responses:
+        '200':
+          description: Successfully retrieved list of parse jobs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ParseJob'
+        '401':
+          description: Unauthorized - invalid or missing API key
+  /parse/jobs/{jobId}:
+    get:
+      operationId: getParseJob
+      summary: Get parse job status
+      description: >-
+        Retrieve the status and optionally the results of a parse job. Use the
+        expand parameter to control what parsed content is returned, including
+        text, markdown, structured JSON, or metadata. Poll this endpoint to
+        check job completion status.
+      tags:
+        - Jobs
+      parameters:
+        - $ref: '#/components/parameters/jobId'
+        - name: expand
+          in: query
+          description: >-
+            Comma-separated list of result fields to include in the response.
+            Controls whether text, markdown, structured JSON, or metadata is
+            returned with the job status.
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved parse job status and results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParseJob'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Parse job not found
+  /parse/jobs/{jobId}/result:
+    get:
+      operationId: getParseJobResult
+      summary: Get parse job result
+      description: >-
+        Retrieve the full parsed result of a completed parse job. Returns the
+        extracted content in the requested format. The job must be in a
+        completed state for results to be available.
+      tags:
+        - Jobs
+      parameters:
+        - $ref: '#/components/parameters/jobId'
+      responses:
+        '200':
+          description: Successfully retrieved parse job result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParseResult'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Parse job not found or not completed
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Key
+      description: >-
+        LlamaCloud API key obtained from the LlamaCloud dashboard. Include as
+        a Bearer token in the Authorization header.
+  parameters:
+    jobId:
+      name: jobId
+      in: path
+      description: >-
+        Unique identifier of the parse job.
+      required: true
+      schema:
+        type: string
+  schemas:
+    ParseRequest:
+      type: object
+      description: >-
+        Request body for parsing a document via JSON. Exactly one of file_id
+        or source_url must be provided.
+      required:
+        - tier
+        - version
+      properties:
+        file_id:
+          type: string
+          description: >-
+            Identifier of a previously uploaded file to parse. Mutually
+            exclusive with source_url.
+        source_url:
+          type: string
+          format: uri
+          description: >-
+            URL of a document to fetch and parse. Mutually exclusive with
+            file_id.
+        http_proxy:
+          type: string
+          format: uri
+          description: >-
+            Optional HTTP proxy to use when fetching the document from
+            source_url.
+        tier:
+          type: string
+          enum:
+            - fast
+            - cost_effective
+            - agentic
+            - agentic_plus
+          description: >-
+            Parsing tier that determines the quality and speed trade-off. Fast
+            outputs spatial text only. Cost-effective is optimized for
+            text-heavy documents. Agentic handles images and diagrams. Agentic
+            plus provides maximum fidelity for complex layouts.
+        version:
+          type: string
+          description: >-
+            API version to use. Use "latest" for the most recent version, or a
+            specific version date string for production stability.
+        target_pages:
+          type: string
+          description: >-
+            Page range to parse using 1-based indexing (e.g., "1-5", "3,7,10").
+        agentic_options:
+          type: object
+          description: >-
+            Additional options for the agentic and agentic_plus tiers. Not
+            supported by the fast tier.
+          additionalProperties: true
+    ParseUploadRequest:
+      type: object
+      description: >-
+        Multipart form data request for uploading and parsing a document.
+      required:
+        - file
+        - configuration
+      properties:
+        file:
+          type: string
+          format: binary
+          description: >-
+            The document file to upload and parse.
+        configuration:
+          type: string
+          description: >-
+            JSON string containing the parsing configuration including tier,
+            version, and other options.
+    ParseJobCreated:
+      type: object
+      description: >-
+        Response returned when a parse job is successfully created.
+      properties:
+        id:
+          type: string
+          description: >-
+            Unique identifier of the created parse job.
+        status:
+          type: string
+          enum:
+            - pending
+            - processing
+            - completed
+            - failed
+          description: >-
+            Initial status of the parse job.
+    ParseJob:
+      type: object
+      description: >-
+        A parse job representing the asynchronous processing of a document.
+      properties:
+        id:
+          type: string
+          description: >-
+            Unique identifier of the parse job.
+        status:
+          type: string
+          enum:
+            - pending
+            - processing
+            - completed
+            - failed
+          description: >-
+            Current status of the parse job.
+        tier:
+          type: string
+          enum:
+            - fast
+            - cost_effective
+            - agentic
+            - agentic_plus
+          description: >-
+            Parsing tier used for this job.
+        file_name:
+          type: string
+          description: >-
+            Name of the parsed file.
+        num_pages:
+          type: integer
+          description: >-
+            Total number of pages in the document.
+        created_at:
+          type: string
+          format: date-time
+          description: >-
+            Timestamp when the parse job was created.
+        completed_at:
+          type: string
+          format: date-time
+          description: >-
+            Timestamp when the parse job completed, if applicable.
+        result:
+          $ref: '#/components/schemas/ParseResult'
+    ParseResult:
+      type: object
+      description: >-
+        The parsed output of a document, containing extracted content in
+        various formats.
+      properties:
+        text:
+          type: string
+          description: >-
+            Plain text representation of the parsed content.
+        markdown:
+          type: string
+          description: >-
+            Markdown-formatted representation of the parsed content.
+        json:
+          type: object
+          additionalProperties: true
+          description: >-
+            Structured JSON representation of the parsed content.
+        pages:
+          type: array
+          description: >-
+            Per-page parsing results.
+          items:
+            $ref: '#/components/schemas/ParsePage'
+        metadata:
+          type: object
+          additionalProperties: true
+          description: >-
+            Metadata extracted from the document.
+    ParsePage:
+      type: object
+      description: >-
+        Parsed content for a single page of a document.
+      properties:
+        page_number:
+          type: integer
+          minimum: 1
+          description: >-
+            1-based page number.
+        text:
+          type: string
+          description: >-
+            Plain text content of the page.
+        markdown:
+          type: string
+          description: >-
+            Markdown-formatted content of the page.
