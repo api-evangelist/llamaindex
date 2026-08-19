@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LlamaIndex LlamaCloud Data Sources Pipeline Jobs API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pipeline Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List pipeline jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/pipelines/:pipelineId/jobs",
+            "params": [
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the pipeline."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of ingestion jobs for a specific pipeline, including their status and processing details."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

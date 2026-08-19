@@ -1,0 +1,119 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LlamaIndex LlamaCloud Data Sources Extraction Agents API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Extraction Agents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List extraction agents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/extraction/extraction-agents",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter extraction agents by project identifier."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of extraction agents for the specified project. Each agent is configured with a specific data schema and extraction settings for processing documents."
+        },
+        {
+          "info": {
+            "name": "Create an extraction agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/extraction/extraction-agents",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new extraction agent with a specified data schema and extraction configuration. The agent can then be used to run extraction jobs on uploaded documents. Schemas can be provided manually or inferred automatically by providing a prompt and example files."
+        },
+        {
+          "info": {
+            "name": "Get an extraction agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/extraction/extraction-agents/:agentId",
+            "params": [
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the extraction agent."
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific extraction agent including its schema, configuration, and status."
+        },
+        {
+          "info": {
+            "name": "Update an extraction agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/extraction/extraction-agents/:agentId",
+            "params": [
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the extraction agent."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the configuration of an existing extraction agent, including its schema and extraction settings."
+        },
+        {
+          "info": {
+            "name": "Delete an extraction agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/extraction/extraction-agents/:agentId",
+            "params": [
+              {
+                "name": "agentId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the extraction agent."
+              }
+            ]
+          },
+          "docs": "Delete an extraction agent and its associated configuration."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

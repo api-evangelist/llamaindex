@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LlamaIndex LlamaCloud Data Sources Parsing API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Parsing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Parse a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/parse",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a document for parsing using a JSON request body. Accepts either a file_id referencing a previously uploaded file or a source_url to fetch the document from. Exactly one of file_id or source_url must be provided. The tier parameter determines the parsing mode. Jobs are processed asynchronously and results are retrieved via the job status endpoint."
+        },
+        {
+          "info": {
+            "name": "Parse a document via file upload",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/parse/upload",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Submit a document for parsing using multipart file upload. The file is uploaded directly along with parsing configuration. The tier parameter determines the parsing mode. Jobs are processed asynchronously and results are retrieved via the job status endpoint."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

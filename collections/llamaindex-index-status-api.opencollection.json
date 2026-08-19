@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LlamaIndex LlamaCloud Data Sources Index Status API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Index Status",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get index file counts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/pipelines/:pipelineId/files/count",
+            "params": [
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index (pipeline)."
+              }
+            ]
+          },
+          "docs": "Retrieve file processing counts for an index, broken down by status. Use this endpoint to determine when an index is ready to query by checking that files have been successfully processed."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

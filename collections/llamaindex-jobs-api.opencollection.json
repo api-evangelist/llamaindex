@@ -1,0 +1,99 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LlamaIndex LlamaCloud Data Sources Jobs API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List parse jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/parse/jobs",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter jobs by project identifier."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of jobs to return."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of jobs to skip for pagination."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of parse jobs for the authenticated project. Supports optional filtering and pagination to narrow down results."
+        },
+        {
+          "info": {
+            "name": "Get parse job status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/parse/jobs/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the parse job."
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of result fields to include in the response. Controls whether text, markdown, structured JSON, or metadata is returned with the job status."
+              }
+            ]
+          },
+          "docs": "Retrieve the status and optionally the results of a parse job. Use the expand parameter to control what parsed content is returned, including text, markdown, structured JSON, or metadata. Poll this endpoint to check job completion status."
+        },
+        {
+          "info": {
+            "name": "Get parse job result",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/parse/jobs/:jobId/result",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the parse job."
+              }
+            ]
+          },
+          "docs": "Retrieve the full parsed result of a completed parse job. Returns the extracted content in the requested format. The job must be in a completed state for results to be available."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

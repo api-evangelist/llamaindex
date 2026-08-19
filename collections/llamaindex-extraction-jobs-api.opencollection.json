@@ -1,0 +1,77 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LlamaIndex LlamaCloud Data Sources Extraction Jobs API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Extraction Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create an extraction job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/extraction/jobs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Run an extraction job by specifying an extraction agent and one or more files to process. The job runs asynchronously and can be polled for status and results."
+        },
+        {
+          "info": {
+            "name": "Get extraction job status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/extraction/jobs/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the extraction job."
+              }
+            ]
+          },
+          "docs": "Retrieve the current status of an extraction job. Poll this endpoint to check whether the job has completed processing."
+        },
+        {
+          "info": {
+            "name": "Get extraction job result",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/extraction/jobs/:jobId/result",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the extraction job."
+              }
+            ]
+          },
+          "docs": "Retrieve the structured data extracted from the documents processed by a completed extraction job. Results conform to the schema defined in the extraction agent."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

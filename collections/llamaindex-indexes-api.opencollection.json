@@ -1,0 +1,115 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LlamaIndex LlamaCloud Data Sources Indexes API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Indexes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List indexes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/pipelines",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter indexes by project identifier."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of all indexes (pipelines) for the specified project. Each index represents an automated document ingestion pipeline with retrieval capabilities."
+        },
+        {
+          "info": {
+            "name": "Create an index",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/pipelines",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new index with specified configuration for document ingestion, parsing, embedding, and vector storage. The index automatically handles processing uploaded documents into a queryable format."
+        },
+        {
+          "info": {
+            "name": "Get an index",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/pipelines/:pipelineId",
+            "params": [
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index (pipeline)."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a specific index including its configuration, processing status, and file counts."
+        },
+        {
+          "info": {
+            "name": "Delete an index",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/pipelines/:pipelineId",
+            "params": [
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index (pipeline)."
+              }
+            ]
+          },
+          "docs": "Delete an index and its associated processed data."
+        },
+        {
+          "info": {
+            "name": "Sync an index",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cloud.llamaindex.ai/api/v1/pipelines/:pipelineId/sync",
+            "params": [
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the index (pipeline)."
+              }
+            ]
+          },
+          "docs": "Trigger an incremental sync of the index, processing any new or modified documents from connected data sources and uploaded files."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
