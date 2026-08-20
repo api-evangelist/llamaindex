@@ -23,6 +23,14 @@ apis:
   - Agents
   - Framework
   - LLM
+  - Open-Source
+  - Python
+  - RAG
+  - SDK
+  tags_raw:
+  - Agents
+  - Framework
+  - LLM
   - Open Source
   - Python
   - RAG
@@ -42,6 +50,15 @@ apis:
 - aid: llamaindex:typescript-framework
   name: LlamaIndex TypeScript Framework
   tags:
+  - Agents
+  - Framework
+  - JavaScript
+  - LLM
+  - Open-Source
+  - RAG
+  - SDK
+  - TypeScript
+  tags_raw:
   - Agents
   - Framework
   - JavaScript
@@ -131,6 +148,8 @@ apis:
   humanURL: https://developers.api.llamaindex.ai/
   baseURL: https://api.cloud.llamaindex.ai
   tags:
+  - File
+  tags_raw:
   - Files
   properties:
   - type: OpenAPI
@@ -252,6 +271,8 @@ apis:
   humanURL: https://developers.api.llamaindex.ai/
   baseURL: https://api.cloud.llamaindex.ai
   tags:
+  - Job
+  tags_raw:
   - Jobs
   properties:
   - type: OpenAPI
@@ -394,6 +415,8 @@ apis:
   humanURL: https://developers.api.llamaindex.ai/
   baseURL: https://api.cloud.llamaindex.ai
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
