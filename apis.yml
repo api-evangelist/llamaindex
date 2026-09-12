@@ -465,6 +465,8 @@ apis:
   - type: Documentation
     url: https://developers.llamaindex.ai/python/cloud/llamacloud/guides/api_sdk/
 common:
+- type: Website
+  url: https://www.llamaindex.ai/
 - type: AgenticAccess
   url: agentic-access/llamaindex-agentic-access.yml
 - type: DomainSecurity
