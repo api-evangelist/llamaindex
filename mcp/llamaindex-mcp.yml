@@ -1,0 +1,71 @@
+generated: '2026-09-11'
+method: probed
+source: https://developers.llamaindex.ai/python/framework/module_guides/mcp/
+status: published
+server:
+  name: llamaindex
+  transport: http
+  url: https://mcp.llamaindex.ai/mcp
+deployment:
+  mode: remote
+  endpoint: https://mcp.llamaindex.ai/mcp
+  verified: probed
+  probe: live
+  checked: '2026-09-11'
+  source: docs-check 2026-09-11 (endpoint found in the provider's own documentation, then probed)
+tools_count: 26
+tools:
+- name: getUploadUrl
+  description: ''
+- name: uploadFileByUrl
+  description: ''
+- name: getUserProjects
+  description: ''
+- name: parseFile
+  description: ''
+- name: classifyFile
+  description: ''
+- name: splitFile
+  description: ''
+- name: searchSchemaTemplates
+  description: ''
+- name: getSchemaTemplate
+  description: ''
+- name: createExtractionConfigFromSchema
+  description: ''
+- name: generateExtractionConfig
+  description: ''
+- name: extractFile
+  description: ''
+- name: extractFileTurbo
+  description: ''
+- name: listIndexes
+  description: ''
+- name: findFilesInIndex
+  description: ''
+- name: readFileFromIndex
+  description: ''
+- name: grepFileFromIndex
+  description: ''
+- name: retrieveFromIndex
+  description: ''
+- name: createDirectory
+  description: ''
+- name: listDirectories
+  description: ''
+- name: listDirectory
+  description: ''
+- name: addFilesToDirectory
+  description: ''
+- name: createIndex
+  description: ''
+- name: getIndexStatus
+  description: ''
+- name: syncIndex
+  description: ''
+- name: parseWithLiteParse
+  description: ''
+- name: estimateFileComplexity
+  description: ''
+tools_source: live tools/list via initialize handshake, 2026-09-11 (signals/audit_mcp_authorship.py --probe)
+authorship: provider
