@@ -28,7 +28,7 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/llamaindex.png
 url: https://raw.githubusercontent.com/api-evangelist/llamaindex/refs/heads/main/apis.yml
-modified: '2026-05-19'
+modified: '2026-09-16'
 apis:
 - aid: llamaindex:python-framework
   name: LlamaIndex Python Framework
@@ -54,12 +54,11 @@ apis:
   properties:
   - url: https://developers.llamaindex.ai/python/framework/
     type: Documentation
-  description: >-
-    LlamaIndex is an open-source Python framework for building LLM-powered applications including agents,
-    RAG pipelines, and custom workflows. It provides data connectors for ingesting data from various sources
-    such as APIs, PDFs, databases, and more. The framework offers high-level abstractions like query engines,
-    chat engines, and agent classes (FunctionAgent, ReActAgent, CodeActAgent), as well as lower-level
-    APIs for advanced customization.
+  description: LlamaIndex is an open-source Python framework for building LLM-powered applications including
+    agents, RAG pipelines, and custom workflows. It provides data connectors for ingesting data from various
+    sources such as APIs, PDFs, databases, and more. The framework offers high-level abstractions like
+    query engines, chat engines, and agent classes (FunctionAgent, ReActAgent, CodeActAgent), as well
+    as lower-level APIs for advanced customization.
 - aid: llamaindex:typescript-framework
   name: LlamaIndex TypeScript Framework
   tags:
@@ -86,12 +85,11 @@ apis:
   properties:
   - url: https://developers.llamaindex.ai/typescript/framework/
     type: Documentation
-  description: >-
-    LlamaIndex TypeScript is the JavaScript and TypeScript implementation of the LlamaIndex framework
-    for building LLM-powered applications. It provides server-side TypeScript support for building agents,
-    RAG pipelines, and agentic workflows with the same core abstractions as the Python framework. The
-    library supports integration with LlamaCloud services and offers convenient access to cloud APIs for
-    document parsing, extraction, and indexing from Node.js environments.
+  description: LlamaIndex TypeScript is the JavaScript and TypeScript implementation of the LlamaIndex
+    framework for building LLM-powered applications. It provides server-side TypeScript support for building
+    agents, RAG pipelines, and agentic workflows with the same core abstractions as the Python framework.
+    The library supports integration with LlamaCloud services and offers convenient access to cloud APIs
+    for document parsing, extraction, and indexing from Node.js environments.
 - aid: llamaindex:llamaindex-data-sources-api
   name: llamaindex Data Sources API
   description: Manage data sources at the project level.
@@ -114,9 +112,8 @@ apis:
     url: https://developers.llamaindex.ai/python/cloud/llamacloud/guides/api_sdk/
 - aid: llamaindex:llamaindex-extraction-agents-api
   name: llamaindex Extraction Agents API
-  description: >-
-    Create and manage extraction agents that are configured with specific schemas and extraction settings
-    for processing documents.
+  description: Create and manage extraction agents that are configured with specific schemas and extraction
+    settings for processing documents.
   humanURL: https://developers.api.llamaindex.ai/
   baseURL: https://api.cloud.llamaindex.ai
   tags:
@@ -136,8 +133,8 @@ apis:
     url: https://developers.llamaindex.ai/python/cloud/llamacloud/guides/api_sdk/
 - aid: llamaindex:llamaindex-extraction-jobs-api
   name: llamaindex Extraction Jobs API
-  description: >-
-    Run and monitor asynchronous extraction jobs that process documents through extraction agents.
+  description: Run and monitor asynchronous extraction jobs that process documents through extraction
+    agents.
   humanURL: https://developers.api.llamaindex.ai/
   baseURL: https://api.cloud.llamaindex.ai
   tags:
@@ -259,8 +256,8 @@ apis:
     url: https://developers.llamaindex.ai/python/cloud/llamacloud/guides/api_sdk/
 - aid: llamaindex:llamaindex-indexes-api
   name: llamaindex Indexes API
-  description: >-
-    Create and manage indexes that serve as automated document ingestion pipelines with retrieval capabilities.
+  description: Create and manage indexes that serve as automated document ingestion pipelines with retrieval
+    capabilities.
   humanURL: https://developers.api.llamaindex.ai/
   baseURL: https://api.cloud.llamaindex.ai
   tags:
@@ -302,9 +299,8 @@ apis:
     url: https://developers.llamaindex.ai/python/cloud/llamacloud/guides/api_sdk/
 - aid: llamaindex:llamaindex-parsing-api
   name: llamaindex Parsing API
-  description: >-
-    Parse documents into structured formats using AI-powered extraction. Supports multiple tiers for different
-    quality and speed trade-offs.
+  description: Parse documents into structured formats using AI-powered extraction. Supports multiple
+    tiers for different quality and speed trade-offs.
   humanURL: https://developers.api.llamaindex.ai/
   baseURL: https://api.cloud.llamaindex.ai
   tags:
@@ -489,5 +485,10 @@ common:
   url: json-schema/llamaindex-parse-job-schema.json
 - type: LlmsText
   url: https://developers.llamaindex.ai/llms.txt
-description: LlamaCloud is a hosted service for document processing and search, powered
-  by LlamaIndex.
+description: LlamaCloud is a hosted service for document processing and search, powered by LlamaIndex.
+tags:
+- Agents
+- Framework
+- LLM
+- Open-Source
+- RAG
