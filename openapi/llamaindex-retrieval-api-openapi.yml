@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: LlamaIndex LlamaCloud Data Sources Retrieval API
+  title: LlamaIndex LlamaCloud Retrieval API
   description: The LlamaCloud API is the central REST API for LlamaIndex's cloud platform, providing programmatic access to managed document processing, indexing, and retrieval services. It enables developers to build production-grade LLM applications by leveraging cloud-hosted infrastructure for document ingestion, knowledge management, and agent orchestration. The API supports authentication via API keys and is available in both US and EU regions.
   version: '1.0'
   contact:
@@ -47,35 +47,7 @@ paths:
         '404':
           description: Pipeline not found
 components:
-  parameters:
-    pipelineId:
-      name: pipelineId
-      in: path
-      description: Unique identifier of the pipeline.
-      required: true
-      schema:
-        type: string
   schemas:
-    RetrievalRequest:
-      type: object
-      description: Request body for running a retrieval query against a pipeline.
-      required:
-      - query
-      properties:
-        query:
-          type: string
-          description: The search query to run against the indexed content.
-        mode:
-          type: string
-          enum:
-          - fast
-          - accurate
-          - advanced
-          description: Retrieval mode that controls the trade-off between speed and accuracy.
-        top_k:
-          type: integer
-          minimum: 1
-          description: Maximum number of results to return after re-ranking.
     RetrievalResult:
       type: object
       description: A single retrieval result containing matched content and metadata.
@@ -100,6 +72,34 @@ components:
           description: List of retrieval results ranked by relevance.
           items:
             $ref: '#/components/schemas/RetrievalResult'
+    RetrievalRequest:
+      type: object
+      description: Request body for running a retrieval query against a pipeline.
+      required:
+      - query
+      properties:
+        query:
+          type: string
+          description: The search query to run against the indexed content.
+        mode:
+          type: string
+          enum:
+          - fast
+          - accurate
+          - advanced
+          description: Retrieval mode that controls the trade-off between speed and accuracy.
+        top_k:
+          type: integer
+          minimum: 1
+          description: Maximum number of results to return after re-ranking.
+  parameters:
+    pipelineId:
+      name: pipelineId
+      in: path
+      description: Unique identifier of the pipeline.
+      required: true
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

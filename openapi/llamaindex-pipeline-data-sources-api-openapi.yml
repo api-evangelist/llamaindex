@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: LlamaIndex LlamaCloud Data Sources Pipeline Data Sources API
+  title: LlamaIndex LlamaCloud Pipeline Data Sources API
   description: The LlamaCloud API is the central REST API for LlamaIndex's cloud platform, providing programmatic access to managed document processing, indexing, and retrieval services. It enables developers to build production-grade LLM applications by leveraging cloud-hosted infrastructure for document ingestion, knowledge management, and agent orchestration. The API supports authentication via API keys and is available in both US and EU regions.
   version: '1.0'
   contact:
@@ -66,14 +66,6 @@ paths:
         '404':
           description: Pipeline not found
 components:
-  parameters:
-    pipelineId:
-      name: pipelineId
-      in: path
-      description: Unique identifier of the pipeline.
-      required: true
-      schema:
-        type: string
   schemas:
     DataSourceInput:
       type: object
@@ -119,6 +111,14 @@ components:
           type: string
           format: date-time
           description: Timestamp when the data source was created.
+  parameters:
+    pipelineId:
+      name: pipelineId
+      in: path
+      description: Unique identifier of the pipeline.
+      required: true
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

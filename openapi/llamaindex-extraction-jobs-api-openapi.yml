@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: LlamaIndex LlamaCloud Data Sources Extraction Jobs API
-  description: The LlamaCloud API is the central REST API for LlamaIndex's cloud platform, providing programmatic access to managed document processing, indexing, and retrieval services. It enables developers to build production-grade LLM applications by leveraging cloud-hosted infrastructure for document ingestion, knowledge management, and agent orchestration. The API supports authentication via API keys and is available in both US and EU regions.
+  title: LlamaIndex LlamaExtract Extraction Jobs API
+  description: LlamaExtract is a prebuilt agentic data extraction API that transforms unstructured document data into structured JSON representations. The REST API allows developers to create extraction agents configured with specific schemas, upload documents, and run extraction jobs programmatically. Jobs are processed asynchronously, and developers can poll for job status and retrieve structured results. It supports both human-defined and AI-inferred schemas for flexible data extraction workflows.
   version: '1.0'
   contact:
     name: LlamaIndex Support
@@ -83,30 +83,7 @@ paths:
         '404':
           description: Extraction job not found or not completed
 components:
-  parameters:
-    jobId:
-      name: jobId
-      in: path
-      description: Unique identifier of the extraction job.
-      required: true
-      schema:
-        type: string
   schemas:
-    CreateExtractionJobRequest:
-      type: object
-      description: Request body for creating an extraction job.
-      required:
-      - extraction_agent_id
-      - file_ids
-      properties:
-        extraction_agent_id:
-          type: string
-          description: Identifier of the extraction agent to use for processing.
-        file_ids:
-          type: array
-          items:
-            type: string
-          description: List of file identifiers to process in this extraction job.
     ExtractionResult:
       type: object
       description: Structured data extracted from documents by a completed extraction job.
@@ -173,6 +150,29 @@ components:
         error:
           type: string
           description: Error message if extraction failed for this file.
+    CreateExtractionJobRequest:
+      type: object
+      description: Request body for creating an extraction job.
+      required:
+      - extraction_agent_id
+      - file_ids
+      properties:
+        extraction_agent_id:
+          type: string
+          description: Identifier of the extraction agent to use for processing.
+        file_ids:
+          type: array
+          items:
+            type: string
+          description: List of file identifiers to process in this extraction job.
+  parameters:
+    jobId:
+      name: jobId
+      in: path
+      description: Unique identifier of the extraction job.
+      required: true
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http
@@ -180,5 +180,5 @@ components:
       bearerFormat: API Key
       description: LlamaCloud API key obtained from the LlamaCloud dashboard. Include as a Bearer token in the Authorization header.
 externalDocs:
-  description: LlamaCloud API Documentation
-  url: https://developers.api.llamaindex.ai/
+  description: LlamaExtract REST API Documentation
+  url: https://developers.llamaindex.ai/python/cloud/llamaextract/getting_started/api/

@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: LlamaIndex LlamaCloud Data Sources Extraction Agents API
-  description: The LlamaCloud API is the central REST API for LlamaIndex's cloud platform, providing programmatic access to managed document processing, indexing, and retrieval services. It enables developers to build production-grade LLM applications by leveraging cloud-hosted infrastructure for document ingestion, knowledge management, and agent orchestration. The API supports authentication via API keys and is available in both US and EU regions.
+  title: LlamaIndex LlamaExtract Extraction Agents API
+  description: LlamaExtract is a prebuilt agentic data extraction API that transforms unstructured document data into structured JSON representations. The REST API allows developers to create extraction agents configured with specific schemas, upload documents, and run extraction jobs programmatically. Jobs are processed asynchronously, and developers can poll for job status and retrieve structured results. It supports both human-defined and AI-inferred schemas for flexible data extraction workflows.
   version: '1.0'
   contact:
     name: LlamaIndex Support
@@ -129,38 +129,7 @@ paths:
         '404':
           description: Extraction agent not found
 components:
-  parameters:
-    agentId:
-      name: agentId
-      in: path
-      description: Unique identifier of the extraction agent.
-      required: true
-      schema:
-        type: string
   schemas:
-    CreateExtractionAgentRequest:
-      type: object
-      description: Request body for creating a new extraction agent.
-      required:
-      - name
-      - project_id
-      properties:
-        name:
-          type: string
-          description: Human-readable name for the new extraction agent.
-        project_id:
-          type: string
-          description: Identifier of the project to create the agent in.
-        data_schema:
-          type: object
-          additionalProperties: true
-          description: JSON Schema defining the structure of the data to extract. If not provided, the schema can be inferred automatically from example files.
-        description:
-          type: string
-          description: Optional description of the extraction agent.
-        prompt:
-          type: string
-          description: Optional prompt to guide automatic schema inference from example documents.
     UpdateExtractionAgentRequest:
       type: object
       description: Request body for updating an existing extraction agent.
@@ -203,6 +172,37 @@ components:
           type: string
           format: date-time
           description: Timestamp when the extraction agent was last updated.
+    CreateExtractionAgentRequest:
+      type: object
+      description: Request body for creating a new extraction agent.
+      required:
+      - name
+      - project_id
+      properties:
+        name:
+          type: string
+          description: Human-readable name for the new extraction agent.
+        project_id:
+          type: string
+          description: Identifier of the project to create the agent in.
+        data_schema:
+          type: object
+          additionalProperties: true
+          description: JSON Schema defining the structure of the data to extract. If not provided, the schema can be inferred automatically from example files.
+        description:
+          type: string
+          description: Optional description of the extraction agent.
+        prompt:
+          type: string
+          description: Optional prompt to guide automatic schema inference from example documents.
+  parameters:
+    agentId:
+      name: agentId
+      in: path
+      description: Unique identifier of the extraction agent.
+      required: true
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http
@@ -210,5 +210,5 @@ components:
       bearerFormat: API Key
       description: LlamaCloud API key obtained from the LlamaCloud dashboard. Include as a Bearer token in the Authorization header.
 externalDocs:
-  description: LlamaCloud API Documentation
-  url: https://developers.api.llamaindex.ai/
+  description: LlamaExtract REST API Documentation
+  url: https://developers.llamaindex.ai/python/cloud/llamaextract/getting_started/api/

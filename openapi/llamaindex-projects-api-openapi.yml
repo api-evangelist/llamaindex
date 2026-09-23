@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: LlamaIndex LlamaCloud Data Sources Projects API
+  title: LlamaIndex LlamaCloud Projects API
   description: The LlamaCloud API is the central REST API for LlamaIndex's cloud platform, providing programmatic access to managed document processing, indexing, and retrieval services. It enables developers to build production-grade LLM applications by leveraging cloud-hosted infrastructure for document ingestion, knowledge management, and agent orchestration. The API supports authentication via API keys and is available in both US and EU regions.
   version: '1.0'
   contact:
@@ -80,16 +80,15 @@ paths:
         '404':
           description: Project not found
 components:
+  parameters:
+    projectId:
+      name: projectId
+      in: path
+      description: Unique identifier of the project.
+      required: true
+      schema:
+        type: string
   schemas:
-    CreateProjectRequest:
-      type: object
-      description: Request body for creating a new project.
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Human-readable name for the new project.
     Project:
       type: object
       description: A project that organizes pipelines, files, and other cloud resources.
@@ -108,14 +107,15 @@ components:
           type: string
           format: date-time
           description: Timestamp when the project was last updated.
-  parameters:
-    projectId:
-      name: projectId
-      in: path
-      description: Unique identifier of the project.
-      required: true
-      schema:
-        type: string
+    CreateProjectRequest:
+      type: object
+      description: Request body for creating a new project.
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Human-readable name for the new project.
   securitySchemes:
     bearerAuth:
       type: http

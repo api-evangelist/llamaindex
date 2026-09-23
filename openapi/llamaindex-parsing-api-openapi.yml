@@ -1,16 +1,16 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: LlamaIndex LlamaCloud Data Sources Parsing API
-  description: The LlamaCloud API is the central REST API for LlamaIndex's cloud platform, providing programmatic access to managed document processing, indexing, and retrieval services. It enables developers to build production-grade LLM applications by leveraging cloud-hosted infrastructure for document ingestion, knowledge management, and agent orchestration. The API supports authentication via API keys and is available in both US and EU regions.
-  version: '1.0'
+  title: LlamaIndex LlamaParse Parsing API
+  description: LlamaParse is a GenAI-native document parsing API that transforms complex document data for downstream LLM use cases including agents, RAG pipelines, and data processing workflows. The v2 API provides endpoints for parsing via JSON requests (accepting file IDs or URLs) and multipart file uploads. It supports multiple parsing tiers including fast, cost-effective, agentic, and agentic-plus modes, and returns results asynchronously via job polling.
+  version: '2.0'
   contact:
     name: LlamaIndex Support
     url: https://www.llamaindex.ai/contact
   termsOfService: https://www.llamaindex.ai/terms-of-service
 servers:
-- url: https://api.cloud.llamaindex.ai/api/v1
+- url: https://api.cloud.llamaindex.ai/api/v2
   description: US Production Server
-- url: https://api.cloud.llamaindex.eu/api/v1
+- url: https://api.cloud.llamaindex.eu/api/v2
   description: EU Production Server
 security:
 - bearerAuth: []
@@ -68,6 +68,21 @@ paths:
           description: Unauthorized - invalid or missing API key
 components:
   schemas:
+    ParseJobCreated:
+      type: object
+      description: Response returned when a parse job is successfully created.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the created parse job.
+        status:
+          type: string
+          enum:
+          - pending
+          - processing
+          - completed
+          - failed
+          description: Initial status of the parse job.
     ParseRequest:
       type: object
       description: Request body for parsing a document via JSON. Exactly one of file_id or source_url must be provided.
@@ -118,21 +133,6 @@ components:
         configuration:
           type: string
           description: JSON string containing the parsing configuration including tier, version, and other options.
-    ParseJobCreated:
-      type: object
-      description: Response returned when a parse job is successfully created.
-      properties:
-        id:
-          type: string
-          description: Unique identifier of the created parse job.
-        status:
-          type: string
-          enum:
-          - pending
-          - processing
-          - completed
-          - failed
-          description: Initial status of the parse job.
   securitySchemes:
     bearerAuth:
       type: http
@@ -140,5 +140,5 @@ components:
       bearerFormat: API Key
       description: LlamaCloud API key obtained from the LlamaCloud dashboard. Include as a Bearer token in the Authorization header.
 externalDocs:
-  description: LlamaCloud API Documentation
-  url: https://developers.api.llamaindex.ai/
+  description: LlamaParse API v2 Guide
+  url: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
