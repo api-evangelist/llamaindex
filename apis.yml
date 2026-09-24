@@ -36,7 +36,7 @@ apis:
   - Agents
   - Framework
   - LLM
-  - Open-Source
+  - Open Source
   - Python
   - RAG
   - SDK
@@ -48,6 +48,7 @@ apis:
   - Python
   - RAG
   - SDK
+  - Open-Source
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   baseURL: https://api.example.com
   humanURL: https://developers.llamaindex.ai/python/framework/
@@ -66,7 +67,7 @@ apis:
   - Framework
   - JavaScript
   - LLM
-  - Open-Source
+  - Open Source
   - RAG
   - SDK
   - TypeScript
@@ -79,6 +80,7 @@ apis:
   - RAG
   - SDK
   - TypeScript
+  - Open-Source
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   baseURL: https://api.example.com
   humanURL: https://developers.llamaindex.ai/typescript/framework/
@@ -102,8 +104,6 @@ apis:
     url: openapi/llamaindex-data-sources-api-openapi.yml
   - type: Documentation
     url: https://developers.api.llamaindex.ai/
-  - type: GraphQL
-    url: graphql/llamaindex-graphql.md
   - type: Documentation
     url: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
   - type: Documentation
@@ -123,8 +123,6 @@ apis:
     url: openapi/llamaindex-extraction-agents-api-openapi.yml
   - type: Documentation
     url: https://developers.api.llamaindex.ai/
-  - type: GraphQL
-    url: graphql/llamaindex-graphql.md
   - type: Documentation
     url: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
   - type: Documentation
@@ -144,8 +142,6 @@ apis:
     url: openapi/llamaindex-extraction-jobs-api-openapi.yml
   - type: Documentation
     url: https://developers.api.llamaindex.ai/
-  - type: GraphQL
-    url: graphql/llamaindex-graphql.md
   - type: Documentation
     url: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
   - type: Documentation
@@ -166,8 +162,6 @@ apis:
     url: openapi/llamaindex-files-api-openapi.yml
   - type: Documentation
     url: https://developers.api.llamaindex.ai/
-  - type: GraphQL
-    url: graphql/llamaindex-graphql.md
   - type: Documentation
     url: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
   - type: Documentation
@@ -186,8 +180,6 @@ apis:
     url: openapi/llamaindex-index-data-sources-api-openapi.yml
   - type: Documentation
     url: https://developers.api.llamaindex.ai/
-  - type: GraphQL
-    url: graphql/llamaindex-graphql.md
   - type: Documentation
     url: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
   - type: Documentation
@@ -206,8 +198,6 @@ apis:
     url: openapi/llamaindex-index-files-api-openapi.yml
   - type: Documentation
     url: https://developers.api.llamaindex.ai/
-  - type: GraphQL
-    url: graphql/llamaindex-graphql.md
   - type: Documentation
     url: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
   - type: Documentation
@@ -226,8 +216,6 @@ apis:
     url: openapi/llamaindex-index-retrieval-api-openapi.yml
   - type: Documentation
     url: https://developers.api.llamaindex.ai/
-  - type: GraphQL
-    url: graphql/llamaindex-graphql.md
   - type: Documentation
     url: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
   - type: Documentation
@@ -246,8 +234,6 @@ apis:
     url: openapi/llamaindex-index-status-api-openapi.yml
   - type: Documentation
     url: https://developers.api.llamaindex.ai/
-  - type: GraphQL
-    url: graphql/llamaindex-graphql.md
   - type: Documentation
     url: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
   - type: Documentation
@@ -269,8 +255,6 @@ apis:
     url: openapi/llamaindex-indexes-api-openapi.yml
   - type: Documentation
     url: https://developers.api.llamaindex.ai/
-  - type: GraphQL
-    url: graphql/llamaindex-graphql.md
   - type: Documentation
     url: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
   - type: Documentation
@@ -291,8 +275,6 @@ apis:
     url: openapi/llamaindex-jobs-api-openapi.yml
   - type: Documentation
     url: https://developers.api.llamaindex.ai/
-  - type: GraphQL
-    url: graphql/llamaindex-graphql.md
   - type: Documentation
     url: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
   - type: Documentation
@@ -312,8 +294,6 @@ apis:
     url: openapi/llamaindex-parsing-api-openapi.yml
   - type: Documentation
     url: https://developers.api.llamaindex.ai/
-  - type: GraphQL
-    url: graphql/llamaindex-graphql.md
   - type: Documentation
     url: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
   - type: Documentation
@@ -332,8 +312,6 @@ apis:
     url: openapi/llamaindex-pipeline-data-sinks-api-openapi.yml
   - type: Documentation
     url: https://developers.api.llamaindex.ai/
-  - type: GraphQL
-    url: graphql/llamaindex-graphql.md
   - type: Documentation
     url: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
   - type: Documentation
@@ -352,8 +330,6 @@ apis:
     url: openapi/llamaindex-pipeline-data-sources-api-openapi.yml
   - type: Documentation
     url: https://developers.api.llamaindex.ai/
-  - type: GraphQL
-    url: graphql/llamaindex-graphql.md
   - type: Documentation
     url: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
   - type: Documentation
@@ -372,8 +348,6 @@ apis:
     url: openapi/llamaindex-pipeline-files-api-openapi.yml
   - type: Documentation
     url: https://developers.api.llamaindex.ai/
-  - type: GraphQL
-    url: graphql/llamaindex-graphql.md
   - type: Documentation
     url: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
   - type: Documentation
@@ -392,8 +366,6 @@ apis:
     url: openapi/llamaindex-pipeline-jobs-api-openapi.yml
   - type: Documentation
     url: https://developers.api.llamaindex.ai/
-  - type: GraphQL
-    url: graphql/llamaindex-graphql.md
   - type: Documentation
     url: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
   - type: Documentation
@@ -412,8 +384,6 @@ apis:
     url: openapi/llamaindex-pipelines-api-openapi.yml
   - type: Documentation
     url: https://developers.api.llamaindex.ai/
-  - type: GraphQL
-    url: graphql/llamaindex-graphql.md
   - type: Documentation
     url: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
   - type: Documentation
@@ -434,8 +404,6 @@ apis:
     url: openapi/llamaindex-projects-api-openapi.yml
   - type: Documentation
     url: https://developers.api.llamaindex.ai/
-  - type: GraphQL
-    url: graphql/llamaindex-graphql.md
   - type: Documentation
     url: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
   - type: Documentation
@@ -454,8 +422,6 @@ apis:
     url: openapi/llamaindex-retrieval-api-openapi.yml
   - type: Documentation
     url: https://developers.api.llamaindex.ai/
-  - type: GraphQL
-    url: graphql/llamaindex-graphql.md
   - type: Documentation
     url: https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/
   - type: Documentation
@@ -489,6 +455,13 @@ common:
   url: https://developers.llamaindex.ai/llms.txt
 description: LlamaCloud is a hosted service for document processing and search, powered by LlamaIndex.
 tags:
+- Agents
+- Framework
+- LLM
+- Open Source
+- RAG
+- LlamaIndex
+tags_raw:
 - Agents
 - Framework
 - LLM
