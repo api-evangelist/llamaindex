@@ -123,22 +123,6 @@ paths:
           description: Pipeline not found
 components:
   schemas:
-    CreatePipelineRequest:
-      type: object
-      description: Request body for creating a new pipeline.
-      required:
-      - name
-      - project_id
-      properties:
-        name:
-          type: string
-          description: Human-readable name for the new pipeline.
-        project_id:
-          type: string
-          description: Identifier of the project to create the pipeline in.
-        sync_interval:
-          type: integer
-          description: Optional scheduled sync frequency in seconds.
     PipelineJob:
       type: object
       description: An ingestion job for a pipeline that tracks the processing of documents.
@@ -197,6 +181,22 @@ components:
           type: string
           format: date-time
           description: Timestamp when the pipeline was last updated.
+    CreatePipelineRequest:
+      type: object
+      description: Request body for creating a new pipeline.
+      required:
+      - name
+      - project_id
+      properties:
+        name:
+          type: string
+          description: Human-readable name for the new pipeline.
+        project_id:
+          type: string
+          description: Identifier of the project to create the pipeline in.
+        sync_interval:
+          type: integer
+          description: Optional scheduled sync frequency in seconds.
   parameters:
     pipelineId:
       name: pipelineId

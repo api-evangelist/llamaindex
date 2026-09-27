@@ -47,6 +47,14 @@ paths:
         '404':
           description: Index not found
 components:
+  parameters:
+    pipelineId:
+      name: pipelineId
+      in: path
+      description: Unique identifier of the index (pipeline).
+      required: true
+      schema:
+        type: string
   schemas:
     RetrievalResult:
       type: object
@@ -92,14 +100,6 @@ components:
           type: integer
           minimum: 1
           description: Maximum number of results to return after re-ranking.
-  parameters:
-    pipelineId:
-      name: pipelineId
-      in: path
-      description: Unique identifier of the index (pipeline).
-      required: true
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

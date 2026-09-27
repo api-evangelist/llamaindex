@@ -67,23 +67,6 @@ paths:
           description: Index not found
 components:
   schemas:
-    DataSourceInput:
-      type: object
-      description: Input for connecting a data source to an index.
-      required:
-      - name
-      - source_type
-      properties:
-        name:
-          type: string
-          description: Human-readable name for the data source.
-        source_type:
-          type: string
-          description: Type of the data source.
-        config:
-          type: object
-          additionalProperties: true
-          description: Configuration specific to the data source type.
     DataSource:
       type: object
       description: A data source connected to an index for automatic document ingestion.
@@ -94,6 +77,23 @@ components:
         name:
           type: string
           description: Human-readable name of the data source.
+        source_type:
+          type: string
+          description: Type of the data source.
+        config:
+          type: object
+          additionalProperties: true
+          description: Configuration specific to the data source type.
+    DataSourceInput:
+      type: object
+      description: Input for connecting a data source to an index.
+      required:
+      - name
+      - source_type
+      properties:
+        name:
+          type: string
+          description: Human-readable name for the data source.
         source_type:
           type: string
           description: Type of the data source.

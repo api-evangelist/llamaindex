@@ -80,15 +80,16 @@ paths:
         '404':
           description: Project not found
 components:
-  parameters:
-    projectId:
-      name: projectId
-      in: path
-      description: Unique identifier of the project.
-      required: true
-      schema:
-        type: string
   schemas:
+    CreateProjectRequest:
+      type: object
+      description: Request body for creating a new project.
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Human-readable name for the new project.
     Project:
       type: object
       description: A project that organizes pipelines, files, and other cloud resources.
@@ -107,15 +108,14 @@ components:
           type: string
           format: date-time
           description: Timestamp when the project was last updated.
-    CreateProjectRequest:
-      type: object
-      description: Request body for creating a new project.
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Human-readable name for the new project.
+  parameters:
+    projectId:
+      name: projectId
+      in: path
+      description: Unique identifier of the project.
+      required: true
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

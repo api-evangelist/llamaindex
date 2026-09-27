@@ -128,6 +128,20 @@ components:
           type: object
           additionalProperties: true
           description: Metadata extracted from the document.
+    ParsePage:
+      type: object
+      description: Parsed content for a single page of a document.
+      properties:
+        page_number:
+          type: integer
+          minimum: 1
+          description: 1-based page number.
+        text:
+          type: string
+          description: Plain text content of the page.
+        markdown:
+          type: string
+          description: Markdown-formatted content of the page.
     ParseJob:
       type: object
       description: A parse job representing the asynchronous processing of a document.
@@ -167,20 +181,6 @@ components:
           description: Timestamp when the parse job completed, if applicable.
         result:
           $ref: '#/components/schemas/ParseResult'
-    ParsePage:
-      type: object
-      description: Parsed content for a single page of a document.
-      properties:
-        page_number:
-          type: integer
-          minimum: 1
-          description: 1-based page number.
-        text:
-          type: string
-          description: Plain text content of the page.
-        markdown:
-          type: string
-          description: Markdown-formatted content of the page.
   parameters:
     jobId:
       name: jobId

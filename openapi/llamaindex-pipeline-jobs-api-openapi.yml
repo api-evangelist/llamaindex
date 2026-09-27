@@ -41,6 +41,14 @@ paths:
         '404':
           description: Pipeline not found
 components:
+  parameters:
+    pipelineId:
+      name: pipelineId
+      in: path
+      description: Unique identifier of the pipeline.
+      required: true
+      schema:
+        type: string
   schemas:
     PipelineJob:
       type: object
@@ -68,14 +76,6 @@ components:
           type: string
           format: date-time
           description: Timestamp when the job completed, if applicable.
-  parameters:
-    pipelineId:
-      name: pipelineId
-      in: path
-      description: Unique identifier of the pipeline.
-      required: true
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http
