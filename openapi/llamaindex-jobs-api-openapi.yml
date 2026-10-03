@@ -104,7 +104,29 @@ paths:
         '404':
           description: Parse job not found or not completed
 components:
+  parameters:
+    jobId:
+      name: jobId
+      in: path
+      description: Unique identifier of the parse job.
+      required: true
+      schema:
+        type: string
   schemas:
+    ParsePage:
+      type: object
+      description: Parsed content for a single page of a document.
+      properties:
+        page_number:
+          type: integer
+          minimum: 1
+          description: 1-based page number.
+        text:
+          type: string
+          description: Plain text content of the page.
+        markdown:
+          type: string
+          description: Markdown-formatted content of the page.
     ParseResult:
       type: object
       description: The parsed output of a document, containing extracted content in various formats.
@@ -128,20 +150,6 @@ components:
           type: object
           additionalProperties: true
           description: Metadata extracted from the document.
-    ParsePage:
-      type: object
-      description: Parsed content for a single page of a document.
-      properties:
-        page_number:
-          type: integer
-          minimum: 1
-          description: 1-based page number.
-        text:
-          type: string
-          description: Plain text content of the page.
-        markdown:
-          type: string
-          description: Markdown-formatted content of the page.
     ParseJob:
       type: object
       description: A parse job representing the asynchronous processing of a document.
@@ -181,14 +189,6 @@ components:
           description: Timestamp when the parse job completed, if applicable.
         result:
           $ref: '#/components/schemas/ParseResult'
-  parameters:
-    jobId:
-      name: jobId
-      in: path
-      description: Unique identifier of the parse job.
-      required: true
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

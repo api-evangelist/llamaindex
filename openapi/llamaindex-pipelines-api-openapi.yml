@@ -122,6 +122,14 @@ paths:
         '404':
           description: Pipeline not found
 components:
+  parameters:
+    pipelineId:
+      name: pipelineId
+      in: path
+      description: Unique identifier of the pipeline.
+      required: true
+      schema:
+        type: string
   schemas:
     PipelineJob:
       type: object
@@ -149,6 +157,22 @@ components:
           type: string
           format: date-time
           description: Timestamp when the job completed, if applicable.
+    CreatePipelineRequest:
+      type: object
+      description: Request body for creating a new pipeline.
+      required:
+      - name
+      - project_id
+      properties:
+        name:
+          type: string
+          description: Human-readable name for the new pipeline.
+        project_id:
+          type: string
+          description: Identifier of the project to create the pipeline in.
+        sync_interval:
+          type: integer
+          description: Optional scheduled sync frequency in seconds.
     Pipeline:
       type: object
       description: A document ingestion pipeline that processes, embeds, and indexes documents for retrieval.
@@ -181,30 +205,6 @@ components:
           type: string
           format: date-time
           description: Timestamp when the pipeline was last updated.
-    CreatePipelineRequest:
-      type: object
-      description: Request body for creating a new pipeline.
-      required:
-      - name
-      - project_id
-      properties:
-        name:
-          type: string
-          description: Human-readable name for the new pipeline.
-        project_id:
-          type: string
-          description: Identifier of the project to create the pipeline in.
-        sync_interval:
-          type: integer
-          description: Optional scheduled sync frequency in seconds.
-  parameters:
-    pipelineId:
-      name: pipelineId
-      in: path
-      description: Unique identifier of the pipeline.
-      required: true
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

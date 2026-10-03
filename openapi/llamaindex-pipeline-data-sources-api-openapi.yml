@@ -66,6 +66,14 @@ paths:
         '404':
           description: Pipeline not found
 components:
+  parameters:
+    pipelineId:
+      name: pipelineId
+      in: path
+      description: Unique identifier of the pipeline.
+      required: true
+      schema:
+        type: string
   schemas:
     DataSource:
       type: object
@@ -111,14 +119,6 @@ components:
           type: object
           additionalProperties: true
           description: Configuration specific to the data source type.
-  parameters:
-    pipelineId:
-      name: pipelineId
-      in: path
-      description: Unique identifier of the pipeline.
-      required: true
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

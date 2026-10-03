@@ -81,15 +81,6 @@ paths:
           description: Project not found
 components:
   schemas:
-    CreateProjectRequest:
-      type: object
-      description: Request body for creating a new project.
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Human-readable name for the new project.
     Project:
       type: object
       description: A project that organizes pipelines, files, and other cloud resources.
@@ -108,6 +99,15 @@ components:
           type: string
           format: date-time
           description: Timestamp when the project was last updated.
+    CreateProjectRequest:
+      type: object
+      description: Request body for creating a new project.
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Human-readable name for the new project.
   parameters:
     projectId:
       name: projectId

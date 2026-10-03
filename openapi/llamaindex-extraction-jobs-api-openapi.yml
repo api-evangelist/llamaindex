@@ -107,18 +107,21 @@ components:
         error:
           type: string
           description: Error message if extraction failed for this file.
-    ExtractionResult:
+    CreateExtractionJobRequest:
       type: object
-      description: Structured data extracted from documents by a completed extraction job.
+      description: Request body for creating an extraction job.
+      required:
+      - extraction_agent_id
+      - file_ids
       properties:
-        job_id:
+        extraction_agent_id:
           type: string
-          description: Identifier of the extraction job that produced this result.
-        results:
+          description: Identifier of the extraction agent to use for processing.
+        file_ids:
           type: array
-          description: List of extraction results, one per processed file.
           items:
-            $ref: '#/components/schemas/FileExtractionResult'
+            type: string
+          description: List of file identifiers to process in this extraction job.
     ExtractionJob:
       type: object
       description: An asynchronous extraction job that processes documents through an extraction agent.
@@ -150,21 +153,18 @@ components:
           type: string
           format: date-time
           description: Timestamp when the extraction job completed, if applicable.
-    CreateExtractionJobRequest:
+    ExtractionResult:
       type: object
-      description: Request body for creating an extraction job.
-      required:
-      - extraction_agent_id
-      - file_ids
+      description: Structured data extracted from documents by a completed extraction job.
       properties:
-        extraction_agent_id:
+        job_id:
           type: string
-          description: Identifier of the extraction agent to use for processing.
-        file_ids:
+          description: Identifier of the extraction job that produced this result.
+        results:
           type: array
+          description: List of extraction results, one per processed file.
           items:
-            type: string
-          description: List of file identifiers to process in this extraction job.
+            $ref: '#/components/schemas/FileExtractionResult'
   parameters:
     jobId:
       name: jobId

@@ -68,20 +68,6 @@ paths:
           description: Unauthorized - invalid or missing API key
 components:
   schemas:
-    ParseUploadRequest:
-      type: object
-      description: Multipart form data request for uploading and parsing a document.
-      required:
-      - file
-      - configuration
-      properties:
-        file:
-          type: string
-          format: binary
-          description: The document file to upload and parse.
-        configuration:
-          type: string
-          description: JSON string containing the parsing configuration including tier, version, and other options.
     ParseJobCreated:
       type: object
       description: Response returned when a parse job is successfully created.
@@ -133,6 +119,20 @@ components:
           type: object
           description: Additional options for the agentic and agentic_plus tiers. Not supported by the fast tier.
           additionalProperties: true
+    ParseUploadRequest:
+      type: object
+      description: Multipart form data request for uploading and parsing a document.
+      required:
+      - file
+      - configuration
+      properties:
+        file:
+          type: string
+          format: binary
+          description: The document file to upload and parse.
+        configuration:
+          type: string
+          description: JSON string containing the parsing configuration including tier, version, and other options.
   securitySchemes:
     bearerAuth:
       type: http

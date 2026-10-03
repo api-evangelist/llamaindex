@@ -130,29 +130,20 @@ paths:
           description: Extraction agent not found
 components:
   schemas:
-    CreateExtractionAgentRequest:
+    UpdateExtractionAgentRequest:
       type: object
-      description: Request body for creating a new extraction agent.
-      required:
-      - name
-      - project_id
+      description: Request body for updating an existing extraction agent.
       properties:
         name:
           type: string
-          description: Human-readable name for the new extraction agent.
-        project_id:
-          type: string
-          description: Identifier of the project to create the agent in.
+          description: Updated name for the extraction agent.
         data_schema:
           type: object
           additionalProperties: true
-          description: JSON Schema defining the structure of the data to extract. If not provided, the schema can be inferred automatically from example files.
+          description: Updated JSON Schema for data extraction.
         description:
           type: string
-          description: Optional description of the extraction agent.
-        prompt:
-          type: string
-          description: Optional prompt to guide automatic schema inference from example documents.
+          description: Updated description of the extraction agent.
     ExtractionAgent:
       type: object
       description: An extraction agent configured with a specific data schema and extraction settings for processing documents.
@@ -181,20 +172,29 @@ components:
           type: string
           format: date-time
           description: Timestamp when the extraction agent was last updated.
-    UpdateExtractionAgentRequest:
+    CreateExtractionAgentRequest:
       type: object
-      description: Request body for updating an existing extraction agent.
+      description: Request body for creating a new extraction agent.
+      required:
+      - name
+      - project_id
       properties:
         name:
           type: string
-          description: Updated name for the extraction agent.
+          description: Human-readable name for the new extraction agent.
+        project_id:
+          type: string
+          description: Identifier of the project to create the agent in.
         data_schema:
           type: object
           additionalProperties: true
-          description: Updated JSON Schema for data extraction.
+          description: JSON Schema defining the structure of the data to extract. If not provided, the schema can be inferred automatically from example files.
         description:
           type: string
-          description: Updated description of the extraction agent.
+          description: Optional description of the extraction agent.
+        prompt:
+          type: string
+          description: Optional prompt to guide automatic schema inference from example documents.
   parameters:
     agentId:
       name: agentId

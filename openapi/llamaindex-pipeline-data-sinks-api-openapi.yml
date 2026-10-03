@@ -41,6 +41,14 @@ paths:
         '404':
           description: Pipeline not found
 components:
+  parameters:
+    pipelineId:
+      name: pipelineId
+      in: path
+      description: Unique identifier of the pipeline.
+      required: true
+      schema:
+        type: string
   schemas:
     DataSink:
       type: object
@@ -59,14 +67,6 @@ components:
           type: object
           additionalProperties: true
           description: Configuration specific to the data sink type.
-  parameters:
-    pipelineId:
-      name: pipelineId
-      in: path
-      description: Unique identifier of the pipeline.
-      required: true
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http
