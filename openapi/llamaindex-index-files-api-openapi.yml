@@ -66,14 +66,6 @@ paths:
         '404':
           description: Index not found
 components:
-  parameters:
-    pipelineId:
-      name: pipelineId
-      in: path
-      description: Unique identifier of the index (pipeline).
-      required: true
-      schema:
-        type: string
   schemas:
     IndexFile:
       type: object
@@ -110,6 +102,14 @@ components:
           type: object
           additionalProperties: true
           description: Optional custom metadata to associate with the file.
+  parameters:
+    pipelineId:
+      name: pipelineId
+      in: path
+      description: Unique identifier of the index (pipeline).
+      required: true
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

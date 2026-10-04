@@ -131,51 +131,6 @@ components:
       schema:
         type: string
   schemas:
-    IndexJob:
-      type: object
-      description: A sync job for an index tracking the processing of documents.
-      properties:
-        id:
-          type: string
-          description: Unique identifier of the job.
-        pipeline_id:
-          type: string
-          description: Identifier of the index the job belongs to.
-        status:
-          type: string
-          enum:
-          - pending
-          - running
-          - completed
-          - failed
-          description: Current status of the job.
-        created_at:
-          type: string
-          format: date-time
-          description: Timestamp when the job was created.
-        completed_at:
-          type: string
-          format: date-time
-          description: Timestamp when the job completed, if applicable.
-    CreateIndexRequest:
-      type: object
-      description: Request body for creating a new index.
-      required:
-      - name
-      - project_id
-      properties:
-        name:
-          type: string
-          description: Human-readable name for the new index.
-        project_id:
-          type: string
-          description: Identifier of the project to create the index in.
-        embedding_model:
-          type: string
-          description: Name of the embedding model to use for vectorization.
-        sync_interval:
-          type: integer
-          description: Optional scheduled sync frequency in seconds.
     Index:
       type: object
       description: An index representing an automated document ingestion pipeline with built-in retrieval capabilities.
@@ -211,6 +166,51 @@ components:
           type: string
           format: date-time
           description: Timestamp when the index was last updated.
+    CreateIndexRequest:
+      type: object
+      description: Request body for creating a new index.
+      required:
+      - name
+      - project_id
+      properties:
+        name:
+          type: string
+          description: Human-readable name for the new index.
+        project_id:
+          type: string
+          description: Identifier of the project to create the index in.
+        embedding_model:
+          type: string
+          description: Name of the embedding model to use for vectorization.
+        sync_interval:
+          type: integer
+          description: Optional scheduled sync frequency in seconds.
+    IndexJob:
+      type: object
+      description: A sync job for an index tracking the processing of documents.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the job.
+        pipeline_id:
+          type: string
+          description: Identifier of the index the job belongs to.
+        status:
+          type: string
+          enum:
+          - pending
+          - running
+          - completed
+          - failed
+          description: Current status of the job.
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the job was created.
+        completed_at:
+          type: string
+          format: date-time
+          description: Timestamp when the job completed, if applicable.
   securitySchemes:
     bearerAuth:
       type: http

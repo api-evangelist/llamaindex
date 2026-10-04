@@ -48,26 +48,6 @@ paths:
           description: Index not found
 components:
   schemas:
-    RetrievalRequest:
-      type: object
-      description: Request body for running a retrieval query against an index.
-      required:
-      - query
-      properties:
-        query:
-          type: string
-          description: The search query to run against the indexed content.
-        mode:
-          type: string
-          enum:
-          - fast
-          - accurate
-          - advanced
-          description: Retrieval mode controlling the trade-off between speed and accuracy.
-        top_k:
-          type: integer
-          minimum: 1
-          description: Maximum number of results to return after re-ranking.
     RetrievalResponse:
       type: object
       description: Response containing retrieval results from an index query.
@@ -92,6 +72,26 @@ components:
           type: object
           additionalProperties: true
           description: Metadata associated with the retrieved content.
+    RetrievalRequest:
+      type: object
+      description: Request body for running a retrieval query against an index.
+      required:
+      - query
+      properties:
+        query:
+          type: string
+          description: The search query to run against the indexed content.
+        mode:
+          type: string
+          enum:
+          - fast
+          - accurate
+          - advanced
+          description: Retrieval mode controlling the trade-off between speed and accuracy.
+        top_k:
+          type: integer
+          minimum: 1
+          description: Maximum number of results to return after re-ranking.
   parameters:
     pipelineId:
       name: pipelineId

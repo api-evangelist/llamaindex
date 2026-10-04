@@ -66,32 +66,7 @@ paths:
         '404':
           description: Index not found
 components:
-  parameters:
-    pipelineId:
-      name: pipelineId
-      in: path
-      description: Unique identifier of the index (pipeline).
-      required: true
-      schema:
-        type: string
   schemas:
-    DataSource:
-      type: object
-      description: A data source connected to an index for automatic document ingestion.
-      properties:
-        id:
-          type: string
-          description: Unique identifier of the data source.
-        name:
-          type: string
-          description: Human-readable name of the data source.
-        source_type:
-          type: string
-          description: Type of the data source.
-        config:
-          type: object
-          additionalProperties: true
-          description: Configuration specific to the data source type.
     DataSourceInput:
       type: object
       description: Input for connecting a data source to an index.
@@ -109,6 +84,31 @@ components:
           type: object
           additionalProperties: true
           description: Configuration specific to the data source type.
+    DataSource:
+      type: object
+      description: A data source connected to an index for automatic document ingestion.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the data source.
+        name:
+          type: string
+          description: Human-readable name of the data source.
+        source_type:
+          type: string
+          description: Type of the data source.
+        config:
+          type: object
+          additionalProperties: true
+          description: Configuration specific to the data source type.
+  parameters:
+    pipelineId:
+      name: pipelineId
+      in: path
+      description: Unique identifier of the index (pipeline).
+      required: true
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

@@ -131,6 +131,38 @@ components:
       schema:
         type: string
   schemas:
+    Pipeline:
+      type: object
+      description: A document ingestion pipeline that processes, embeds, and indexes documents for retrieval.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the pipeline.
+        name:
+          type: string
+          description: Human-readable name of the pipeline.
+        project_id:
+          type: string
+          description: Identifier of the project the pipeline belongs to.
+        status:
+          type: string
+          enum:
+          - active
+          - syncing
+          - error
+          - idle
+          description: Current status of the pipeline.
+        sync_interval:
+          type: integer
+          description: Scheduled sync frequency in seconds, if configured.
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the pipeline was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: Timestamp when the pipeline was last updated.
     PipelineJob:
       type: object
       description: An ingestion job for a pipeline that tracks the processing of documents.
@@ -173,38 +205,6 @@ components:
         sync_interval:
           type: integer
           description: Optional scheduled sync frequency in seconds.
-    Pipeline:
-      type: object
-      description: A document ingestion pipeline that processes, embeds, and indexes documents for retrieval.
-      properties:
-        id:
-          type: string
-          description: Unique identifier of the pipeline.
-        name:
-          type: string
-          description: Human-readable name of the pipeline.
-        project_id:
-          type: string
-          description: Identifier of the project the pipeline belongs to.
-        status:
-          type: string
-          enum:
-          - active
-          - syncing
-          - error
-          - idle
-          description: Current status of the pipeline.
-        sync_interval:
-          type: integer
-          description: Scheduled sync frequency in seconds, if configured.
-        created_at:
-          type: string
-          format: date-time
-          description: Timestamp when the pipeline was created.
-        updated_at:
-          type: string
-          format: date-time
-          description: Timestamp when the pipeline was last updated.
   securitySchemes:
     bearerAuth:
       type: http

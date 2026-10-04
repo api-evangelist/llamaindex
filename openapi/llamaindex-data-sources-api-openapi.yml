@@ -68,6 +68,26 @@ paths:
           description: Unauthorized - invalid or missing API key
 components:
   schemas:
+    DataSourceInput:
+      type: object
+      description: Input for creating or connecting a data source.
+      required:
+      - name
+      - source_type
+      properties:
+        name:
+          type: string
+          description: Human-readable name for the data source.
+        source_type:
+          type: string
+          description: Type of the data source.
+        project_id:
+          type: string
+          description: Identifier of the project to associate the data source with.
+        config:
+          type: object
+          additionalProperties: true
+          description: Configuration specific to the data source type.
     DataSource:
       type: object
       description: A data source connected to a pipeline for automatic document ingestion.
@@ -92,26 +112,6 @@ components:
           type: string
           format: date-time
           description: Timestamp when the data source was created.
-    DataSourceInput:
-      type: object
-      description: Input for creating or connecting a data source.
-      required:
-      - name
-      - source_type
-      properties:
-        name:
-          type: string
-          description: Human-readable name for the data source.
-        source_type:
-          type: string
-          description: Type of the data source.
-        project_id:
-          type: string
-          description: Identifier of the project to associate the data source with.
-        config:
-          type: object
-          additionalProperties: true
-          description: Configuration specific to the data source type.
   securitySchemes:
     bearerAuth:
       type: http

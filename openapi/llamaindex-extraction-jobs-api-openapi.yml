@@ -84,44 +84,6 @@ paths:
           description: Extraction job not found or not completed
 components:
   schemas:
-    FileExtractionResult:
-      type: object
-      description: Extraction result for a single file.
-      properties:
-        file_id:
-          type: string
-          description: Identifier of the processed file.
-        file_name:
-          type: string
-          description: Name of the processed file.
-        data:
-          type: object
-          additionalProperties: true
-          description: Structured data extracted from the file, conforming to the extraction agent schema.
-        status:
-          type: string
-          enum:
-          - success
-          - error
-          description: Status of the extraction for this specific file.
-        error:
-          type: string
-          description: Error message if extraction failed for this file.
-    CreateExtractionJobRequest:
-      type: object
-      description: Request body for creating an extraction job.
-      required:
-      - extraction_agent_id
-      - file_ids
-      properties:
-        extraction_agent_id:
-          type: string
-          description: Identifier of the extraction agent to use for processing.
-        file_ids:
-          type: array
-          items:
-            type: string
-          description: List of file identifiers to process in this extraction job.
     ExtractionJob:
       type: object
       description: An asynchronous extraction job that processes documents through an extraction agent.
@@ -153,6 +115,21 @@ components:
           type: string
           format: date-time
           description: Timestamp when the extraction job completed, if applicable.
+    CreateExtractionJobRequest:
+      type: object
+      description: Request body for creating an extraction job.
+      required:
+      - extraction_agent_id
+      - file_ids
+      properties:
+        extraction_agent_id:
+          type: string
+          description: Identifier of the extraction agent to use for processing.
+        file_ids:
+          type: array
+          items:
+            type: string
+          description: List of file identifiers to process in this extraction job.
     ExtractionResult:
       type: object
       description: Structured data extracted from documents by a completed extraction job.
@@ -165,6 +142,29 @@ components:
           description: List of extraction results, one per processed file.
           items:
             $ref: '#/components/schemas/FileExtractionResult'
+    FileExtractionResult:
+      type: object
+      description: Extraction result for a single file.
+      properties:
+        file_id:
+          type: string
+          description: Identifier of the processed file.
+        file_name:
+          type: string
+          description: Name of the processed file.
+        data:
+          type: object
+          additionalProperties: true
+          description: Structured data extracted from the file, conforming to the extraction agent schema.
+        status:
+          type: string
+          enum:
+          - success
+          - error
+          description: Status of the extraction for this specific file.
+        error:
+          type: string
+          description: Error message if extraction failed for this file.
   parameters:
     jobId:
       name: jobId

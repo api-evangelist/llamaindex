@@ -66,15 +66,27 @@ paths:
         '404':
           description: Pipeline not found
 components:
-  parameters:
-    pipelineId:
-      name: pipelineId
-      in: path
-      description: Unique identifier of the pipeline.
-      required: true
-      schema:
-        type: string
   schemas:
+    DataSourceInput:
+      type: object
+      description: Input for creating or connecting a data source.
+      required:
+      - name
+      - source_type
+      properties:
+        name:
+          type: string
+          description: Human-readable name for the data source.
+        source_type:
+          type: string
+          description: Type of the data source.
+        project_id:
+          type: string
+          description: Identifier of the project to associate the data source with.
+        config:
+          type: object
+          additionalProperties: true
+          description: Configuration specific to the data source type.
     DataSource:
       type: object
       description: A data source connected to a pipeline for automatic document ingestion.
@@ -99,26 +111,14 @@ components:
           type: string
           format: date-time
           description: Timestamp when the data source was created.
-    DataSourceInput:
-      type: object
-      description: Input for creating or connecting a data source.
-      required:
-      - name
-      - source_type
-      properties:
-        name:
-          type: string
-          description: Human-readable name for the data source.
-        source_type:
-          type: string
-          description: Type of the data source.
-        project_id:
-          type: string
-          description: Identifier of the project to associate the data source with.
-        config:
-          type: object
-          additionalProperties: true
-          description: Configuration specific to the data source type.
+  parameters:
+    pipelineId:
+      name: pipelineId
+      in: path
+      description: Unique identifier of the pipeline.
+      required: true
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

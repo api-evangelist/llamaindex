@@ -129,6 +129,14 @@ paths:
         '404':
           description: Extraction agent not found
 components:
+  parameters:
+    agentId:
+      name: agentId
+      in: path
+      description: Unique identifier of the extraction agent.
+      required: true
+      schema:
+        type: string
   schemas:
     UpdateExtractionAgentRequest:
       type: object
@@ -195,14 +203,6 @@ components:
         prompt:
           type: string
           description: Optional prompt to guide automatic schema inference from example documents.
-  parameters:
-    agentId:
-      name: agentId
-      in: path
-      description: Unique identifier of the extraction agent.
-      required: true
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http
