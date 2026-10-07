@@ -429,6 +429,10 @@ apis:
   - type: Documentation
     url: https://developers.llamaindex.ai/python/cloud/llamacloud/guides/api_sdk/
 common:
+- type: Pricing
+  url: https://www.llamaindex.ai/pricing
+- type: Plans
+  url: plans/llamaindex-plans-pricing.yml
 - type: Website
   url: https://www.llamaindex.ai/
 - type: AgenticAccess
