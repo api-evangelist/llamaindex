@@ -429,6 +429,10 @@ apis:
   - type: Documentation
     url: https://developers.llamaindex.ai/python/cloud/llamacloud/guides/api_sdk/
 common:
+- type: RateLimits
+  url: rate-limits/llamaindex-rate-limits.yml
+- type: FinOps
+  url: finops/llamaindex-finops.yml
 - type: Pricing
   url: https://www.llamaindex.ai/pricing
 - type: Plans
