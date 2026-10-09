@@ -1,229 +1,28 @@
-generated: '2026-07-15'
+generated: '2026-09-23'
 method: generated
-source: openapi/llamaindex-llamacloud-api-openapi.yml, openapi/llamaindex-llamacloud-index-api-openapi.yml,
-  openapi/llamaindex-llamaextract-api-openapi.yml, openapi/llamaindex-llamaparse-api-openapi.yml
+source: openapi/llamaindex-data-sources-api-openapi.yml, openapi/llamaindex-extraction-agents-api-openapi.yml,
+  openapi/llamaindex-extraction-jobs-api-openapi.yml, openapi/llamaindex-files-api-openapi.yml,
+  openapi/llamaindex-index-data-sources-api-openapi.yml, openapi/llamaindex-index-files-api-openapi.yml,
+  openapi/llamaindex-index-retrieval-api-openapi.yml, openapi/llamaindex-index-status-api-openapi.yml,
+  openapi/llamaindex-indexes-api-openapi.yml, openapi/llamaindex-jobs-api-openapi.yml, openapi/llamaindex-parsing-api-openapi.yml,
+  openapi/llamaindex-pipeline-data-sinks-api-openapi.yml, openapi/llamaindex-pipeline-data-sources-api-openapi.yml,
+  openapi/llamaindex-pipeline-files-api-openapi.yml, openapi/llamaindex-pipeline-jobs-api-openapi.yml,
+  openapi/llamaindex-pipelines-api-openapi.yml, openapi/llamaindex-projects-api-openapi.yml,
+  openapi/llamaindex-retrieval-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
-  operations: 43
+  operations: 42
   by_action_class:
-    connected: 21
-    acting: 22
+    connected: 22
+    acting: 20
   by_consequence:
-    read: 21
-    write: 20
+    read: 22
+    write: 18
     safety-critical: 2
   human_in_the_loop_required: 2
 operations:
-- path: /projects
-  method: get
-  operationId: listProjects
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /projects
-  method: post
-  operationId: createProject
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /projects/{projectId}
-  method: get
-  operationId: getProject
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /files
-  method: post
-  operationId: uploadFile
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /pipelines
-  method: get
-  operationId: listPipelines
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /pipelines
-  method: post
-  operationId: createPipeline
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /pipelines/{pipelineId}
-  method: get
-  operationId: getPipeline
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /pipelines/{pipelineId}
-  method: delete
-  operationId: deletePipeline
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /pipelines/{pipelineId}/sync
-  method: post
-  operationId: syncPipeline
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /pipelines/{pipelineId}/retrieve
-  method: post
-  operationId: runSearch
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /pipelines/{pipelineId}/files
-  method: get
-  operationId: listPipelineFiles
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /pipelines/{pipelineId}/files
-  method: put
-  operationId: addFilesToPipeline
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /pipelines/{pipelineId}/data-sources
-  method: get
-  operationId: listPipelineDataSources
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /pipelines/{pipelineId}/data-sources
-  method: put
-  operationId: addDataSourcesToPipeline
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /pipelines/{pipelineId}/data-sinks
-  method: get
-  operationId: listPipelineDataSinks
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /pipelines/{pipelineId}/jobs
-  method: get
-  operationId: listPipelineJobs
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
 - path: /data-sources
   method: get
   operationId: listDataSources
@@ -237,152 +36,6 @@ operations:
 - path: /data-sources
   method: post
   operationId: createDataSource
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /pipelines
-  method: get
-  operationId: listIndexes
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /pipelines
-  method: post
-  operationId: createIndex
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /pipelines/{pipelineId}
-  method: get
-  operationId: getIndex
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /pipelines/{pipelineId}
-  method: delete
-  operationId: deleteIndex
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /pipelines/{pipelineId}/sync
-  method: post
-  operationId: syncIndex
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /pipelines/{pipelineId}/files
-  method: get
-  operationId: listIndexFiles
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /pipelines/{pipelineId}/files
-  method: put
-  operationId: addFilesToIndex
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /pipelines/{pipelineId}/files/count
-  method: get
-  operationId: getIndexFileCounts
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /pipelines/{pipelineId}/data-sources
-  method: get
-  operationId: listIndexDataSources
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /pipelines/{pipelineId}/data-sources
-  method: put
-  operationId: addDataSourcesToIndex
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /pipelines/{pipelineId}/retrieve
-  method: post
-  operationId: retrieveFromIndex
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -516,9 +169,19 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /parse
-  method: post
-  operationId: parseDocument
+- path: /pipelines/{pipelineId}/data-sources
+  method: get
+  operationId: listIndexDataSources
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /pipelines/{pipelineId}/data-sources
+  method: put
+  operationId: addDataSourcesToIndex
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -532,9 +195,107 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /parse/upload
+- path: /pipelines/{pipelineId}/files
+  method: get
+  operationId: listIndexFiles
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /pipelines/{pipelineId}/files
+  method: put
+  operationId: addFilesToIndex
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /pipelines/{pipelineId}/retrieve
   method: post
-  operationId: parseDocumentUpload
+  operationId: retrieveFromIndex
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /pipelines/{pipelineId}/files/count
+  method: get
+  operationId: getIndexFileCounts
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /pipelines
+  method: get
+  operationId: listIndexes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /pipelines
+  method: post
+  operationId: createIndex
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /pipelines/{pipelineId}
+  method: get
+  operationId: getIndex
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /pipelines/{pipelineId}
+  method: delete
+  operationId: deleteIndex
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /pipelines/{pipelineId}/sync
+  method: post
+  operationId: syncIndex
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -578,3 +339,227 @@ operations:
     token:
       max-ttl: 3600
     audit: none
+- path: /parse
+  method: post
+  operationId: parseDocument
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /parse/upload
+  method: post
+  operationId: parseDocumentUpload
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /pipelines/{pipelineId}/data-sinks
+  method: get
+  operationId: listPipelineDataSinks
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /pipelines/{pipelineId}/data-sources
+  method: get
+  operationId: listPipelineDataSources
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /pipelines/{pipelineId}/data-sources
+  method: put
+  operationId: addDataSourcesToPipeline
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /pipelines/{pipelineId}/files
+  method: get
+  operationId: listPipelineFiles
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /pipelines/{pipelineId}/files
+  method: put
+  operationId: addFilesToPipeline
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /pipelines/{pipelineId}/jobs
+  method: get
+  operationId: listPipelineJobs
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /pipelines
+  method: get
+  operationId: listPipelines
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /pipelines
+  method: post
+  operationId: createPipeline
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /pipelines/{pipelineId}
+  method: get
+  operationId: getPipeline
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /pipelines/{pipelineId}
+  method: delete
+  operationId: deletePipeline
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /pipelines/{pipelineId}/sync
+  method: post
+  operationId: syncPipeline
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /projects
+  method: get
+  operationId: listProjects
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /projects
+  method: post
+  operationId: createProject
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /projects/{projectId}
+  method: get
+  operationId: getProject
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /pipelines/{pipelineId}/retrieve
+  method: post
+  operationId: runSearch
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required

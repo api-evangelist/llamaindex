@@ -1,174 +1,92 @@
-specification: API Commons Plans
-specificationVersion: '0.1'
-schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
-provider: LlamaIndex
-providerId: llamaindex
-created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-05'
-reconciled: true
-tags:
-  - LLM
-  - RAG
-  - Document Parsing
-  - AI Infrastructure
-  - Agents
-description: LlamaIndex (LlamaCloud / LlamaParse) prices via tiered subscriptions with included
-  monthly credits and pay-as-you-go top-ups. Credits map to per-page parsing cost (1,000 credits = $1.25).
-  Auto Mode routes pages between basic and agentic tiers to lower cost. Enterprise is contract-based with
-  5x rate limits and SSO/VPC options.
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-07'
+method: searched
+source: https://www.llamaindex.ai/pricing
 sources:
-  - https://www.llamaindex.ai/pricing
+- https://www.llamaindex.ai/pricing
+provenance:
+  tool: all/0-working/economics/harvest_pricing.py
+  run: 20261007T112025
+  grounding: every price_text was found verbatim in the fetched page text
+audience: developer-api
+pricing_basis: tiered-subscription
+delivery:
+  delivery: managed+licensed
+  method: page
+  read: '2026-10-07'
+  evidence: SaaS or Hybrid cloud deployment
+  managed_tier: Starter
+published: true
+note: 'Credit-based: "1,000 credits = $1.25." Enterprise offers VPC/hybrid deployment; open-source LlamaIndex
+  libraries mentioned but LlamaParse is not open source.'
+plan_count: 4
+currency: USD
 plans:
-  - id: llamaindex-free
-    name: Free
-    type: freemium
-    description: Free tier for evaluation. 10,000 credits/month, 1 user, community support.
-    entries:
-      - label: Included credits
-        name: credits_included
-        type: quota
-        metric: credits
-        limit: 10000
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Seats
-        name: seats
-        type: quota
-        metric: seat
-        limit: 1
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-    elements:
-      - name: 10,000 credits/month
-      - name: Community support
-      - name: LlamaCloud / LlamaParse / LlamaExtract API access
-  - id: llamaindex-starter
-    name: Starter
-    type: subscription
-    description: $50/month. 40,000 included credits, up to 5 users, basic email support, PAYG up to 400K credits.
-    entries:
-      - label: Monthly subscription
-        name: subscription
-        type: subscription
-        metric: month
-        limit: -1
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '50.00'
-        userMultiplied: false
-      - label: Included credits
-        name: credits_included
-        type: quota
-        metric: credits
-        limit: 40000
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Pay-as-you-go credits
-        name: credits_payg
-        type: metered
-        metric: credits
-        limit: 400000
-        timeFrame: month
-        geo: global
-        unit: 1000
-        price: '1.25'
-        userMultiplied: false
-      - label: Seats
-        name: seats
-        type: quota
-        metric: seat
-        limit: 5
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-    elements:
-      - name: 40,000 credits/month
-      - name: Up to 5 users
-      - name: PAYG up to 400,000 credits ($500/mo cap)
-      - name: Email support
-  - id: llamaindex-pro
-    name: Pro
-    type: subscription
-    description: $500/month. 400,000 included credits, up to 10 users, priority Slack support, PAYG up to 4M credits.
-    entries:
-      - label: Monthly subscription
-        name: subscription
-        type: subscription
-        metric: month
-        limit: -1
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '500.00'
-        userMultiplied: false
-      - label: Included credits
-        name: credits_included
-        type: quota
-        metric: credits
-        limit: 400000
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Pay-as-you-go credits
-        name: credits_payg
-        type: metered
-        metric: credits
-        limit: 4000000
-        timeFrame: month
-        geo: global
-        unit: 1000
-        price: '1.25'
-        userMultiplied: false
-      - label: Seats
-        name: seats
-        type: quota
-        metric: seat
-        limit: 10
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-    elements:
-      - name: 400,000 credits/month
-      - name: Up to 10 users
-      - name: PAYG up to 4,000,000 credits ($5,000/mo cap)
-      - name: Priority Slack Connect support
-  - id: llamaindex-enterprise
-    name: Enterprise
-    type: enterprise
-    description: Custom pricing with volume discounts, 5x higher rate limits than Pro, SSO, VPC/hybrid, dedicated TAM.
-    entries:
-      - label: Custom contract
-        name: custom
-        type: subscription
-        metric: contract
-        limit: -1
-        timeFrame: year
-        geo: global
-        unit: 1
-        price: custom
-        userMultiplied: false
-    elements:
-      - name: Volume credit discounts
-      - name: 5x higher rate limits
-      - name: Enterprise SSO
-      - name: VPC / hybrid deployment
-      - name: Dedicated account manager
+- name: Free
+  price_text: $0 /month
+  price: 0
+  currency: USD
+  period: month
+  included_quota: Includes 10K credits, 100 users, Basic support
+  overage: Upgrade to starter for Pay-as-you-go credits
+- name: Starter
+  price_text: $50 /month
+  price: 50
+  currency: USD
+  period: month
+  included_quota: Includes 40K credits, 100 users, Basic support
+  overage: Pay-as-you-go up to 400K credits (up to $500/mo)
+- name: Pro
+  price_text: $500 /month
+  price: 500
+  currency: USD
+  period: month
+  included_quota: 'Includes 400k credits; Limited-time bonus: 800k credits ($1,000), one-time*'
+  overage: Pay-as-you-go up to $5,000/mo
+- name: Enterprise
+  price_text: Custom
+  period: none
+  included_quota: Volume discount on credits, 5x higher rate limits, Enterprise SSO, SaaS or Hybrid cloud
+    deployment
+  overage: Custom
+rate_limit_statements:
+- Concurrent parse jobs 5 5 20 100
+- 5x higher rate limits
+- Concurrent extract jobs 5 5 20 100
+- Concurrent index jobs 5 5 20 100
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - hybrid
+  - metered
+  units: []
+  plans:
+  - name: Free
+    access: other
+    model: metered
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: Starter
+    access: other
+    model: hybrid
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: Pro
+    access: other
+    model: hybrid
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: Enterprise
+    access: other
+    model: metered
+    model_how: derived
+    units: []
+    periods:
+    - none
