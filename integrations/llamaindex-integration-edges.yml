@@ -1,0 +1,1673 @@
+edges:
+- partner_name: alibaba
+  partner: alibaba
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-alibabacloud-mysql
+  coverage_role:
+  - embeddings
+  - reranker
+  - retrieval-reader
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-embeddings-alibabacloud-aisearch
+    - llama-index-embeddings-dashscope
+    - llama-index-postprocessor-alibabacloud-aisearch-rerank
+    - llama-index-postprocessor-dashscope-rerank
+    - llama-index-readers-dashvector
+    - llama-index-vector-stores-alibabacloud-mysql
+    - llama-index-vector-stores-alibabacloud-opensearch
+    - llama-index-vector-stores-analyticdb
+    - llama-index-vector-stores-dashvector
+    - llama-index-vector-stores-hologres
+    - llama-index-vector-stores-lindorm
+    - llama-index-vector-stores-tablestore
+    - llama-index-vector-stores-tair
+    roles:
+    - embeddings
+    - reranker
+    - retrieval-reader
+    - vector-store
+    vendor_domain: alibaba.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: datastax
+  partner: datastax
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-astra-db
+  coverage_role:
+  - retrieval-reader
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-readers-astra-db
+    - llama-index-vector-stores-astra-db
+    roles:
+    - retrieval-reader
+    - vector-store
+    vendor_domain: datastax.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: amazon-documentdb
+  partner: amazon-documentdb
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-awsdocdb
+  coverage_role:
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-vector-stores-awsdocdb
+    roles:
+    - vector-store
+    vendor_domain: aws.amazon.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: microsoft-azure-search
+  partner: microsoft-azure-search
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-azureaisearch
+  coverage_role:
+  - retrieval-reader
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-readers-azcognitive-search
+    - llama-index-vector-stores-azureaisearch
+    roles:
+    - retrieval-reader
+    - vector-store
+    vendor_domain: azure.microsoft.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: azure-cosmos-db
+  partner: azure-cosmos-db
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-azurecosmosmongo
+  coverage_role:
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-vector-stores-azurecosmosmongo
+    - llama-index-vector-stores-azurecosmosnosql
+    roles:
+    - vector-store
+    vendor_domain: azure.microsoft.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: microsoft-azure-postgresql
+  partner: microsoft-azure-postgresql
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-azurepostgresql
+  coverage_role:
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-vector-stores-azurepostgresql
+    roles:
+    - vector-store
+    vendor_domain: azure.microsoft.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: baidu
+  partner: baidu
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-baiduvectordb
+  coverage_role:
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-vector-stores-baiduvectordb
+    roles:
+    - vector-store
+    vendor_domain: baidu.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: google-bigquery
+  partner: google-bigquery
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-bigquery
+  coverage_role:
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-vector-stores-bigquery
+    roles:
+    - vector-store
+    vendor_domain: cloud.google.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: cassandra
+  partner: cassandra
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-cassandra
+  coverage_role:
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-vector-stores-cassandra
+    roles:
+    - vector-store
+    vendor_domain: apache.org
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: chroma
+  partner: chroma
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-chroma
+  coverage_role:
+  - retrieval-reader
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-readers-chroma
+    - llama-index-vector-stores-chroma
+    roles:
+    - retrieval-reader
+    - vector-store
+    vendor_domain: trychroma.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: clickhouse
+  partner: clickhouse
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-clickhouse
+  coverage_role:
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-vector-stores-clickhouse
+    roles:
+    - vector-store
+    vendor_domain: clickhouse.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: couchbase
+  partner: couchbase
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-couchbase
+  coverage_role:
+  - retrieval-reader
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-readers-couchbase
+    - llama-index-vector-stores-couchbase
+    roles:
+    - retrieval-reader
+    - vector-store
+    vendor_domain: couchbase.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: databricks
+  partner: databricks
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-databricks
+  coverage_role:
+  - embeddings
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-embeddings-databricks
+    - llama-index-vector-stores-databricks
+    roles:
+    - embeddings
+    - vector-store
+    vendor_domain: databricks.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: ibm-db2
+  partner: ibm-db2
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-db2
+  coverage_role:
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-vector-stores-db2
+    roles:
+    - vector-store
+    vendor_domain: ibm.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: activeloop
+  partner: activeloop
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-deeplake
+  coverage_role:
+  - retrieval-reader
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-readers-deeplake
+    - llama-index-vector-stores-deeplake
+    roles:
+    - retrieval-reader
+    - vector-store
+    vendor_domain: activeloop.ai
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: duckdb
+  partner: duckdb
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-duckdb
+  coverage_role:
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-vector-stores-duckdb
+    roles:
+    - vector-store
+    vendor_domain: duckdb.org
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: amazon-dynamodb
+  partner: amazon-dynamodb
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-dynamodb
+  coverage_role:
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-vector-stores-dynamodb
+    roles:
+    - vector-store
+    vendor_domain: aws.amazon.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: elasticsearch
+  partner: elasticsearch
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-elasticsearch
+  coverage_role:
+  - embeddings
+  - retrieval-reader
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-embeddings-elasticsearch
+    - llama-index-readers-elasticsearch
+    - llama-index-vector-stores-elasticsearch
+    roles:
+    - embeddings
+    - retrieval-reader
+    - vector-store
+    vendor_domain: elastic.co
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: google-cloud-firestore
+  partner: google-cloud-firestore
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-firestore
+  coverage_role:
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-vector-stores-firestore
+    roles:
+    - vector-store
+    vendor_domain: cloud.google.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: gel-data
+  partner: gel-data
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-gel
+  coverage_role:
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-vector-stores-gel
+    roles:
+    - vector-store
+    vendor_domain: geldata.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: google-vertex-ai
+  partner: google-vertex-ai
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-google
+  coverage_role:
+  - embeddings
+  - reranker
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-embeddings-vertex
+    - llama-index-embeddings-vertex-endpoint
+    - llama-index-postprocessor-google-rerank
+    - llama-index-vector-stores-google
+    - llama-index-vector-stores-vertexaivectorsearch
+    roles:
+    - embeddings
+    - reranker
+    - vector-store
+    vendor_domain: cloud.google.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: lancedb
+  partner: lancedb
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-lancedb
+  coverage_role:
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-vector-stores-lancedb
+    roles:
+    - vector-store
+    vendor_domain: lancedb.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: milvus
+  partner: milvus
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-milvus
+  coverage_role:
+  - retrieval-reader
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-readers-milvus
+    - llama-index-vector-stores-milvus
+    roles:
+    - retrieval-reader
+    - vector-store
+    vendor_domain: milvus.io
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: mongodb
+  partner: mongodb
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-mongodb
+  coverage_role:
+  - retrieval-reader
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-readers-mongodb
+    - llama-index-vector-stores-mongodb
+    roles:
+    - retrieval-reader
+    - vector-store
+    vendor_domain: mongodb.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: neo4j
+  partner: neo4j
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-neo4jvector
+  coverage_role:
+  - retrieval-reader
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-readers-graphdb-cypher
+    - llama-index-vector-stores-neo4jvector
+    roles:
+    - retrieval-reader
+    - vector-store
+    vendor_domain: neo4j.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: amazon-neptune
+  partner: amazon-neptune
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-neptune
+  coverage_role:
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-vector-stores-neptune
+    roles:
+    - vector-store
+    vendor_domain: aws.amazon.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: thenile
+  partner: thenile
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-nile
+  coverage_role:
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-vector-stores-nile
+    roles:
+    - vector-store
+    vendor_domain: thenile.dev
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: objectbox
+  partner: objectbox
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-objectbox
+  coverage_role:
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-vector-stores-objectbox
+    roles:
+    - vector-store
+    vendor_domain: objectbox.io
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: opensearch
+  partner: opensearch
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-opensearch
+  coverage_role:
+  - retrieval-reader
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-readers-opensearch
+    - llama-index-vector-stores-opensearch
+    roles:
+    - retrieval-reader
+    - vector-store
+    vendor_domain: opensearch.org
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: oracle-database
+  partner: oracle-database
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-oracledb
+  coverage_role:
+  - embeddings
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-embeddings-oracleai
+    - llama-index-vector-stores-oracledb
+    roles:
+    - embeddings
+    - vector-store
+    vendor_domain: oracle.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: pinecone
+  partner: pinecone
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-pinecone
+  coverage_role:
+  - reranker
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-postprocessor-pinecone-native-rerank
+    - llama-index-vector-stores-pinecone
+    roles:
+    - reranker
+    - vector-store
+    vendor_domain: pinecone.io
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: qdrant
+  partner: qdrant
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-qdrant
+  coverage_role:
+  - retrieval-reader
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-readers-qdrant
+    - llama-index-vector-stores-qdrant
+    roles:
+    - retrieval-reader
+    - vector-store
+    vendor_domain: qdrant.tech
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: redis
+  partner: redis
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-redis
+  coverage_role:
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-vector-stores-redis
+    roles:
+    - vector-store
+    vendor_domain: redis.io
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: rockset
+  partner: rockset
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-rocksetdb
+  coverage_role:
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-vector-stores-rocksetdb
+    roles:
+    - vector-store
+    vendor_domain: rockset.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: amazon-s3
+  partner: amazon-s3
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-s3
+  coverage_role:
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-vector-stores-s3
+    roles:
+    - vector-store
+    vendor_domain: aws.amazon.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: singlestore
+  partner: singlestore
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-singlestoredb
+  coverage_role:
+  - retrieval-reader
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-readers-singlestore
+    - llama-index-vector-stores-singlestoredb
+    roles:
+    - retrieval-reader
+    - vector-store
+    vendor_domain: singlestore.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: solr
+  partner: solr
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-solr
+  coverage_role:
+  - retrieval-reader
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-readers-solr
+    - llama-index-vector-stores-solr
+    roles:
+    - retrieval-reader
+    - vector-store
+    vendor_domain: apache.org
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: supabase
+  partner: supabase
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-supabase
+  coverage_role:
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-vector-stores-supabase
+    roles:
+    - vector-store
+    vendor_domain: supabase.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: tencentcloud
+  partner: tencentcloud
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-tencentvectordb
+  coverage_role:
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-vector-stores-tencentvectordb
+    roles:
+    - vector-store
+    vendor_domain: tencentcloud.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: pingcap
+  partner: pingcap
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-tidbvector
+  coverage_role:
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-vector-stores-tidbvector
+    roles:
+    - vector-store
+    vendor_domain: pingcap.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: timescale
+  partner: timescale
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-timescalevector
+  coverage_role:
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-vector-stores-timescalevector
+    roles:
+    - vector-store
+    vendor_domain: tigerdata.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: typesense
+  partner: typesense
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-typesense
+  coverage_role:
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-vector-stores-typesense
+    roles:
+    - vector-store
+    vendor_domain: typesense.org
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: upstash
+  partner: upstash
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-upstash
+  coverage_role:
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-vector-stores-upstash
+    roles:
+    - vector-store
+    vendor_domain: upstash.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: vespa-ai
+  partner: vespa-ai
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-vespa
+  coverage_role:
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-vector-stores-vespa
+    roles:
+    - vector-store
+    vendor_domain: vespa.ai
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: weaviate
+  partner: weaviate
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-weaviate
+  coverage_role:
+  - retrieval-reader
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-readers-weaviate
+    - llama-index-vector-stores-weaviate
+    roles:
+    - retrieval-reader
+    - vector-store
+    vendor_domain: weaviate.io
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: yugabyte
+  partner: yugabyte
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-yugabytedb
+  coverage_role:
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-vector-stores-yugabytedb
+    roles:
+    - vector-store
+    vendor_domain: yugabyte.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: zep
+  partner: zep
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-zep
+  coverage_role:
+  - retrieval-reader
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-readers-zep
+    - llama-index-vector-stores-zep
+    roles:
+    - retrieval-reader
+    - vector-store
+    vendor_domain: getzep.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: aleph-alpha
+  partner: aleph-alpha
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/embeddings/llama-index-embeddings-alephalpha
+  coverage_role:
+  - embeddings
+  framework_signals:
+    packages:
+    - llama-index-embeddings-alephalpha
+    roles:
+    - embeddings
+    vendor_domain: aleph-alpha.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: anyscale
+  partner: anyscale
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/embeddings/llama-index-embeddings-anyscale
+  coverage_role:
+  - embeddings
+  framework_signals:
+    packages:
+    - llama-index-embeddings-anyscale
+    roles:
+    - embeddings
+    vendor_domain: anyscale.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: azure-ai-foundry
+  partner: azure-ai-foundry
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/embeddings/llama-index-embeddings-azure-inference
+  coverage_role:
+  - embeddings
+  framework_signals:
+    packages:
+    - llama-index-embeddings-azure-inference
+    roles:
+    - embeddings
+    vendor_domain: azure.microsoft.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: microsoft-azure-openai
+  partner: microsoft-azure-openai
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/embeddings/llama-index-embeddings-azure-openai
+  coverage_role:
+  - embeddings
+  framework_signals:
+    packages:
+    - llama-index-embeddings-azure-openai
+    roles:
+    - embeddings
+    vendor_domain: azure.microsoft.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: baseten
+  partner: baseten
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/embeddings/llama-index-embeddings-baseten
+  coverage_role:
+  - embeddings
+  framework_signals:
+    packages:
+    - llama-index-embeddings-baseten
+    roles:
+    - embeddings
+    vendor_domain: baseten.co
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: amazon-bedrock
+  partner: amazon-bedrock
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/embeddings/llama-index-embeddings-bedrock
+  coverage_role:
+  - embeddings
+  - reranker
+  framework_signals:
+    packages:
+    - llama-index-embeddings-bedrock
+    - llama-index-postprocessor-bedrock-rerank
+    roles:
+    - embeddings
+    - reranker
+    vendor_domain: aws.amazon.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: clarifai
+  partner: clarifai
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/embeddings/llama-index-embeddings-clarifai
+  coverage_role:
+  - embeddings
+  framework_signals:
+    packages:
+    - llama-index-embeddings-clarifai
+    roles:
+    - embeddings
+    vendor_domain: clarifai.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: cloudflare
+  partner: cloudflare
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/embeddings/llama-index-embeddings-cloudflare-workersai
+  coverage_role:
+  - embeddings
+  framework_signals:
+    packages:
+    - llama-index-embeddings-cloudflare-workersai
+    roles:
+    - embeddings
+    vendor_domain: cloudflare.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: cohere
+  partner: cohere
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/embeddings/llama-index-embeddings-cohere
+  coverage_role:
+  - embeddings
+  - reranker
+  framework_signals:
+    packages:
+    - llama-index-embeddings-cohere
+    - llama-index-postprocessor-cohere-rerank
+    roles:
+    - embeddings
+    - reranker
+    vendor_domain: cohere.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: deepinfra
+  partner: deepinfra
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/embeddings/llama-index-embeddings-deepinfra
+  coverage_role:
+  - embeddings
+  framework_signals:
+    packages:
+    - llama-index-embeddings-deepinfra
+    roles:
+    - embeddings
+    vendor_domain: deepinfra.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: fireworks-ai
+  partner: fireworks-ai
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/embeddings/llama-index-embeddings-fireworks
+  coverage_role:
+  - embeddings
+  framework_signals:
+    packages:
+    - llama-index-embeddings-fireworks
+    roles:
+    - embeddings
+    vendor_domain: fireworks.ai
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: google-gemini
+  partner: google-gemini
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/embeddings/llama-index-embeddings-google-genai
+  coverage_role:
+  - embeddings
+  framework_signals:
+    packages:
+    - llama-index-embeddings-google-genai
+    roles:
+    - embeddings
+    vendor_domain: ai.google.dev
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: heroku
+  partner: heroku
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/embeddings/llama-index-embeddings-heroku
+  coverage_role:
+  - embeddings
+  framework_signals:
+    packages:
+    - llama-index-embeddings-heroku
+    roles:
+    - embeddings
+    vendor_domain: heroku.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: hugging-face
+  partner: hugging-face
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/embeddings/llama-index-embeddings-huggingface
+  coverage_role:
+  - embeddings
+  framework_signals:
+    packages:
+    - llama-index-embeddings-huggingface
+    - llama-index-embeddings-huggingface-api
+    roles:
+    - embeddings
+    vendor_domain: huggingface.co
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: jina-ai
+  partner: jina-ai
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/embeddings/llama-index-embeddings-jinaai
+  coverage_role:
+  - embeddings
+  - reranker
+  framework_signals:
+    packages:
+    - llama-index-embeddings-jinaai
+    - llama-index-postprocessor-jinaai-rerank
+    roles:
+    - embeddings
+    - reranker
+    vendor_domain: jina.ai
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: mistral
+  partner: mistral
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/embeddings/llama-index-embeddings-mistralai
+  coverage_role:
+  - embeddings
+  framework_signals:
+    packages:
+    - llama-index-embeddings-mistralai
+    roles:
+    - embeddings
+    vendor_domain: mistral.ai
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: mixedbread-ai
+  partner: mixedbread-ai
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/embeddings/llama-index-embeddings-mixedbreadai
+  coverage_role:
+  - embeddings
+  - reranker
+  framework_signals:
+    packages:
+    - llama-index-embeddings-mixedbreadai
+    - llama-index-postprocessor-mixedbreadai-rerank
+    roles:
+    - embeddings
+    - reranker
+    vendor_domain: mixedbread.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: nebius
+  partner: nebius
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/embeddings/llama-index-embeddings-nebius
+  coverage_role:
+  - embeddings
+  framework_signals:
+    packages:
+    - llama-index-embeddings-nebius
+    roles:
+    - embeddings
+    vendor_domain: nebius.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: nomic-ai
+  partner: nomic-ai
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/embeddings/llama-index-embeddings-nomic
+  coverage_role:
+  - embeddings
+  framework_signals:
+    packages:
+    - llama-index-embeddings-nomic
+    roles:
+    - embeddings
+    vendor_domain: nomic.ai
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: nvidia-nim
+  partner: nvidia-nim
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/embeddings/llama-index-embeddings-nvidia
+  coverage_role:
+  - embeddings
+  - reranker
+  framework_signals:
+    packages:
+    - llama-index-embeddings-nvidia
+    - llama-index-postprocessor-nvidia-rerank
+    roles:
+    - embeddings
+    - reranker
+    vendor_domain: nvidia.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: oracle-cloud
+  partner: oracle-cloud
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/embeddings/llama-index-embeddings-oci-data-science
+  coverage_role:
+  - embeddings
+  framework_signals:
+    packages:
+    - llama-index-embeddings-oci-data-science
+    - llama-index-embeddings-oci-genai
+    roles:
+    - embeddings
+    vendor_domain: oracle.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: ollama
+  partner: ollama
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/embeddings/llama-index-embeddings-ollama
+  coverage_role:
+  - embeddings
+  framework_signals:
+    packages:
+    - llama-index-embeddings-ollama
+    roles:
+    - embeddings
+    vendor_domain: ollama.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: openai
+  partner: openai
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/embeddings/llama-index-embeddings-openai
+  coverage_role:
+  - embeddings
+  framework_signals:
+    packages:
+    - llama-index-embeddings-openai
+    roles:
+    - embeddings
+    vendor_domain: openai.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: amazon-sagemaker
+  partner: amazon-sagemaker
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/embeddings/llama-index-embeddings-sagemaker-endpoint
+  coverage_role:
+  - embeddings
+  framework_signals:
+    packages:
+    - llama-index-embeddings-sagemaker-endpoint
+    roles:
+    - embeddings
+    vendor_domain: aws.amazon.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: siliconflow
+  partner: siliconflow
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/embeddings/llama-index-embeddings-siliconflow
+  coverage_role:
+  - embeddings
+  - reranker
+  framework_signals:
+    packages:
+    - llama-index-embeddings-siliconflow
+    - llama-index-postprocessor-siliconflow-rerank
+    roles:
+    - embeddings
+    - reranker
+    vendor_domain: siliconflow.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: together-ai
+  partner: together-ai
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/embeddings/llama-index-embeddings-together
+  coverage_role:
+  - embeddings
+  framework_signals:
+    packages:
+    - llama-index-embeddings-together
+    roles:
+    - embeddings
+    vendor_domain: together.ai
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: upstage-ai
+  partner: upstage-ai
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/readers/llama-index-readers-upstage
+  coverage_role:
+  - document-parser
+  - embeddings
+  framework_signals:
+    packages:
+    - llama-index-embeddings-upstage
+    - llama-index-readers-upstage
+    roles:
+    - document-parser
+    - embeddings
+    vendor_domain: upstage.ai
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: vllm
+  partner: vllm
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/embeddings/llama-index-embeddings-vllm
+  coverage_role:
+  - embeddings
+  framework_signals:
+    packages:
+    - llama-index-embeddings-vllm
+    roles:
+    - embeddings
+    vendor_domain: vllm.ai
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: voyage-ai
+  partner: voyage-ai
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/embeddings/llama-index-embeddings-voyageai
+  coverage_role:
+  - embeddings
+  - reranker
+  framework_signals:
+    packages:
+    - llama-index-embeddings-voyageai
+    - llama-index-postprocessor-voyageai-rerank
+    roles:
+    - embeddings
+    - reranker
+    vendor_domain: voyageai.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: zhipu-ai
+  partner: zhipu-ai
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/embeddings/llama-index-embeddings-zhipuai
+  coverage_role:
+  - embeddings
+  framework_signals:
+    packages:
+    - llama-index-embeddings-zhipuai
+    roles:
+    - embeddings
+    vendor_domain: zhipuai.cn
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: aimon
+  partner: aimon
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/postprocessor/llama-index-postprocessor-aimon-rerank
+  coverage_role:
+  - reranker
+  framework_signals:
+    packages:
+    - llama-index-postprocessor-aimon-rerank
+    roles:
+    - reranker
+    vendor_domain: aimon.ai
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: contextual-ai
+  partner: contextual-ai
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/postprocessor/llama-index-postprocessor-contextual-rerank
+  coverage_role:
+  - reranker
+  framework_signals:
+    packages:
+    - llama-index-postprocessor-contextual-rerank
+    roles:
+    - reranker
+    vendor_domain: contextual.ai
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: assemblyai
+  partner: assemblyai
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/readers/llama-index-readers-assemblyai
+  coverage_role:
+  - document-parser
+  framework_signals:
+    packages:
+    - llama-index-readers-assemblyai
+    roles:
+    - document-parser
+    vendor_domain: assemblyai.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: llamaparse
+  partner: llamaparse
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/readers/llama-index-readers-llama-parse
+  coverage_role:
+  - document-parser
+  framework_signals:
+    packages:
+    - llama-index-readers-llama-parse
+    roles:
+    - document-parser
+    vendor_domain: llamaindex.ai
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: myscale
+  partner: myscale
+  partner_match: domain
+  channel: provider-built
+  direction: provider-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/readers/llama-index-readers-myscale
+  coverage_role:
+  - retrieval-reader
+  framework_signals:
+    packages:
+    - llama-index-readers-myscale
+    roles:
+    - retrieval-reader
+    vendor_domain: myscale.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+generated: '2026-10-15'
+method: searched
+checked:
+- https://github.com/run-llama/llama_index/tree/main/llama-index-integrations
