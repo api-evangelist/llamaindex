@@ -129,29 +129,7 @@ paths:
         '404':
           description: Extraction agent not found
 components:
-  parameters:
-    agentId:
-      name: agentId
-      in: path
-      description: Unique identifier of the extraction agent.
-      required: true
-      schema:
-        type: string
   schemas:
-    UpdateExtractionAgentRequest:
-      type: object
-      description: Request body for updating an existing extraction agent.
-      properties:
-        name:
-          type: string
-          description: Updated name for the extraction agent.
-        data_schema:
-          type: object
-          additionalProperties: true
-          description: Updated JSON Schema for data extraction.
-        description:
-          type: string
-          description: Updated description of the extraction agent.
     ExtractionAgent:
       type: object
       description: An extraction agent configured with a specific data schema and extraction settings for processing documents.
@@ -203,6 +181,28 @@ components:
         prompt:
           type: string
           description: Optional prompt to guide automatic schema inference from example documents.
+    UpdateExtractionAgentRequest:
+      type: object
+      description: Request body for updating an existing extraction agent.
+      properties:
+        name:
+          type: string
+          description: Updated name for the extraction agent.
+        data_schema:
+          type: object
+          additionalProperties: true
+          description: Updated JSON Schema for data extraction.
+        description:
+          type: string
+          description: Updated description of the extraction agent.
+  parameters:
+    agentId:
+      name: agentId
+      in: path
+      description: Unique identifier of the extraction agent.
+      required: true
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

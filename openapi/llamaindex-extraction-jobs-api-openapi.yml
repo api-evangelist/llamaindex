@@ -83,7 +83,30 @@ paths:
         '404':
           description: Extraction job not found or not completed
 components:
+  parameters:
+    jobId:
+      name: jobId
+      in: path
+      description: Unique identifier of the extraction job.
+      required: true
+      schema:
+        type: string
   schemas:
+    CreateExtractionJobRequest:
+      type: object
+      description: Request body for creating an extraction job.
+      required:
+      - extraction_agent_id
+      - file_ids
+      properties:
+        extraction_agent_id:
+          type: string
+          description: Identifier of the extraction agent to use for processing.
+        file_ids:
+          type: array
+          items:
+            type: string
+          description: List of file identifiers to process in this extraction job.
     ExtractionJob:
       type: object
       description: An asynchronous extraction job that processes documents through an extraction agent.
@@ -115,33 +138,6 @@ components:
           type: string
           format: date-time
           description: Timestamp when the extraction job completed, if applicable.
-    CreateExtractionJobRequest:
-      type: object
-      description: Request body for creating an extraction job.
-      required:
-      - extraction_agent_id
-      - file_ids
-      properties:
-        extraction_agent_id:
-          type: string
-          description: Identifier of the extraction agent to use for processing.
-        file_ids:
-          type: array
-          items:
-            type: string
-          description: List of file identifiers to process in this extraction job.
-    ExtractionResult:
-      type: object
-      description: Structured data extracted from documents by a completed extraction job.
-      properties:
-        job_id:
-          type: string
-          description: Identifier of the extraction job that produced this result.
-        results:
-          type: array
-          description: List of extraction results, one per processed file.
-          items:
-            $ref: '#/components/schemas/FileExtractionResult'
     FileExtractionResult:
       type: object
       description: Extraction result for a single file.
@@ -165,14 +161,18 @@ components:
         error:
           type: string
           description: Error message if extraction failed for this file.
-  parameters:
-    jobId:
-      name: jobId
-      in: path
-      description: Unique identifier of the extraction job.
-      required: true
-      schema:
-        type: string
+    ExtractionResult:
+      type: object
+      description: Structured data extracted from documents by a completed extraction job.
+      properties:
+        job_id:
+          type: string
+          description: Identifier of the extraction job that produced this result.
+        results:
+          type: array
+          description: List of extraction results, one per processed file.
+          items:
+            $ref: '#/components/schemas/FileExtractionResult'
   securitySchemes:
     bearerAuth:
       type: http

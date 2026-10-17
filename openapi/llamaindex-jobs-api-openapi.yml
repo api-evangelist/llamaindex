@@ -104,14 +104,6 @@ paths:
         '404':
           description: Parse job not found or not completed
 components:
-  parameters:
-    jobId:
-      name: jobId
-      in: path
-      description: Unique identifier of the parse job.
-      required: true
-      schema:
-        type: string
   schemas:
     ParsePage:
       type: object
@@ -127,29 +119,6 @@ components:
         markdown:
           type: string
           description: Markdown-formatted content of the page.
-    ParseResult:
-      type: object
-      description: The parsed output of a document, containing extracted content in various formats.
-      properties:
-        text:
-          type: string
-          description: Plain text representation of the parsed content.
-        markdown:
-          type: string
-          description: Markdown-formatted representation of the parsed content.
-        json:
-          type: object
-          additionalProperties: true
-          description: Structured JSON representation of the parsed content.
-        pages:
-          type: array
-          description: Per-page parsing results.
-          items:
-            $ref: '#/components/schemas/ParsePage'
-        metadata:
-          type: object
-          additionalProperties: true
-          description: Metadata extracted from the document.
     ParseJob:
       type: object
       description: A parse job representing the asynchronous processing of a document.
@@ -189,6 +158,37 @@ components:
           description: Timestamp when the parse job completed, if applicable.
         result:
           $ref: '#/components/schemas/ParseResult'
+    ParseResult:
+      type: object
+      description: The parsed output of a document, containing extracted content in various formats.
+      properties:
+        text:
+          type: string
+          description: Plain text representation of the parsed content.
+        markdown:
+          type: string
+          description: Markdown-formatted representation of the parsed content.
+        json:
+          type: object
+          additionalProperties: true
+          description: Structured JSON representation of the parsed content.
+        pages:
+          type: array
+          description: Per-page parsing results.
+          items:
+            $ref: '#/components/schemas/ParsePage'
+        metadata:
+          type: object
+          additionalProperties: true
+          description: Metadata extracted from the document.
+  parameters:
+    jobId:
+      name: jobId
+      in: path
+      description: Unique identifier of the parse job.
+      required: true
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

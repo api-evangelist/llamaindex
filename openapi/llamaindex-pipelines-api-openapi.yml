@@ -122,14 +122,6 @@ paths:
         '404':
           description: Pipeline not found
 components:
-  parameters:
-    pipelineId:
-      name: pipelineId
-      in: path
-      description: Unique identifier of the pipeline.
-      required: true
-      schema:
-        type: string
   schemas:
     Pipeline:
       type: object
@@ -205,6 +197,14 @@ components:
         sync_interval:
           type: integer
           description: Optional scheduled sync frequency in seconds.
+  parameters:
+    pipelineId:
+      name: pipelineId
+      in: path
+      description: Unique identifier of the pipeline.
+      required: true
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http
