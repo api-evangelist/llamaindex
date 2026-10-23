@@ -1700,6 +1700,37 @@ edges:
     detected: '2026-10-19'
   detected_by: sweep-cloud-native.py
   first_seen: '2026-10-15'
+- partner_name: Hugging Face (hugging-face-hub)
+  partner: hugging-face
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: hugging-face-hub
+  evidence: https://huggingface.co/llamaindex
+  mirror_of: hugging-face/integrations/hugging-face-integration-edges.yml
+  apps:
+  - llamaindex/ParseBench
+  - llamaindex/ExtractBench
+  - llamaindex/vdr-multilingual-train
+  - llamaindex/ExtractBenchPro
+  - llamaindex/liteparse_bench_small
+  - llamaindex/liteparse_cicd_data
+  - llamaindex/vdr-multilingual-test
+  - llamaindex/potion-multilingual-128M-nf4
+  - llamaindex/vdr-2b-multi-v1
+  - llamaindex/vdr-2b-v1
+  - llamaindex/test_parser
+  - llamaindex/multimodal_vdr_demo
+  - llamaindex/test-bench-blind-leaderboard
+  listing_count: 3
+  detected: '2026-10-23'
+  detected_by: mirror-platform-listings.py
+  category: Hugging Face Hub datasets
+  badges:
+  - Verified publisher (Hugging Face verified organisation)
 generated: '2026-10-15'
 method: searched
 checked:
@@ -1707,6 +1738,7 @@ checked:
 - https://github.com/cncf/k8s-conformance
 - https://github.com/cncf/landscape
 - https://github.com/run-llama/llama_index/tree/main/llama-index-integrations
+- hugging-face/integrations/hugging-face-integration-edges.yml
 source:
 - https://github.com/cncf/landscape
 - https://github.com/cncf/k8s-conformance
