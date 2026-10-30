@@ -1,4 +1,4 @@
-# llamaindex (llamaindex)
+# Llamaindex
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,168 +66,224 @@
 
 LlamaCloud is a hosted service for document processing and search, powered by LlamaIndex.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/llamaindex/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/llamaindex/refs/heads/main/apis.yml)
+**Areas:** Agents · Framework · LLM · Open Source · RAG · LlamaIndex
 
-## Timestamps
+## Llamaindex on APIs.io
 
-- **Modified:** 2026-05-19
+Everything profiled for Llamaindex is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/llamaindex/](https://apis.io/providers/llamaindex/)** — or go straight to one of the APIs or properties below.
 
-## APIs
+### APIs (20)
 
-### LlamaIndex LlamaCloud API
+- [LlamaIndex Python Framework](https://apis.io/apis/llamaindex/python-framework/) — LlamaIndex is an open-source Python framework for building LLM-powered applications including agents, RAG pipelines, and custom workflows. It provides data…
+- [LlamaIndex TypeScript Framework](https://apis.io/apis/llamaindex/typescript-framework/) — LlamaIndex TypeScript is the JavaScript and TypeScript implementation of the LlamaIndex framework for building LLM-powered applications. It provides…
+- [llamaindex Data Sources API](https://apis.io/apis/llamaindex/llamaindex-data-sources-api/) — Manage data sources at the project level.
+- [llamaindex Extraction Agents API](https://apis.io/apis/llamaindex/llamaindex-extraction-agents-api/) — Create and manage extraction agents that are configured with specific schemas and extraction settings for processing documents.
+- [llamaindex Extraction Jobs API](https://apis.io/apis/llamaindex/llamaindex-extraction-jobs-api/) — Run and monitor asynchronous extraction jobs that process documents through extraction agents.
+- [llamaindex Files API](https://apis.io/apis/llamaindex/llamaindex-files-api/) — Upload, list, and manage files for use in pipelines and parsing jobs.
+- [llamaindex Index Data Sources API](https://apis.io/apis/llamaindex/llamaindex-index-data-sources-api/) — Connect and manage external data sources for automatic document ingestion into an index.
+- [llamaindex Index Files API](https://apis.io/apis/llamaindex/llamaindex-index-files-api/) — Manage files within an index, including upload, listing, and status monitoring.
+- [llamaindex Index Retrieval API](https://apis.io/apis/llamaindex/llamaindex-index-retrieval-api/) — Query indexed content using configurable retrieval modes and parameters.
+- [llamaindex Index Status API](https://apis.io/apis/llamaindex/llamaindex-index-status-api/) — Monitor the processing status and health of an index.
+- [llamaindex Indexes API](https://apis.io/apis/llamaindex/llamaindex-indexes-api/) — Create and manage indexes that serve as automated document ingestion pipelines with retrieval capabilities.
+- [llamaindex Jobs API](https://apis.io/apis/llamaindex/llamaindex-jobs-api/) — Monitor and retrieve results from asynchronous parsing jobs.
+- [llamaindex Parsing API](https://apis.io/apis/llamaindex/llamaindex-parsing-api/) — Parse documents into structured formats using AI-powered extraction. Supports multiple tiers for different quality and speed trade-offs.
+- [llamaindex Pipeline Data Sinks API](https://apis.io/apis/llamaindex/llamaindex-pipeline-data-sinks-api/) — Manage data sinks that receive processed data from a pipeline.
+- [llamaindex Pipeline Data Sources API](https://apis.io/apis/llamaindex/llamaindex-pipeline-data-sources-api/) — Manage data sources connected to a pipeline for automatic ingestion.
+- [llamaindex Pipeline Files API](https://apis.io/apis/llamaindex/llamaindex-pipeline-files-api/) — Manage files associated with a specific pipeline.
+- [llamaindex Pipeline Jobs API](https://apis.io/apis/llamaindex/llamaindex-pipeline-jobs-api/) — Monitor and manage ingestion jobs for a pipeline.
+- [llamaindex Pipelines API](https://apis.io/apis/llamaindex/llamaindex-pipelines-api/) — Create, configure, sync, and manage document ingestion pipelines.
+- [llamaindex Projects API](https://apis.io/apis/llamaindex/llamaindex-projects-api/) — Manage projects that organize pipelines, files, and other resources.
+- [llamaindex Retrieval API](https://apis.io/apis/llamaindex/llamaindex-retrieval-api/) — Query and retrieve content from indexed pipelines.
 
-The LlamaCloud API is the central REST API for LlamaIndex's cloud platform, providing programmatic access to managed document processing, indexing, and retrieval services. It enables developers to build production-grade LLM applications by leveraging cloud-hosted infrastructure for document ingestion, knowledge management, and agent orchestration. The API supports authentication via API keys and is available in both US and EU regions.
+### Published properties
 
-- **Human URL:** [https://developers.api.llamaindex.ai/](https://developers.api.llamaindex.ai/)
-- **Base URL:** `https://api.cloud.llamaindex.ai`
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-#### Tags
+#### GraphQL (1)
 
-- Agents
-- Artificial Intelligence
-- Cloud
-- Documents
-- LLM
-- RAG
+GraphQL schemas.
 
-#### Properties
+- [Moved to /providers/llamaindex/](https://apis.io/graphqls/llamaindex/llamaindex-graphql/)
 
-- [Documentation](https://developers.api.llamaindex.ai/)
-- [OpenAPI](openapi/llamaindex-llamacloud-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/llamaindex-llamacloud-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/llamaindex-llamacloud-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### MCP servers (1)
 
-### LlamaIndex LlamaParse API
+Model Context Protocol servers that expose the API to agents.
 
-LlamaParse is a GenAI-native document parsing API that can parse complex document data for any downstream LLM use case including agents, RAG pipelines, and data processing workflows. The v2 API provides two main endpoints for parsing: one for JSON requests accepting file IDs or URLs, and another for multipart file uploads. It supports multiple parsing tiers including fast, cost-effective, agentic, and agentic-plus modes, and returns results asynchronously via job polling.
+- [llamaindex](https://apis.io/servers/llamaindex/llamaindex/)
 
-- **Human URL:** [https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/](https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/)
-- **Base URL:** `https://api.cloud.llamaindex.ai`
+#### Agentic access (1)
 
-#### Tags
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- Artificial Intelligence
-- Document Parsing
-- LLM
-- OCR
-- PDF
+- [Llamaindex Agentic Access](https://apis.io/agentic-access/llamaindex/llamaindex-agentic-access/)
 
-#### Properties
+#### JSON Schema (35)
 
-- [Documentation](https://developers.llamaindex.ai/python/cloud/llamaparse/api-v2-guide/)
-- [OpenAPI](openapi/llamaindex-llamaparse-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/llamaindex-llamaparse-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/llamaindex-llamaparse-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+The data models the API reads and writes.
 
-### LlamaIndex LlamaExtract API
+- [CreateExtractionAgentRequest](https://apis.io/schemas/llamaindex/llamaindex-createextractionagentrequest/)
+- [CreateExtractionJobRequest](https://apis.io/schemas/llamaindex/llamaindex-createextractionjobrequest/)
+- [CreateIndexRequest](https://apis.io/schemas/llamaindex/llamaindex-createindexrequest/)
+- [CreatePipelineRequest](https://apis.io/schemas/llamaindex/llamaindex-createpipelinerequest/)
+- [CreateProjectRequest](https://apis.io/schemas/llamaindex/llamaindex-createprojectrequest/)
+- [DataSink](https://apis.io/schemas/llamaindex/llamaindex-datasink/)
+- [DataSource](https://apis.io/schemas/llamaindex/llamaindex-datasource/)
+- [DataSourceInput](https://apis.io/schemas/llamaindex/llamaindex-datasourceinput/)
+- [LlamaIndex Extraction Agent](https://apis.io/schemas/llamaindex/llamaindex-extraction-agent/)
+- [ExtractionAgent](https://apis.io/schemas/llamaindex/llamaindex-extractionagent/)
+- [ExtractionJob](https://apis.io/schemas/llamaindex/llamaindex-extractionjob/)
+- [ExtractionResult](https://apis.io/schemas/llamaindex/llamaindex-extractionresult/)
+- [File](https://apis.io/schemas/llamaindex/llamaindex-file/)
+- [FileExtractionResult](https://apis.io/schemas/llamaindex/llamaindex-fileextractionresult/)
+- [Index](https://apis.io/schemas/llamaindex/llamaindex-index/)
+- [IndexFile](https://apis.io/schemas/llamaindex/llamaindex-indexfile/)
+- [IndexFileCounts](https://apis.io/schemas/llamaindex/llamaindex-indexfilecounts/)
+- [IndexFileInput](https://apis.io/schemas/llamaindex/llamaindex-indexfileinput/)
+- [IndexJob](https://apis.io/schemas/llamaindex/llamaindex-indexjob/)
+- [LlamaIndex Parse Job](https://apis.io/schemas/llamaindex/llamaindex-parse-job/)
+- [ParseJob](https://apis.io/schemas/llamaindex/llamaindex-parsejob/)
+- [ParseJobCreated](https://apis.io/schemas/llamaindex/llamaindex-parsejobcreated/)
+- [ParsePage](https://apis.io/schemas/llamaindex/llamaindex-parsepage/)
+- [ParseRequest](https://apis.io/schemas/llamaindex/llamaindex-parserequest/)
+- [ParseResult](https://apis.io/schemas/llamaindex/llamaindex-parseresult/)
+- …and 10 more published on APIs.io
 
-LlamaExtract is a prebuilt agentic data extraction API that transforms unstructured document data into structured JSON representations. The REST API allows developers to create extraction agents, upload documents, and run extraction jobs programmatically. Jobs are processed asynchronously, and developers can poll for job status and retrieve structured results. It is designed for use cases where documents need to be converted into well-defined schemas for downstream processing.
+#### JSON Structure (1)
 
-- **Human URL:** [https://developers.llamaindex.ai/python/cloud/llamaextract/getting_started/api/](https://developers.llamaindex.ai/python/cloud/llamaextract/getting_started/api/)
-- **Base URL:** `https://api.cloud.llamaindex.ai`
+Data models expressed in JSON Structure.
 
-#### Tags
+- [Llamaindex Structure](https://apis.io/json-structure/llamaindex/llamaindex-structure/)
 
-- Artificial Intelligence
-- Data Extraction
-- Documents
-- JSON
-- Structured Data
+#### JSON-LD (1)
 
-#### Properties
+Linked-data contexts for the provider's vocabulary.
 
-- [Documentation](https://developers.llamaindex.ai/python/cloud/llamaextract/getting_started/api/)
-- [OpenAPI](openapi/llamaindex-llamaextract-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/llamaindex-llamaextract-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/llamaindex-llamaextract-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Llamaindex Context](https://apis.io/jsonld/llamaindex/llamaindex-context/)
 
-### LlamaIndex LlamaCloud Index API
+#### Vocabulary (1)
 
-The LlamaCloud Index API provides a fully automated document ingestion pipeline with built-in retrieval capabilities. It allows developers to create and manage indexes, upload documents for automatic parsing and embedding, and perform retrieval queries against indexed content. The API supports customizable pipeline configurations and integrates with various vector stores, making it suitable for building production RAG applications without managing infrastructure.
+The provider's domain terms, defined.
 
-- **Human URL:** [https://developers.llamaindex.ai/python/cloud/llamacloud/guides/api_sdk/](https://developers.llamaindex.ai/python/cloud/llamacloud/guides/api_sdk/)
-- **Base URL:** `https://api.cloud.llamaindex.ai`
+- [Llamaindex Domain Vocabulary](https://apis.io/vocabularies/llamaindex/llamaindex-vocabulary/)
 
-#### Tags
+#### Collections (22)
 
-- Document Ingestion
-- Indexing
-- RAG
-- Retrieval
-- Vector Store
+Postman and Open Collection request collections.
 
-#### Properties
+- [LlamaIndex LlamaCloud Data Sources API](https://apis.io/collections/llamaindex/open-llamaindex-data-sources-api/)
+- [LlamaIndex LlamaCloud Data Sources Extraction Agents API](https://apis.io/collections/llamaindex/open-llamaindex-extraction-agents-api/)
+- [LlamaIndex LlamaCloud Data Sources Extraction Jobs API](https://apis.io/collections/llamaindex/open-llamaindex-extraction-jobs-api/)
+- [LlamaIndex LlamaCloud Data Sources Files API](https://apis.io/collections/llamaindex/open-llamaindex-files-api/)
+- [LlamaIndex LlamaCloud Data Sources Index Data Sources API](https://apis.io/collections/llamaindex/open-llamaindex-index-data-sources-api/)
+- [LlamaIndex LlamaCloud Data Sources Index Files API](https://apis.io/collections/llamaindex/open-llamaindex-index-files-api/)
+- [LlamaIndex LlamaCloud Data Sources Index Retrieval API](https://apis.io/collections/llamaindex/open-llamaindex-index-retrieval-api/)
+- [LlamaIndex LlamaCloud Data Sources Index Status API](https://apis.io/collections/llamaindex/open-llamaindex-index-status-api/)
+- [LlamaIndex LlamaCloud Data Sources Indexes API](https://apis.io/collections/llamaindex/open-llamaindex-indexes-api/)
+- [LlamaIndex LlamaCloud Data Sources Jobs API](https://apis.io/collections/llamaindex/open-llamaindex-jobs-api/)
+- [LlamaIndex LlamaCloud API](https://apis.io/collections/llamaindex/open-llamaindex-llamacloud-api/)
+- [LlamaIndex LlamaCloud Index API](https://apis.io/collections/llamaindex/open-llamaindex-llamacloud-index-api/)
+- [LlamaIndex LlamaExtract API](https://apis.io/collections/llamaindex/open-llamaindex-llamaextract-api/)
+- [LlamaIndex LlamaParse API](https://apis.io/collections/llamaindex/open-llamaindex-llamaparse-api/)
+- [LlamaIndex LlamaCloud Data Sources Parsing API](https://apis.io/collections/llamaindex/open-llamaindex-parsing-api/)
+- [LlamaIndex LlamaCloud Data Sources Pipeline Data Sinks API](https://apis.io/collections/llamaindex/open-llamaindex-pipeline-data-sinks-api/)
+- [LlamaIndex LlamaCloud Data Sources Pipeline Data Sources API](https://apis.io/collections/llamaindex/open-llamaindex-pipeline-data-sources-api/)
+- [LlamaIndex LlamaCloud Data Sources Pipeline Files API](https://apis.io/collections/llamaindex/open-llamaindex-pipeline-files-api/)
+- [LlamaIndex LlamaCloud Data Sources Pipeline Jobs API](https://apis.io/collections/llamaindex/open-llamaindex-pipeline-jobs-api/)
+- [LlamaIndex LlamaCloud Data Sources Pipelines API](https://apis.io/collections/llamaindex/open-llamaindex-pipelines-api/)
+- [LlamaIndex LlamaCloud Data Sources Projects API](https://apis.io/collections/llamaindex/open-llamaindex-projects-api/)
+- [LlamaIndex LlamaCloud Data Sources Retrieval API](https://apis.io/collections/llamaindex/open-llamaindex-retrieval-api/)
 
-- [Documentation](https://developers.llamaindex.ai/python/cloud/llamacloud/guides/api_sdk/)
-- [OpenAPI](openapi/llamaindex-llamacloud-index-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/llamaindex-llamacloud-index-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/llamaindex-llamacloud-index-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Governance rules (1)
 
-### LlamaIndex Python Framework
+Spectral rulesets for the provider's contracts.
 
-LlamaIndex is an open-source Python framework for building LLM-powered applications including agents, RAG pipelines, and custom workflows. It provides data connectors for ingesting data from various sources such as APIs, PDFs, databases, and more. The framework offers high-level abstractions like query engines, chat engines, and agent classes (FunctionAgent, ReActAgent, CodeActAgent), as well as lower-level APIs for advanced customization.
+- [Llamaindex — jsonschema rules](https://apis.io/rules/llamaindex/llamaindex-jsonschema-spectral-rules/)
 
-- **Human URL:** [https://developers.llamaindex.ai/python/framework/](https://developers.llamaindex.ai/python/framework/)
-- **Base URL:** `https://api.example.com`
+#### Security (2)
 
-#### Tags
+Authentication, trust centre, and vulnerability disclosure.
 
-- Agents
-- Framework
-- LLM
-- Open Source
-- Python
-- RAG
-- SDK
+- [Llamaindex Authentication](https://apis.io/security/llamaindex/llamaindex-authentication/)
+- [Llamaindex Domain Security](https://apis.io/security/llamaindex/llamaindex-domain-security/)
 
-#### Properties
+#### Plans and pricing (1)
 
-- [Documentation](https://developers.llamaindex.ai/python/framework/)
-- [Postman Collection](collections/llamaindex-llamacloud-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/llamaindex-llamacloud-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/llamaindex-llamacloud-index-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/llamaindex-llamacloud-index-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/llamaindex-llamaextract-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/llamaindex-llamaextract-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/llamaindex-llamaparse-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/llamaindex-llamaparse-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Published plans, tiers and prices.
 
-### LlamaIndex TypeScript Framework
+- [Llamaindex Plans Pricing](https://apis.io/plans/llamaindex/llamaindex-plans-pricing/)
 
-LlamaIndex TypeScript is the JavaScript and TypeScript implementation of the LlamaIndex framework for building LLM-powered applications. It provides server-side TypeScript support for building agents, RAG pipelines, and agentic workflows with the same core abstractions as the Python framework. The library supports integration with LlamaCloud services and offers convenient access to cloud APIs for document parsing, extraction, and indexing from Node.js environments.
+#### Rate limits (1)
 
-- **Human URL:** [https://developers.llamaindex.ai/typescript/framework/](https://developers.llamaindex.ai/typescript/framework/)
-- **Base URL:** `https://api.example.com`
+Published request limits.
 
-#### Tags
+- [Llamaindex Rate Limits](https://apis.io/rate-limits/llamaindex/llamaindex-rate-limits/)
 
-- Agents
-- Framework
-- JavaScript
-- LLM
-- Open Source
-- RAG
-- SDK
-- TypeScript
+#### FinOps (1)
 
-#### Properties
+What the API costs to run, by operation.
 
-- [Documentation](https://developers.llamaindex.ai/typescript/framework/)
-- [Postman Collection](collections/llamaindex-llamacloud-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/llamaindex-llamacloud-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/llamaindex-llamacloud-index-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/llamaindex-llamacloud-index-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/llamaindex-llamaextract-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/llamaindex-llamaextract-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/llamaindex-llamaparse-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/llamaindex-llamaparse-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Llamaindex Finops](https://apis.io/finops/llamaindex/llamaindex-finops/)
 
-## Common Properties
+## Where to find this API
 
-- [GitHub Organization](https://github.com/run-llama)
-- [LinkedIn](https://www.linkedin.com/company/llamaindex)
-- [JSON-LD](json-ld/llamaindex-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [JSON Schema](json-schema/llamaindex-pipeline-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/llamaindex-extraction-agent-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/llamaindex-parse-job-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [L L Ms Txt](https://developers.llamaindex.ai/llms.txt)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.llamaindex.ai/)
+- [Pricing](https://www.llamaindex.ai/pricing)
+- [Blog](https://www.llamaindex.ai/blog)
+- [GitHub](https://github.com/run-llama)
+
+## API Evangelist rating
+
+**Kin Score 35.8** — thin · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.7 |
+| Contract quality | 56.1 |
+| Contract governance | 9.8 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 23.8 |
+| Access clarity | 42.1 |
+
+**Agent readiness 27.1** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 15.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/llamaindex/](https://apis.io/providers/llamaindex/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Llamaindex: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/llamaindex/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
